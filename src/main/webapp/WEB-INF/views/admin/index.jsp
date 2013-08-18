@@ -5,6 +5,6 @@
     <title></title>
 </head>
 <body>
-<h2>Admin Default Page.</h2>
+<h2>Admin Default Page.测试一下</h2>
 </body>
 </html>
