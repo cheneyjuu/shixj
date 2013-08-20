@@ -1,0 +1,17 @@
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/service/ServiceException.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/rest/RestExceptionHandler.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/rest/TaskRestController.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/web/account/RegisterController.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/entity/IdEntity.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/repository/TaskDao.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/web/account/LoginController.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/service/account/ShiroDbRealm.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/service/account/AccountService.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/web/task/TaskController.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/web/account/UserAdminController.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/repository/UserDao.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/web/account/ProfileController.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/web/AdminIndex.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/entity/User.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/entity/Task.java
+/Users/Juchen/Documents/workspaces/IdeaProjects/shixj/src/main/java/com/chen/shixj/service/task/TaskService.java

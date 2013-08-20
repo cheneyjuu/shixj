@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="shixj:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="shixj.war">
+      <element id="artifact" artifact-name="shixj:war exploded" />
+    </root>
+  </artifact>
+</component>

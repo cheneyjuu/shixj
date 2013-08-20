@@ -1,0 +1,15 @@
+com/chen/shixj/service/account/AccountServiceTest.class
+com/chen/shixj/functional/gui/TaskGuiFT.class
+com/chen/shixj/functional/BaseFunctionalTestCase.class
+com/chen/shixj/functional/rest/TaskRestFT$TaskList.class
+com/chen/shixj/data/TaskData.class
+com/chen/shixj/functional/gui/SecurityFT.class
+com/chen/shixj/repository/JpaMappingTest.class
+com/chen/shixj/functional/BaseSeleniumTestCase.class
+com/chen/shixj/data/UserData.class
+com/chen/shixj/QuickStartServer.class
+com/chen/shixj/functional/gui/UserAdminFT.class
+com/chen/shixj/repository/TaskDaoTest.class
+com/chen/shixj/functional/rest/TaskRestFT.class
+com/chen/shixj/functional/gui/RegisterFT.class
+com/chen/shixj/functional/gui/ProfileFT.class
