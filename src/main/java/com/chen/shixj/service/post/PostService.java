@@ -89,6 +89,37 @@ public class PostService {
         }, new PageRequest(pageNumber - 1, pagzSize));
     }
     /**
+     * 创建分页请求.根据栏目id和搜索字段模糊查找产品
+     */
+    public Page<Post> pagePost(int pageNumber, final int pagzSize, final int navId, final String parameter) {
+        return postDao.findAll(new Specification<Post>() {
+            @Override
+            public Predicate toPredicate(Root<Post> contentRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path<String> id = contentRoot.get("navId");
+                Path<String> postTitle = contentRoot.get("postTitle");
+                //栏目id=0时查找全部
+                if (navId == 0){
+                    //所有条件为空是查找所有的
+                    if (parameter != ""){
+                        criteriaQuery.where(criteriaBuilder.like(postTitle, "%"+parameter+"%"));
+                    }
+                }else {
+                    //所有条件为空是查找栏目下所有的
+                    if (parameter != ""){
+                        criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(id, navId), criteriaBuilder.like(postTitle, "%"+parameter+"%")));
+                    }else{
+                        criteriaQuery.where(criteriaBuilder.equal(id, navId));
+                    }
+
+                }
+
+                return null;
+            }
+
+        }, new PageRequest(pageNumber - 1, pagzSize));
+    }
+
+    /**
      * 创建分页请求.
      */
     public Page<Post> pagePost(int pageNumber, final int pagzSize) {
