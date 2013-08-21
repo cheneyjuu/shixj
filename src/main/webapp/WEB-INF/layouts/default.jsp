@@ -10,7 +10,7 @@
     <title>食享家 - <sitemesh:title /></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="${ctx}/static/jquery/jquery-1.9.1.min.js"></script>
+    <script src="${ctx}/static/script/frontend/jquery.js"></script>
     <!--[if lt IE 9]>
     <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -536,7 +536,7 @@
         <form class="gray-box" id="formAcymailing92511" action="/themes/metrocreative/index.php" onsubmit="return submitacymailingform('optin','formAcymailing92511')" method="post" name="formAcymailing92511"  >
             <div class="acymailing_module_form" >
 
-                <label class="gray-box-title vg-acymailing-label" for="your-mail-address">Newsletter:</label>
+                <%--<label class="gray-box-title vg-acymailing-label" for="your-mail-address">Newsletter:</label>--%>
                 <!--input class="gray-box-input" id="your-mail-address" type="email" name="e-mail" placeholder="Your mail address" required="" />
 <input class="gray-box-submit background-color" type="submit" value="Subscribe"-->
 
@@ -594,7 +594,8 @@
 
     <div class="twelve columns">
 
-        <div class="vg-partner"><div class="partners-carousel-title background-color">Our Partners</div><div class="partners-carousel-${ctx}/static/images"><a href="javascript:void(0)">
+        <div class="vg-partner"><div class="partners-carousel-title background-color">Our Partners</div>
+            <div class="partners-carousel-${ctx}/static/images"><a href="javascript:void(0)">
             <img class="an-item" src="${ctx}/static/images/partners/partner-1.png" alt="Partner One" />
         </a><a href="javascript:void(0)">
             <img class="an-item" src="${ctx}/static/images/partners/partner-2.png" alt="Partner Two" />

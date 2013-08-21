@@ -13,26 +13,26 @@
             <li class="item-101 current active background-color">
                 <div class="menu-abs-bg background-color"></div>
                 <div style="background-image:url(${ctx}/static/images/icons/home.png);" class="vg-menu-icon menu-specs">
-                    <a href="/themes/metrocreative/">Home</a><span>Welcome</span></div>
+                    <a href="/themes/metrocreative/">首页</a><span>Home</span></div>
             </li>
             <li class="item-102 deeper parent">
                 <div class="menu-abs-bg background-color"></div>
                 <div style="background-image:url(${ctx}/static/images/icons/aboutus.png);"
                      class="vg-menu-icon menu-specs">
-                    <a href="#menufeatures">Features</a>
+                    <a href="#menufeatures">食享食分</a>
 
-                    <span>You can place text here</span></div>
+                    <span>Share Food</span></div>
                 <ul>
-                    <li class="item-109"><a href="/themes/metrocreative/index.php/features/about-us">About Us</a></li>
-                    <li class="item-139"><a href="/themes/metrocreative/index.php/features/services">Services</a></li>
-                    <li class="item-152"><a href="/themes/metrocreative/index.php/features/last-works-extension">Last
+                    <li><a href="/themes/metrocreative/index.php/features/about-us">About Us</a></li>
+                    <li><a href="/themes/metrocreative/index.php/features/services">Services</a></li>
+                    <li><a href="/themes/metrocreative/index.php/features/last-works-extension">Last
                         Works Extension</a></li>
-                    <li class="item-153"><a href="/themes/metrocreative/index.php/features/my-isotope-extension">My
+                    <li><a href="/themes/metrocreative/index.php/features/my-isotope-extension">My
                         Isotope Extension</a></li>
-                    <li class="item-137"><a href="/themes/metrocreative/./">Metro Slider</a></li>
-                    <li class="item-135"><a href="/themes/metrocreative/index.php/features/normal-slider">Normal
+                    <li><a href="/themes/metrocreative/./">Metro Slider</a></li>
+                    <li><a href="/themes/metrocreative/index.php/features/normal-slider">Normal
                         Slider</a></li>
-                    <li class="item-159"><a href="/themes/metrocreative/index.php/features/module-positions">Module
+                    <li><a href="/themes/metrocreative/index.php/features/module-positions">Module
                         Positions</a></li>
                 </ul>
             </li>
@@ -40,7 +40,7 @@
                 <div class="menu-abs-bg background-color"></div>
                 <div style="background-image:url(${ctx}/static/images/icons/portfolio.png);"
                      class="vg-menu-icon menu-specs">
-                    <a href="#menuportfolio">Portfolio</a>
+                    <a href="#menuportfolio">团购食惠</a>
 
                     <span>Subtitle possible</span></div>
                 <ul>
@@ -57,7 +57,7 @@
             <li class="item-105 deeper parent">
                 <div class="menu-abs-bg background-color"></div>
                 <div style="background-image:url(${ctx}/static/images/icons/blog.png);" class="vg-menu-icon menu-specs">
-                    <a href="#menublog">Blog</a>
+                    <a href="#menublog">有礼有节</a>
 
                     <span>Subtitle possible</span></div>
                 <ul>
@@ -83,13 +83,33 @@
             <li class="item-106">
                 <div class="menu-abs-bg background-color"></div>
                 <div style="background-image:url(${ctx}/static/images/icons/contact.png);"
-                     class="vg-menu-icon menu-specs"><a href="/themes/metrocreative/index.php/contact">Contact</a><span>Subtitle possible</span>
+                     class="vg-menu-icon menu-specs">
+                    <a href="/themes/metrocreative/index.php/contact">食享课堂</a>
+                    <span>Subtitle possible</span>
                 </div>
             </li>
             <li class="item-128">
                 <div class="menu-abs-bg background-color"></div>
                 <div style="background-image:url(${ctx}/static/images/icons/welcome-icon.png);"
-                     class="vg-menu-icon menu-specs"><a href="/themes/metrocreative/index.php/login">Login</a><span>Access for users</span>
+                     class="vg-menu-icon menu-specs">
+                    <a href="/themes/metrocreative/index.php/login">品牌故事</a>
+                    <span>Access for users</span>
+                </div>
+            </li>
+            <li class="item-128">
+                <div class="menu-abs-bg background-color"></div>
+                <div style="background-image:url(${ctx}/static/images/icons/welcome-icon.png);"
+                     class="vg-menu-icon menu-specs">
+                    <a href="/themes/metrocreative/index.php/login">合作伙伴</a>
+                    <span>Access for users</span>
+                </div>
+            </li>
+            <li class="item-128">
+                <div class="menu-abs-bg background-color"></div>
+                <div style="background-image:url(${ctx}/static/images/icons/welcome-icon.png);"
+                     class="vg-menu-icon menu-specs">
+                    <a href="/themes/metrocreative/index.php/login">关于我们</a>
+                    <span>Access for users</span>
                 </div>
             </li>
         </ul>
