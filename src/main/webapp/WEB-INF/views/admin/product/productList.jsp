@@ -1,18 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jpm
-  Date: 13-8-19
-  Time: 下午7:11
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib prefix="form" uri="http://www.springside.org.cn/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
+    <style type="text/css">
+        @media (min-width: 1200px){
+            .column-label{
+                padding-top:5px;
+            }
+        }
+    </style>
 </head>
 <body>
 <section class="panel">
@@ -20,7 +21,7 @@
     <div class="panel-body">
         <div class="row text-small">
             <div class="col-sm-4 m-b-mini">
-                <label class="col-lg-3 control-label">选择栏目：</label>
+                <label class="col-lg-3 control-label column-label">选择栏目：</label>
                 <select name="navId" class="input-sm inline form-control" style="width:130px"
                         onchange="changeNav(this.options[this.options.selectedIndex].value)">
                     <option value="0">全部</option>
@@ -49,8 +50,8 @@
             </div>
             <div class="col-sm-4">
                 <div class="input-group"><input type="text" class="input-sm form-control"
-                                                placeholder="Search"><span class="input-group-btn"> <button
-                        class="btn btn-sm btn-white" type="button">Go!
+                                                placeholder="搜索"><span class="input-group-btn"> <button
+                        class="btn btn-sm btn-white" type="button">搜索
                 </button> </span></div>
             </div>
         </div>
@@ -88,7 +89,20 @@
     </div>
     <footer class="panel-footer">
         <div class="row">
-            <tags:pagination page="${productPage}" paginationSize="15"/>
+            <c:choose>
+                <c:when test="${fn:length(productPage.content) > 0}">
+                    <tags:pagination page="${productPage}" paginationSize="15"/>
+                </c:when>
+                <c:otherwise>
+                    <ul class="pagination pull-right">
+                        <li class="disabled"><a href="#">&lt;&lt;</a></li>
+                        <li class="disabled"><a href="#">&lt;</a></li>
+                        <li class="disabled"><a href="#">1</a></li>
+                        <li class="disabled"><a href="#">&gt;</a></li>
+                        <li class="disabled"><a href="#">&gt;&gt;</a></li>
+                    </ul>
+                </c:otherwise>
+            </c:choose>
         </div>
     </footer>
 </section>

@@ -12,14 +12,12 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <span class="hidden-xs-only"><i class="icon-user"></i>你好，管理员</span>
-                    <span class="thumb-small avatar inline">
-                        <img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle">
-                    </span> <b class="caret hidden-xs-only"></b>
+                    <b class="caret hidden-xs-only"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">个人资料</a></li>
+                <li><a href="${ctx}/profile">个人资料</a></li>
                 <li class="divider">
-                <li><a href="signin.html">退出</a></li>
+                <li><a href="${ctx}/logout">退出</a></li>
             </ul>
         </li>
     </ul><a class="navbar-brand" href="#">食享家后台管理系统</a>

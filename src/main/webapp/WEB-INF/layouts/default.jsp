@@ -25,9 +25,9 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="container-fluid">
-    <%@include file="header.jsp"%>
-</div>
+<%--<div class="container-fluid">--%>
+    <%--<%@include file="header.jsp"%>--%>
+<%--</div>--%>
 <sitemesh:body />
 
 <script src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
