@@ -10,4 +10,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * Time: 下午1:11
  */
 public interface  PostDao extends PagingAndSortingRepository<Post, Long>, JpaSpecificationExecutor<Post> {
+
 }
