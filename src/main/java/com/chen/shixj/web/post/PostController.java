@@ -57,11 +57,24 @@ public class PostController {
         redirectAttributes.addAttribute("errorMessage", "添加文章成功");
         return "redirect:/admin/post/add";
     }
-//获得单个栏目的数据
-    @RequestMapping (value = "/postList/{navId}" ,method = RequestMethod.GET)
-    public String listForNavId(@PathVariable("navId") int navId,@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){
-        Page<Post> postPage = postService.pagePost(pageNumber, PAGE_SIZE, navId);
+    //获得单个栏目的数据根据栏目id 和搜索条件查询
+    @RequestMapping (value = "/postList" ,method = RequestMethod.POST)
+    public String listForNavId(@RequestParam(value = "navId") int navId,@RequestParam(value ="parameter") String parameter,@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){
+        Page<Post> postPage = postService.pagePost(pageNumber, PAGE_SIZE, navId,parameter);
         model.addAttribute("postPage", postPage);
+
+        //查询所有一级文章栏目
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0);
+        List resultList = new ArrayList();
+        for (Nav nav : navList) {
+            resultList.add(nav);
+            long parentNav = nav.getId();
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,(int) parentNav);
+            resultList.addAll(subNavList);
+        }
+        model.addAttribute("navList", resultList);
+        model.addAttribute("selectNavId",navId);
+        model.addAttribute("parameter",parameter);
         return "/admin/post/postList";
     }
 //获得所有栏目的数据
