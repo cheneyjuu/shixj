@@ -1,14 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jpm
-  Date: 13-8-20
-  Time: 下午12:35
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib prefix="form" uri="http://www.springside.org.cn/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
@@ -21,8 +14,8 @@
     </script>
 </head>
 <body>
+<header class="panel-heading">新增产品</header>
 <form id="addNav" action="${ctx}/admin/product/add" method="post" class="form-horizontal">
-
     <div class="form-group">
         <label class="col-lg-3 control-label">选择目录:</label>
         <div class="col-lg-4">
@@ -31,67 +24,61 @@
                     <c:choose>
                         <c:when test="${nav.parentNav==0}">
                             <option value="${nav.id}"
-                            <%-----------------------------------------------------%>
-                            <c:forEach items="${navList}" var="nav2">
-                                <c:choose>
-                                    <c:when test="${nav.id==nav2.parentNav}">
-                                        disabled="disabled"
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-                            <%-----------------------------------------------------%>
-                            >${nav.navName}</option>
+                                <%-----------------------------------------------------%>
+                                    <c:forEach items="${navList}" var="nav2">
+                                        <c:choose>
+                                            <c:when test="${nav.id==nav2.parentNav}">
+                                                disabled="disabled"
+                                            </c:when>
+                                        </c:choose>
+                                    </c:forEach>
+                                <%-----------------------------------------------------%>
+                                    >${nav.navName}</option>
                         </c:when>
                         <c:otherwise>
                             <option value="${nav.id}">&nbsp;&nbsp;&nbsp;&nbsp;${nav.navName}</option>
                         </c:otherwise>
                     </c:choose>
-
                 </c:forEach>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品名称:</label>
-
-        <div class="col-lg-8">
-            <input type="text" name="productName" placeholder=""
+        <div class="col-lg-4">
+            <input type="text" name="productName" placeholder="产品名称"
                    data-required="true" class="form-control">
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">天猫链接:</label>
-
-        <div class="col-lg-8">
-            <input type="text" name="tmallLink" placeholder=""
+        <div class="col-lg-4">
+            <input type="text" name="tmallLink" placeholder="天猫链接"
                    data-required="true" class="form-control">
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品价格:</label>
-
-        <div class="col-lg-8">
-            <input type="text" name="productPrice" placeholder=""
+        <div class="col-lg-4">
+            <input type="text" name="productPrice" placeholder="产品价格"
                    data-required="true" class="form-control">
         </div>
     </div>
-
     <div class="form-group">
         <label class="col-lg-3 control-label">产品描述:</label>
 
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <textarea id="details" name="details"></textarea>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-lg-9 col-lg-offset-3">
+        <div class="col-lg-6 col-lg-offset-3">
             <button type="submit" class="btn btn-primary pull-right">添加</button>
         </div>
     </div>
     <script type="text/javascript">
         UE.getEditor('details');
     </script>
-
 </form>
 </body>
 </html>
