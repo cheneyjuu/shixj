@@ -11,16 +11,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_post")
 public class Post extends IdEntity {
-    private int navId;
+    private Long navId;
     private String postContent;
     private String postTitle;
     private String postCreateDate;
 
-    public int getNavId() {
+    public Long getNavId() {
         return navId;
     }
 
-    public void setNavId(int navId) {
+    public void setNavId(Long navId) {
         this.navId = navId;
     }
 

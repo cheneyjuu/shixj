@@ -1,7 +1,7 @@
 package com.chen.shixj.web;
 
-import com.chen.cms.utility.HandlerUpload;
-import com.chen.cms.utility.ImageTools;
+import com.chen.shixj.utility.HandlerUpload;
+import com.chen.shixj.utility.ImageTools;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +26,7 @@ import java.util.Map;
  * Time: 上午11:17
  */
 @Controller
-@RequestMapping (value = "/upload")
+@RequestMapping (value = "/admin/image")
 public class UploadController {
 
     /**
@@ -81,7 +80,7 @@ public class UploadController {
      * @return
      */
     @RequestMapping (value = "/singleUpload", method = RequestMethod.POST)
-//    @ResponseBody
+    @ResponseBody
     public ResponseEntity<String> singleUpload(@RequestParam("file") MultipartFile[] files,
                                                HttpServletRequest request){
         HandlerUpload handlerUpload = new HandlerUpload();
@@ -114,7 +113,7 @@ public class UploadController {
 //        return  fileNameAndPathMap.get("filePath")+fileNameAndPathMap.get("fileName");
     }
 
-    @RequestMapping (value = "fileUpload",method = RequestMethod.POST)
+    @RequestMapping (value = "/fileUpload",method = RequestMethod.POST)
     @ResponseBody
     public String uploadFile(@RequestParam("file") MultipartFile[] files,
                                                HttpServletRequest request){

@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 public class ImageTools {
 
-    //public static String CONVERT_PROG = "/usr/local/Cellar/imagemagick/6.8.0-10/bin/convert";
-    public static String CONVERT_PROG = "F:\\ImageMagick-6.8.6-Q16\\im_convert";
+    public static String CONVERT_PROG = "/usr/local/bin/convert";
+//    public static String CONVERT_PROG = "F:\\ImageMagick-6.8.6-Q16\\im_convert";
 //    public static String CONVERT_PROG = "C:\\Program Files\\ImageMagick-6.3.9-Q16\\convert";
 
     public static void main(String[] args) {

@@ -14,8 +14,11 @@ import javax.persistence.Table;
 public class Nav extends IdEntity{
     private String navName;
     private String navType;
-    private int parentNav;
+    private Long parentNav;
     private Boolean isShowNav;
+    private String navImagePath;
+    private String navImageName;
+    private int navOrder;
 
     public String getNavName() {
         return navName;
@@ -33,11 +36,11 @@ public class Nav extends IdEntity{
         this.navType = navType;
     }
 
-    public int getParentNav() {
+    public Long getParentNav() {
         return parentNav;
     }
 
-    public void setParentNav(int parentNav) {
+    public void setParentNav(Long parentNav) {
         this.parentNav = parentNav;
     }
 
@@ -47,5 +50,29 @@ public class Nav extends IdEntity{
 
     public void setShowNav(Boolean showNav) {
         isShowNav = showNav;
+    }
+
+    public String getNavImagePath() {
+        return navImagePath;
+    }
+
+    public void setNavImagePath(String navImagePath) {
+        this.navImagePath = navImagePath;
+    }
+
+    public String getNavImageName() {
+        return navImageName;
+    }
+
+    public void setNavImageName(String navImageName) {
+        this.navImageName = navImageName;
+    }
+
+    public int getNavOrder() {
+        return navOrder;
+    }
+
+    public void setNavOrder(int navOrder) {
+        this.navOrder = navOrder;
     }
 }
