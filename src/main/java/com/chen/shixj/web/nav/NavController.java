@@ -35,7 +35,16 @@ public class NavController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@RequestParam(value = "isShowNav") Boolean isShowNav, @Valid Nav nav, RedirectAttributes redirectAttributes) {
+    public String add(@RequestParam(value = "isShowNav") Boolean isShowNav,@RequestParam(value = "fileNameList") String fileNameList, @Valid Nav nav, RedirectAttributes redirectAttributes) {
+        //处理图片路径
+        if (fileNameList != ""){
+            String[] str = fileNameList.split("/");
+            String navImageName = str[str.length-1];
+            String navImagePath = fileNameList.substring(0,fileNameList.length()-navImageName.length());
+            nav.setNavImageName(navImageName);
+            nav.setNavImagePath(navImagePath);
+        }
+
         nav.setShowNav(isShowNav);
         navService.saveNav(nav);
         redirectAttributes.addAttribute("errorMessage", "添加栏目成功");
@@ -67,8 +76,16 @@ public class NavController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("perloadNav") Nav nav,@RequestParam(value = "isShowNav") Boolean isShowNav,
+    public String update(@Valid @ModelAttribute("perloadNav") Nav nav,@RequestParam(value = "fileNameList") String fileNameList,@RequestParam(value = "isShowNav") Boolean isShowNav,
                          RedirectAttributes redirectAttributes) {
+        //处理图片路径
+        if (fileNameList != ""){
+            String[] str = fileNameList.split("/");
+            String navImageName = str[str.length-1];
+            String navImagePath = fileNameList.substring(0,fileNameList.length()-navImageName.length());
+            nav.setNavImageName(navImageName);
+            nav.setNavImagePath(navImagePath);
+        }
         nav.setShowNav(isShowNav);
         navService.saveNav(nav);
         redirectAttributes.addFlashAttribute("message", "更新栏目成功");

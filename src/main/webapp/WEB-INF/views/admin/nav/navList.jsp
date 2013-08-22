@@ -18,6 +18,7 @@
                     <th width="100">等级</th>
                     <th width="100">类型</th>
                     <th width="100">当前状态</th>
+                    <th width="100">显示次序</th>
                     <th width="130">操作</th>
                 </tr>
             </thead>
@@ -63,6 +64,9 @@
                                 显示
                             </c:otherwise>
                         </c:choose>
+                    </td>
+                    <td style="vertical-align:middle">
+                        ${nav.navOrder}
                     </td>
                     <td style="vertical-align:middle">
                         <%--<c:choose>--%>
