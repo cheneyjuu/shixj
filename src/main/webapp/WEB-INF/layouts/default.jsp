@@ -11,6 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="${ctx}/static/script/frontend/jquery.js"></script>
+
     <!--[if lt IE 9]>
     <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -19,9 +20,9 @@
 
     <!-- CSS -->
     <link href="${ctx}/static/styles/frontend/reset.css" rel="stylesheet"/>
-    <link href="${ctx}/static/styles/frontend/system.css" rel="stylesheet"/>
+    <%--<link href="${ctx}/static/styles/frontend/system.css" rel="stylesheet"/>--%>
     <link href="${ctx}/static/styles/frontend/grid.css" rel="stylesheet"/>
-    <link href="${ctx}/static/styles/frontend/nivo.css" rel="stylesheet"/>
+    <%--<link href="${ctx}/static/styles/frontend/nivo.css" rel="stylesheet"/>--%>
     <link href="${ctx}/static/styles/frontend/custom.css" rel="stylesheet"/>
     <link href="${ctx}/static/styles/frontend/joomla.css" rel="stylesheet"/>
 
@@ -41,14 +42,15 @@
     </style>
 
     <!-- JS -->
-    <script src="${ctx}/static/script/frontend/isotope.js"></script>
+    <script src="${ctx}/static/jquery/jquery-1.9.1.min.js"></script>
+    <%--<script src="${ctx}/static/script/frontend/isotope.js"></script>--%>
     <script src="${ctx}/static/script/frontend/caroufredsel.js"></script>
-    <script src="${ctx}/static/script/frontend/nivo.js"></script>
-    <script src="${ctx}/static/script/frontend/jquery.mousewheel.js"></script>
+    <%--<script src="${ctx}/static/script/frontend/nivo.js"></script>--%>
+    <%--<script src="${ctx}/static/script/frontend/jquery.mousewheel.js"></script>--%>
     <script src="${ctx}/static/script/frontend/tinyscrollbar.js"></script>
     <script src="${ctx}/static/script/frontend/custom.js"></script>
     <!--[if lte IE 9]>
-    <script src="${ctx}/static/script/frontend/respond.min.js"></script>
+    <script src="http://cdn.staticfile.org/respond.js/1.2.0/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -645,5 +647,10 @@
 </div><!-- Page Wrap ENDS -->
 
 <div id="toTop"></div>
+<script type="text/javascript">
+    if(document.body.clientWidth < 768){
+        $("#vg-showcase").remove();
+    }
+</script>
 </body>
 </html>
