@@ -11,18 +11,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_product")
 public class Product extends IdEntity {
-    private int navId;
+    private Long navId;
     private String productName;
     private String tmallLink;
     private float productPrice;
     private String details;
     private String productCreateDate;
 
-    public int getNavId() {
+    public Long getNavId() {
         return navId;
     }
 
-    public void setNavId(int navId) {
+    public void setNavId(Long navId) {
         this.navId = navId;
     }
 

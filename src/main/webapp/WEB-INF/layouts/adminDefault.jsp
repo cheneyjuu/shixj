@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/static/styles/backend/app.v3.css">
     <script type="text/javascript" src="${ctx}/static/jquery/jquery-1.9.1.min.js"></script>
     <!--[if lt IE 9]> <script src="http://cdn.staticfile.org/respond.js/1.2.0/respond.min.js"></script> <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script> <script src="js/ie/excanvas.js"></script> <![endif]-->
+    <script src="${ctx}/static/script/backend/app.v3.js"></script>
     <sitemesh:head />
 </head>
 
@@ -22,6 +23,5 @@
 <section class="main padder" id="content">
     <sitemesh:body />
 </section>
-<script src="${ctx}/static/script/backend/app.v3.js"></script>
 </body>
 </html>

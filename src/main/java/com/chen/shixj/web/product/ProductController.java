@@ -2,8 +2,11 @@ package com.chen.shixj.web.product;
 
 import com.chen.shixj.entity.Nav;
 import com.chen.shixj.entity.Product;
+import com.chen.shixj.entity.ProductImage;
+import com.chen.shixj.repository.ProductImageDao;
 import com.chen.shixj.service.nav.NavService;
 import com.chen.shixj.service.product.ProductService;
+import com.chen.shixj.service.productImage.ProductImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -33,6 +36,9 @@ public class ProductController {
     @Autowired
     private NavService navService;
 
+    @Autowired
+    private ProductImageService productImageService;
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
         //查询所有一级文章栏目
@@ -49,7 +55,23 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Valid Product product, RedirectAttributes redirectAttributes) {
+    public String add(@Valid Product product,@RequestParam(value = "fileNameList") List<String> fileNameList, RedirectAttributes redirectAttributes) {
+        //处理图片路径
+        for (String fileName : fileNameList){
+            if (fileName != ""){
+                ProductImage productImage = new ProductImage();
+                String[] str = fileName.split("/");
+                String imageName = str[str.length-1];
+                String imagePath = fileName.substring(0,fileName.length()-imageName.length());
+                productImage.setMobileImageName(imageName);
+                productImage.setOriginImageName(imageName);
+                productImage.setPcImageName(imageName);
+                productImage.setImagePath(imagePath);
+                productImage.setProductId(product.getId());
+                productImageService.saveProductImage(productImage);
+            }
+        }
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String createTime = simpleDateFormat.format(new Date());
         product.setProductCreateDate(createTime);
@@ -116,7 +138,24 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("perloadProduct") Product product,RedirectAttributes redirectAttributes) {
+    public String update(@Valid @ModelAttribute("perloadProduct") Product product,@RequestParam(value = "fileNameList") List<String> fileNameList,RedirectAttributes redirectAttributes) {
+
+        //处理图片路径
+        for (String fileName : fileNameList){
+            if (fileName != ""){
+                ProductImage productImage = new ProductImage();
+                String[] str = fileName.split("/");
+                String imageName = str[str.length-1];
+                String imagePath = fileName.substring(0,fileName.length()-imageName.length());
+                productImage.setMobileImageName(imageName);
+                productImage.setOriginImageName(imageName);
+                productImage.setPcImageName(imageName);
+                productImage.setImagePath(imagePath);
+                productImage.setProductId(product.getId());
+                productImageService.saveProductImage(productImage);
+            }
+        }
+
         productService.saveProduct(product);
         redirectAttributes.addFlashAttribute("message", "更新文章成功");
 

@@ -26,7 +26,7 @@ import java.util.Map;
  * Time: 上午11:17
  */
 @Controller
-@RequestMapping (value = "/upload")
+@RequestMapping (value = "/admin/image")
 public class UploadController {
 
     /**
@@ -80,7 +80,7 @@ public class UploadController {
      * @return
      */
     @RequestMapping (value = "/singleUpload", method = RequestMethod.POST)
-//    @ResponseBody
+    @ResponseBody
     public ResponseEntity<String> singleUpload(@RequestParam("file") MultipartFile[] files,
                                                HttpServletRequest request){
         HandlerUpload handlerUpload = new HandlerUpload();
@@ -113,7 +113,7 @@ public class UploadController {
 //        return  fileNameAndPathMap.get("filePath")+fileNameAndPathMap.get("fileName");
     }
 
-    @RequestMapping (value = "fileUpload",method = RequestMethod.POST)
+    @RequestMapping (value = "/fileUpload",method = RequestMethod.POST)
     @ResponseBody
     public String uploadFile(@RequestParam("file") MultipartFile[] files,
                                                HttpServletRequest request){
