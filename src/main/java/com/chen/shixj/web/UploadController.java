@@ -1,7 +1,7 @@
 package com.chen.shixj.web;
 
-import com.chen.cms.utility.HandlerUpload;
-import com.chen.cms.utility.ImageTools;
+import com.chen.shixj.utility.HandlerUpload;
+import com.chen.shixj.utility.ImageTools;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
