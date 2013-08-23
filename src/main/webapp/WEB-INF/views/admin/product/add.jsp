@@ -11,12 +11,34 @@
         $(function () {
             window.UEDITOR_HOME_URL = "${ctx}/static/ueditor/";
         });
+        function validate() {
+            if ($("#productName").val() == "" || $("#tmallLink").val() == ""||$("#productPrice").val() == ""||$("#fileNameList").val() == ""||$("#details").val() == "") {
+                if ($("#productName").val() == "") {
+                    alert("产品名称不能为空");
+                }else if ($("#tmallLink").val() == "") {
+                    alert("天猫连接不能为空");
+                }else if ($("#productPrice").val() == "") {
+                    alert("产品价格不能为空");
+                }else if ($("#fileNameList").val() == "") {
+                    alert("产品图片不能为空");
+                }else if ($("#details").val() == "") {
+                    alert("产品描述不能为空");
+                };
+                return false;
+            }else{
+                if(isNaN($("#productPrice").val())){
+                    alert("产品价格必须为数字！");
+                    return false;
+                }
+            }
+            return true;
+        }
     </script>
     <style type="text/css">@import url(${ctx}/static/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
 </head>
 <body>
 <header class="panel-heading">新增产品</header>
-<form id="addNav" action="${ctx}/admin/product/add" method="post" class="form-horizontal">
+<form id="addNav" action="${ctx}/admin/product/add" method="post" class="form-horizontal" onsubmit="return validate()">
     <div class="form-group">
         <label class="col-lg-3 control-label">选择目录:</label>
         <div class="col-lg-4">
@@ -47,21 +69,21 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">产品名称:</label>
         <div class="col-lg-4">
-            <input type="text" name="productName" placeholder="产品名称"
+            <input type="text" id="productName" name="productName" placeholder="产品名称"
                    data-required="true" class="form-control">
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">天猫链接:</label>
         <div class="col-lg-4">
-            <input type="text" name="tmallLink" placeholder="天猫链接"
+            <input type="text" id="tmallLink" name="tmallLink" placeholder="天猫链接"
                    data-required="true" class="form-control">
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品价格:</label>
         <div class="col-lg-4">
-            <input type="text" name="productPrice" placeholder="产品价格"
+            <input type="text" id="productPrice" name="productPrice" placeholder="产品价格"
                    data-required="true" class="form-control">
         </div>
     </div>
@@ -73,7 +95,7 @@
             </div>
         </div>
     </div>
-    <div id="files"></div>
+    <div id="files"><input type="hidden" name="fileNameList" id="fileNameList"></div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品描述:</label>
 
@@ -111,7 +133,9 @@
             init : {
                 FileUploaded:function(up,b,res){
                     var fileName = res["response"];
-                    $('#files').append('<input type="hidden" name="fileNameList" value="'+fileName+'">');
+                    inputImage = document.getElementById("fileNameList");
+                    inputImage.value=fileName;
+//                    $('#files').append('<input type="hidden" name="fileNameList" value="'+fileName+'">');
                 }
             }
         });

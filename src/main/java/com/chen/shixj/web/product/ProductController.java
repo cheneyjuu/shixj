@@ -56,6 +56,13 @@ public class ProductController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@Valid Product product,@RequestParam(value = "fileNameList") List<String> fileNameList, RedirectAttributes redirectAttributes) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String createTime = simpleDateFormat.format(new Date());
+        product.setProductCreateDate(createTime);
+        productService.saveProduct(product);
+        redirectAttributes.addAttribute("errorMessage", "添加文章成功");
+
         //处理图片路径
         for (String fileName : fileNameList){
             if (fileName != ""){
@@ -72,11 +79,6 @@ public class ProductController {
             }
         }
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String createTime = simpleDateFormat.format(new Date());
-        product.setProductCreateDate(createTime);
-        productService.saveProduct(product);
-        redirectAttributes.addAttribute("errorMessage", "添加文章成功");
         return "redirect:/admin/product/add";
     }
     //获得单个栏目的数据根据栏目id 和搜索条件查询
@@ -139,11 +141,18 @@ public class ProductController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("perloadProduct") Product product,@RequestParam(value = "fileNameList") List<String> fileNameList,RedirectAttributes redirectAttributes) {
+        //移除已有的产品已有的图片
+        List<ProductImage> productImages = productImageService.getAllProductImageWithProductId(product.getId());
+        for (ProductImage pi : productImages){
+            productImageService.deleteProductImage(pi.getId());
+        }
 
         //处理图片路径
         for (String fileName : fileNameList){
             if (fileName != ""){
-                ProductImage productImage = new ProductImage();
+
+                //增加新的图片
+                ProductImage productImage = new ProductImage() ;
                 String[] str = fileName.split("/");
                 String imageName = str[str.length-1];
                 String imagePath = fileName.substring(0,fileName.length()-imageName.length());
