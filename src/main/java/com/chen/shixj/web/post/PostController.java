@@ -102,7 +102,7 @@ public class PostController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String updateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("post", postService.getPost(id));
+        Post post = postService.getPost(id);
 
         //查询所有一级文章栏目
         List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0L);
@@ -114,6 +114,8 @@ public class PostController {
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
+        model.addAttribute("post", post);
+//        model.addAttribute("navId",post.getNav().getId());
 
         return "/admin/post/update";
     }
