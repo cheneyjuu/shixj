@@ -15,11 +15,11 @@
             <thead>
                 <tr>
                     <th class="th-sortable" data-toggle="class">栏目名称</th>
-                    <th width="100">等级</th>
-                    <th width="100">类型</th>
-                    <th width="100">当前状态</th>
-                    <th width="100">显示次序</th>
-                    <th width="130">操作</th>
+                    <th width="80">等级</th>
+                    <th width="80">类型</th>
+                    <th width="80">当前状态</th>
+                    <th width="80">显示次序</th>
+                    <th width="220">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,17 +69,9 @@
                         ${nav.navOrder}
                     </td>
                     <td style="vertical-align:middle">
-                        <%--<c:choose>--%>
-                            <%--<c:when test="${nav.showNav=='false'}">--%>
-                                <%--<a href="#" id="showNav" onclick="getId('${nav.id}');">显示</a>--%>
-                            <%--</c:when>--%>
-                            <%--<c:otherwise>--%>
-                                <%--<a href="#" id="hideNav">隐藏</a>--%>
-                            <%--</c:otherwise>--%>
-                        <%--</c:choose>--%>
+                        <a class="btn btn-info" href="${ctx}/admin/nav/update/${nav.id}">查看</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/nav/update/${nav.id}">修改</a>
-                        &nbsp;&nbsp;<a href="${ctx}/admin/nav/delete/${nav.id}">删除</a>
-                        <input type="hidden" value="${nav.id}"/>
+                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/nav/delete/${nav.id}">删除</a>
                     </td>
                 </tr>
             </c:forEach>

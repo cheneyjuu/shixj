@@ -3,7 +3,6 @@ package com.chen.shixj.web.product;
 import com.chen.shixj.entity.Nav;
 import com.chen.shixj.entity.Product;
 import com.chen.shixj.entity.ProductImage;
-import com.chen.shixj.repository.ProductImageDao;
 import com.chen.shixj.service.nav.NavService;
 import com.chen.shixj.service.product.ProductService;
 import com.chen.shixj.service.productImage.ProductImageService;
@@ -16,9 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: jpm
@@ -42,12 +39,12 @@ public class ProductController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -55,8 +52,12 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Valid Product product,@RequestParam(value = "fileNameList") List<String> fileNameList, RedirectAttributes redirectAttributes) {
+    public String add(@Valid Product product,@RequestParam(value = "fileNameList") List<String> fileNameList,@RequestParam(value = "navId") Long navId, RedirectAttributes redirectAttributes) {
+        Nav nav = navService.getNav(navId);
+        product.setNav(nav);
         //处理图片路径
+        Set<ProductImage> productImages = new HashSet<ProductImage>();
+
         for (String fileName : fileNameList){
             if (fileName != ""){
                 ProductImage productImage = new ProductImage();
@@ -67,16 +68,18 @@ public class ProductController {
                 productImage.setOriginImageName(imageName);
                 productImage.setPcImageName(imageName);
                 productImage.setImagePath(imagePath);
-                productImage.setProductId(product.getId());
-                productImageService.saveProductImage(productImage);
+                productImage.setProduct(product);
+                productImages.add(productImage);
             }
         }
+        product.setProductImages(productImages);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String createTime = simpleDateFormat.format(new Date());
         product.setProductCreateDate(createTime);
         productService.saveProduct(product);
         redirectAttributes.addAttribute("errorMessage", "添加文章成功");
+
         return "redirect:/admin/product/add";
     }
     //获得单个栏目的数据根据栏目id 和搜索条件查询
@@ -86,12 +89,12 @@ public class ProductController {
         model.addAttribute("productPage", productPage);
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -107,12 +110,12 @@ public class ProductController {
         model.addAttribute("productPage", productPage);
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -124,12 +127,12 @@ public class ProductController {
         model.addAttribute("product", productService.getProduct(id));
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -139,22 +142,30 @@ public class ProductController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("perloadProduct") Product product,@RequestParam(value = "fileNameList") List<String> fileNameList,RedirectAttributes redirectAttributes) {
+//        //移除已有的产品已有的图片
+//        List<ProductImage> productImages = productImageService.getAllProductImageWithProductId(product.getId());
+//        for (ProductImage pi : productImages){
+//            productImageService.deleteProductImage(pi.getId());
+//        }
 
-        //处理图片路径
-        for (String fileName : fileNameList){
-            if (fileName != ""){
-                ProductImage productImage = new ProductImage();
-                String[] str = fileName.split("/");
-                String imageName = str[str.length-1];
-                String imagePath = fileName.substring(0,fileName.length()-imageName.length());
-                productImage.setMobileImageName(imageName);
-                productImage.setOriginImageName(imageName);
-                productImage.setPcImageName(imageName);
-                productImage.setImagePath(imagePath);
-                productImage.setProductId(product.getId());
-                productImageService.saveProductImage(productImage);
-            }
-        }
+//        //处理图片路径
+//        for (String fileName : fileNameList){
+//            if (fileName != ""){
+//
+//                //增加新的图片
+//                ProductImage productImage = new ProductImage() ;
+//                String[] str = fileName.split("/");
+//                String imageName = str[str.length-1];
+//                String imagePath = fileName.substring(0,fileName.length()-imageName.length());
+//                productImage.setMobileImageName(imageName);
+//                productImage.setOriginImageName(imageName);
+//                productImage.setPcImageName(imageName);
+//                productImage.setImagePath(imagePath);
+//                productImage.setProduct(product);
+////                productImage.setProductId(product.getId());
+//                productImageService.saveProductImage(productImage);
+//            }
+//        }
 
         productService.saveProduct(product);
         redirectAttributes.addFlashAttribute("message", "更新文章成功");

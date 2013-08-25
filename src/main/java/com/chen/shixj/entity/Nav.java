@@ -1,7 +1,7 @@
 package com.chen.shixj.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * User: jpm
@@ -19,6 +19,11 @@ public class Nav extends IdEntity{
     private String navImagePath;
     private String navImageName;
     private int navOrder;
+//    private Set<Nav> navs;
+//    private Nav nav;
+
+    private Set<Post> posts;
+    private Set<Product>  products;
 
     public String getNavName() {
         return navName;
@@ -75,4 +80,38 @@ public class Nav extends IdEntity{
     public void setNavOrder(int navOrder) {
         this.navOrder = navOrder;
     }
+
+    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
+    public Set<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
+    }
+    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+//    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
+//    public Set<Nav> getNavs() {
+//        return navs;
+//    }
+//
+//    public void setNavs(Set<Nav> navs) {
+//        this.navs = navs;
+//    }
+//    @ManyToOne
+//    @JoinColumn(name = "nav_id")
+//    public Nav getNav() {
+//        return nav;
+//    }
+//
+//    public void setNav(Nav nav) {
+//        this.nav = nav;
+//    }
 }

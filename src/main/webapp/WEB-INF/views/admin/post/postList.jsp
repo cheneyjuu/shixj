@@ -78,8 +78,8 @@
             <thead>
             <tr>
                 <th class="th-sortable" data-toggle="class">文章标题</th>
-                <th width="130">创建日期</th>
-                <th width="130">操作</th>
+                <th width="100">创建日期</th>
+                <th width="220">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -92,8 +92,9 @@
                             ${post.postCreateDate}
                     </td>
                     <td style="vertical-align:middle">
+                        <a class="btn btn-info" href="${ctx}/admin/post/update/${post.id}">查看</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/post/update/${post.id}">修改</a>
-                        &nbsp;&nbsp;<a href="${ctx}/admin/post/delete/${post.id}">删除</a>
+                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/post/delete/${post.id}">删除</a>
                     </td>
                 </tr>
             </c:forEach>

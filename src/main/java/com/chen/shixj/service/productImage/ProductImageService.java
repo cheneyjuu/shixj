@@ -41,7 +41,7 @@ public class ProductImageService {
         return (List<ProductImage>) productImageDao.findAll();
     }
 
-    public List<ProductImage> getAllProductImageWithProductId(final int productId) {
+    public List<ProductImage> getAllProductImageWithProductId(final Long productId) {
         return productImageDao.findAll(new Specification<ProductImage>() {
             @Override
             public Predicate toPredicate(Root<ProductImage> contentRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder

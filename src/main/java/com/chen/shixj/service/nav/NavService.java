@@ -41,7 +41,7 @@ public class NavService {
         return (List<Nav>) navDao.findAll();
     }
     //根据父id查找所有栏目
-    public List<Nav> getAllNavForParentNav(final int parentNav) {
+    public List<Nav> getAllNavForParentNav(final Long parentNav) {
         return navDao.findAll(new Specification<Nav>() {
             @Override
             public Predicate toPredicate(Root<Nav> contentRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder
@@ -55,7 +55,7 @@ public class NavService {
         });
     }
     //根据栏目类型查找所有栏目
-    public List<Nav> getAllNavWithNavTypeParentNav(final int navType,final int parentNav) {
+    public List<Nav> getAllNavWithNavTypeParentNav(final int navType,final Long parentNav) {
         return navDao.findAll(new Specification<Nav>() {
             @Override
             public Predicate toPredicate(Root<Nav> contentRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder
