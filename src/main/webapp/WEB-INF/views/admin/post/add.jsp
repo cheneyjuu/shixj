@@ -11,11 +11,22 @@
         $(function () {
             window.UEDITOR_HOME_URL = "${ctx}/static/ueditor/";
         });
+        function validate() {
+            if ($("#postTitle").val() == "" || $("#postContent").val() == "") {
+                if ($("#postTitle").val() == "") {
+                    alert("文章标题不能为空");
+                }else if ($("#postContent").val() == "") {
+                    alert("文章内容不能为空");
+                };
+                return false;
+            }
+            return true;
+        }
     </script>
 </head>
 <body>
 <header class="panel-heading">新增文章</header>
-<form id="addNav" action="${ctx}/admin/post/add" method="post" class="form-horizontal">
+<form id="addNav" action="${ctx}/admin/post/add" method="post" class="form-horizontal" onsubmit="return validate()">
     <div class="form-group">
         <label class="col-lg-3 control-label">选择目录:</label>
         <div class="col-lg-4">
@@ -47,7 +58,7 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">文章标题:</label>
         <div class="col-lg-4">
-            <input type="text" name="postTitle" placeholder="文章标题" data-required="true" class="form-control">
+            <input type="text" id="postTitle" name="postTitle" placeholder="文章标题" data-required="true" class="form-control">
         </div>
     </div>
     <div class="form-group">

@@ -29,7 +29,7 @@ public class NavController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
         //查询所有一级栏目
-        List<Nav> navList = navService.getAllNavForParentNav(0);
+        List<Nav> navList = navService.getAllNavForParentNav(0L);
         model.addAttribute("navList", navList);
         return "/admin/nav/add";
     }
@@ -54,12 +54,12 @@ public class NavController {
     @RequestMapping(value = "/navList", method = RequestMethod.GET)
     public String list(Model model) {
         //查询所有一级栏目
-        List<Nav> navList = navService.getAllNavForParentNav(0);
+        List<Nav> navList = navService.getAllNavForParentNav(0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavForParentNav((int) parentNav);
+            List<Nav> subNavList = navService.getAllNavForParentNav(parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -70,7 +70,7 @@ public class NavController {
     public String updateForm(@PathVariable("id") Long id, Model model) {
         model.addAttribute("nav", navService.getNav(id));
         //查询所有一级栏目
-        List<Nav> navList = navService.getAllNavForParentNav(0);
+        List<Nav> navList = navService.getAllNavForParentNav(0L);
         model.addAttribute("navList", navList);
         return "/admin/nav/update";
     }
@@ -102,6 +102,12 @@ public class NavController {
 
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        //新删除此栏目下所有的子栏目
+        List<Nav> navs = navService.getAllNavForParentNav(id);
+        for (Nav nav : navs){
+            navService.deleteNav(nav.getId());
+        }
+
         navService.deleteNav(id);
         redirectAttributes.addFlashAttribute("message", "删除栏目成功");
         return "redirect:/admin/nav/navList";

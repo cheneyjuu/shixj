@@ -36,12 +36,12 @@ public class PostController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -49,7 +49,10 @@ public class PostController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Valid Post post, RedirectAttributes redirectAttributes) {
+    public String add(@Valid Post post, @RequestParam(value = "navId") Long navId,RedirectAttributes redirectAttributes) {
+        Nav nav = navService.getNav(navId);
+        post.setNav(nav);
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String createTime = simpleDateFormat.format(new Date());
         post.setPostCreateDate(createTime);
@@ -64,12 +67,12 @@ public class PostController {
         model.addAttribute("postPage", postPage);
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -77,7 +80,7 @@ public class PostController {
         model.addAttribute("parameter",parameter);
         return "/admin/post/postList";
     }
-//获得所有栏目的数据
+    //获得所有栏目的数据
     @RequestMapping (value = "/postList" ,method = RequestMethod.GET)
     public String listAll(@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){
         //查找所有文章
@@ -85,12 +88,12 @@ public class PostController {
         model.addAttribute("postPage", postPage);
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -102,12 +105,12 @@ public class PostController {
         model.addAttribute("post", postService.getPost(id));
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(1,0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,(int) parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(1,parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);

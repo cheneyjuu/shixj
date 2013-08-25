@@ -1,6 +1,8 @@
 package com.chen.shixj.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -11,17 +13,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_post")
 public class Post extends IdEntity {
-    private Long navId;
+
+    private Nav nav;
     private String postContent;
     private String postTitle;
     private String postCreateDate;
 
-    public Long getNavId() {
-        return navId;
+    @ManyToOne
+    @JoinColumn(name = "nav_id")
+    public Nav getNav() {
+        return nav;
     }
 
-    public void setNavId(Long navId) {
-        this.navId = navId;
+    public void setNav(Nav nav) {
+        this.nav = nav;
     }
 
     public String getPostContent() {
