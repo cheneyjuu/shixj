@@ -1,6 +1,18 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<style type="text/css">
+    @media (max-width:768px) {
+        #menu li {
+            width: 33.3333%;
+        }
+        #menu li a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+</style>
 
 <header>
 
@@ -135,7 +147,10 @@
 
         if (windowWidth < 768){
             $("#menu > li").each(function(){
-                $(this).on("click touchend", function(){
+//                $(this).on("click touchend", function(){
+//                    $(this).find("ul").slideToggle();
+//                });
+                $(this).find("div:eq(1)").on("click touchend", function(){
                     $(this).find("ul").slideToggle();
                 });
             });
