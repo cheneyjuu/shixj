@@ -79,9 +79,9 @@
             <thead>
             <tr>
                 <th class="th-sortable" data-toggle="class">产品名称</th>
-                <th width="130">产品价格</th>
-                <th width="130">创建日期</th>
-                <th width="130">操作</th>
+                <th width="100">产品价格</th>
+                <th width="100">创建日期</th>
+                <th width="220">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -97,8 +97,9 @@
                             ${product.productCreateDate}
                     </td>
                     <td style="vertical-align:middle">
+                       <a class="btn btn-info" href="${ctx}/admin/product/update/${product.id}">查看</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/product/update/${product.id}">修改</a>
-                        &nbsp;&nbsp;<a href="${ctx}/admin/product/delete/${product.id}">删除</a>
+                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/product/delete/${product.id}">删除</a>
                     </td>
                 </tr>
             </c:forEach>

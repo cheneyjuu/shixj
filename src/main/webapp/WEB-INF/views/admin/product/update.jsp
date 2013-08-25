@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    <div id="files"><input type="hidden" name="fileNameList" id="fileNameList"></div>
+    <div id="files"></div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品描述:</label>
         <div class="col-lg-6">
@@ -144,9 +144,9 @@
             init : {
                 FileUploaded:function(up,b,res){
                     var fileName = res["response"];
-                    inputImage = document.getElementById("fileNameList");
-                    inputImage.value=fileName;
-//                    $('#files').append('<input type="hidden" name="fileNameList" value="'+fileName+'">');
+//                    inputImage = document.getElementById("fileNameList");
+//                    inputImage.value=fileName;
+                    $('#files').append('<input type="hidden" name="fileNameList" value="'+fileName+'">');
                 }
             }
         });

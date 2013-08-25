@@ -1,29 +1,24 @@
 package com.chen.shixj.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 
 /**
  * User: jpm
  * Date: 13-8-22
  * Time: 下午11:23
+ * 在one-to-many双向关联中，多的一方为关系维护端，关系维护端负责外键记录的更新
+ * 关系被维护端是没有权力更新外键记录的
  */
 @Entity
 @Table(name = "tbl_product_image")
 public class ProductImage  extends IdEntity{
-    private Long productId;
+    private Product product;
     private String imagePath;
     private String originImageName;
     private String pcImageName;
     private String mobileImageName;
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
 
     public String getImagePath() {
         return imagePath;
@@ -55,5 +50,15 @@ public class ProductImage  extends IdEntity{
 
     public void setMobileImageName(String mobileImageName) {
         this.mobileImageName = mobileImageName;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
