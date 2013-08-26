@@ -7,13 +7,15 @@
 <html>
 <head>
     <title></title>
-    <style type="text/css">
-        @media (min-width: 1200px) {
-            .column-label {
-                padding-top: 5px;
+    <script type="text/javascript">
+        function firm(id)
+        {//利用对话框返回的值 （true 或者 false）
+            if(confirm("请确定是否要删除？"))
+            {
+                location.href="${ctx}/admin/product/delete/"+id;
             }
         }
-    </style>
+    </script>
 </head>
 <body>
 <section class="panel">
@@ -97,10 +99,10 @@
                             ${product.productCreateDate}
                     </td>
                     <td style="vertical-align:middle">
-                       <a class="btn btn-info" href="${ctx}/admin/product/update/${product.id}">查看</a>
+                       <a class="btn btn-info" href="${ctx}/admin/product/look/${product.id}">查看</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/product/update/${product.id}">修改内容</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/productImage/update/${product.id}">修改图片</a>
-                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/product/delete/${product.id}">删除</a>
+                        &nbsp;&nbsp;<a class="btn btn-danger"  onclick="firm(${product.id})">删除</a>
                     </td>
                 </tr>
             </c:forEach>

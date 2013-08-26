@@ -115,7 +115,7 @@
     <div class="form-group">
         <label class="col-lg-3 control-label"></label>
         <div class="col-lg-6">
-            <a  class="btn btn-info  pull-left"  href="${ctx}/admin/product/productList">产品列表</a>
+            <a  class="btn btn-info  pull-left"  href="${ctx}/admin/product/productList">取消</a>
             <button type="submit" class="btn btn-info pull-right">修改</button>
         </div>
     </div>

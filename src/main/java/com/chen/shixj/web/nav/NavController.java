@@ -51,6 +51,15 @@ public class NavController {
         return "redirect:/admin/nav/add/";
     }
 
+    @RequestMapping(value = "/look/{id}", method = RequestMethod.GET)
+    public String look(@PathVariable("id") Long id,Model model) {
+        model.addAttribute("nav", navService.getNav(id));
+        //查询所有一级栏目
+        List<Nav> navList = navService.getAllNavForParentNav(0L);
+        model.addAttribute("navList", navList);
+        return "/admin/nav/look";
+    }
+
     @RequestMapping(value = "/navList", method = RequestMethod.GET)
     public String list(Model model) {
         //查询所有一级栏目
