@@ -12,15 +12,13 @@
             window.UEDITOR_HOME_URL = "${ctx}/static/ueditor/";
         });
         function validate() {
-            if ($("#productName").val() == "" || $("#tmallLink").val() == ""||$("#productPrice").val() == ""||$("#fileNameList").val() == ""||$("#details").val() == "") {
+            if ($("#productName").val() == "" || $("#tmallLink").val() == ""||$("#productPrice").val() == ""||$("#details").val() == "") {
                 if ($("#productName").val() == "") {
                     alert("产品名称不能为空");
                 }else if ($("#tmallLink").val() == "") {
                     alert("天猫连接不能为空");
                 }else if ($("#productPrice").val() == "") {
                     alert("产品价格不能为空");
-                }else if ($("#fileNameList").val() == "") {
-                    alert("产品图片不能为空");
                 }else if ($("#details").val() == "") {
                     alert("产品描述不能为空");
                 };
@@ -34,7 +32,7 @@
             return true;
         }
     </script>
-    <style type="text/css">@import url(${ctx}/static/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
+    <%--<style type="text/css">@import url(${ctx}/static/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>--%>
 </head>
 <body>
 <header class="panel-heading">更新产品</header>
@@ -50,7 +48,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${post.navId==nav.id}">
+                                        <c:when test="${product.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>
@@ -69,7 +67,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${post.navId==nav.id}">
+                                        <c:when test="${product.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>
@@ -99,15 +97,15 @@
             <input type="text" id="productPrice" name="productPrice" placeholder="产品价格" data-required="true" class="form-control" value="${product.productPrice}">
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-lg-3 control-label">产品图片:</label>
-        <div class="col-lg-6">
-            <div id="uploader">
-                <p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
-            </div>
-        </div>
-    </div>
-    <div id="files"></div>
+    <%--<div class="form-group">--%>
+        <%--<label class="col-lg-3 control-label">产品图片:</label>--%>
+        <%--<div class="col-lg-6">--%>
+            <%--<div id="uploader">--%>
+                <%--<p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+    <%--<div id="files"></div>--%>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品描述:</label>
         <div class="col-lg-6">
@@ -115,8 +113,10 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-lg-9">
-            <button type="submit" class="btn btn-primary pull-right">修改</button>
+        <label class="col-lg-3 control-label"></label>
+        <div class="col-lg-6">
+            <a  class="btn btn-info  pull-left"  href="${ctx}/admin/product/productList">产品列表</a>
+            <button type="submit" class="btn btn-info pull-right">修改</button>
         </div>
     </div>
     <script type="text/javascript">
@@ -124,33 +124,33 @@
     </script>
 </form>
 <script src="${ctx}/static/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="${ctx}/static/plupload/js/browserplus-min.js"></script>
-<script type="text/javascript" src="${ctx}/static/plupload/js/plupload.full.js"></script>
-<script type="text/javascript" src="${ctx}/static/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
-<script type="text/javascript" src="${ctx}/static/plupload/js/i18n/zh.js"></script>
-<script type="text/javascript">
-    $(function() {
-        $("#uploader").pluploadQueue({
-            runtimes : 'flash,html5',
-            url : '${ctx}/admin/image/multiUpload',
-            max_file_size : '10mb',
-            headers : 'contentType="image/jpeg;charset=UTF-8"',
-            urlstream_upload:true,
-            unique_names:false,
-            filters : [
-                {title : "图片文件", extensions : "jpg,gif,png,jpeg,bmp"}
-            ],
-            flash_swf_url : '${ctx}/static/plupload/js/plupload.flash.swf',
-            init : {
-                FileUploaded:function(up,b,res){
-                    var fileName = res["response"];
-//                    inputImage = document.getElementById("fileNameList");
-//                    inputImage.value=fileName;
-                    $('#files').append('<input type="hidden" name="fileNameList" value="'+fileName+'">');
-                }
-            }
-        });
-    });
-</script>
+<%--<script type="text/javascript" src="${ctx}/static/plupload/js/browserplus-min.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/static/plupload/js/plupload.full.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/static/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/static/plupload/js/i18n/zh.js"></script>--%>
+<%--<script type="text/javascript">--%>
+    <%--$(function() {--%>
+        <%--$("#uploader").pluploadQueue({--%>
+            <%--runtimes : 'flash,html5',--%>
+            <%--url : '${ctx}/admin/image/multiUpload',--%>
+            <%--max_file_size : '10mb',--%>
+            <%--headers : 'contentType="image/jpeg;charset=UTF-8"',--%>
+            <%--urlstream_upload:true,--%>
+            <%--unique_names:false,--%>
+            <%--filters : [--%>
+                <%--{title : "图片文件", extensions : "jpg,gif,png,jpeg,bmp"}--%>
+            <%--],--%>
+            <%--flash_swf_url : '${ctx}/static/plupload/js/plupload.flash.swf',--%>
+            <%--init : {--%>
+                <%--FileUploaded:function(up,b,res){--%>
+                    <%--var fileName = res["response"];--%>
+<%--//                    inputImage = document.getElementById("fileNameList");--%>
+<%--//                    inputImage.value=fileName;--%>
+                    <%--$('#files').append('<input type="hidden" name="fileNameList" value="'+fileName+'">');--%>
+                <%--}--%>
+            <%--}--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
 </body>
 </html>

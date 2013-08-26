@@ -69,7 +69,8 @@
     </div>
     <div class="form-group">
         <div class="col-lg-6 col-lg-offset-3">
-            <button type="submit" class="btn btn-primary pull-right">添加</button>
+            <a  class="btn btn-info  pull-left"  href="${ctx}/admin/post/postList">文章列表</a>
+            <button type="submit" class="btn btn-info pull-right">添加</button>
         </div>
     </div>
     <script type="text/javascript">

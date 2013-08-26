@@ -101,9 +101,9 @@
     <div id="files"><input type="hidden" name="fileNameList"></div>
     <div class="form-group">
         <label class="col-lg-3 control-label"></label>
-        <div class="col-lg-6">
-            <label class="col-lg-3 control-label"></label>
-            <button type="submit" class="btn btn-primary pull-right">修改</button>
+        <div class="col-lg-4">
+            <a  class="btn btn-info  pull-left"  href="${ctx}/admin/nav/navList">栏目列表</a>
+            &nbsp;&nbsp;<button type="submit" class="btn btn-info pull-right">修改</button>
         </div>
     </div>
 </form>

@@ -81,7 +81,7 @@
                 <th class="th-sortable" data-toggle="class">产品名称</th>
                 <th width="100">产品价格</th>
                 <th width="100">创建日期</th>
-                <th width="330">操作</th>
+                <th width="220">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -98,8 +98,7 @@
                     </td>
                     <td style="vertical-align:middle">
                        <a class="btn btn-info" href="${ctx}/admin/product/update/${product.id}">查看</a>
-                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/product/update/${product.id}">修改内容</a>
-                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/productImage/update/${product.id}">修改图片</a>
+                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/product/update/${product.id}">修改</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/product/delete/${product.id}">删除</a>
                     </td>
                 </tr>

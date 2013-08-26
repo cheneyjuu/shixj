@@ -141,7 +141,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("perloadProduct") Product product,@RequestParam(value = "fileNameList") List<String> fileNameList,RedirectAttributes redirectAttributes) {
+    public String update(@Valid @ModelAttribute("perloadProduct") Product product,RedirectAttributes redirectAttributes) {
 //        //移除已有的产品已有的图片
 //        List<ProductImage> productImages = productImageService.getAllProductImageWithProductId(product.getId());
 //        for (ProductImage pi : productImages){
