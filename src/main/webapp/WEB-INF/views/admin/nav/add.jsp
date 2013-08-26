@@ -78,7 +78,7 @@
     <div class="form-group">
         <label class="col-lg-3 control-label"></label>
         <div class="col-lg-4">
-            <a  class="btn btn-info  pull-left"  href="${ctx}/admin/nav/navList">栏目列表</a>
+            <%--<a  class="btn btn-info  pull-left"  href="${ctx}/admin/nav/navList">栏目列表</a>--%>
             &nbsp;&nbsp;<button type="submit" class="btn btn-info  pull-right">添加</button>
         </div>
     </div>
