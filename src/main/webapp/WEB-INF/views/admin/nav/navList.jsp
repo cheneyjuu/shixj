@@ -6,6 +6,15 @@
 <html>
 <head>
     <title></title>
+    <script type="text/javascript">
+        function firm(id)
+        {//利用对话框返回的值 （true 或者 false）
+            if(confirm("请确定是否要删除？"))
+            {
+                location.href="${ctx}/admin/nav/delete/"+id;
+            }
+        }
+    </script>
 </head>
 <body>
 <section class="panel">
@@ -69,9 +78,9 @@
                         ${nav.navOrder}
                     </td>
                     <td style="vertical-align:middle">
-                        <a class="btn btn-info" href="${ctx}/admin/nav/update/${nav.id}">查看</a>
+                        <a class="btn btn-info" href="${ctx}/admin/nav/look/${nav.id}">查看</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/nav/update/${nav.id}">修改</a>
-                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/nav/delete/${nav.id}">删除</a>
+                        &nbsp;&nbsp;<a class="btn btn-danger " onclick="firm(${nav.id})">删除</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -64,9 +64,9 @@ public class ProductController {
                 String[] str = fileName.split("/");
                 String imageName = str[str.length-1];
                 String imagePath = fileName.substring(0,fileName.length()-imageName.length());
-                productImage.setMobileImageName(imageName);
-                productImage.setOriginImageName(imageName);
-                productImage.setPcImageName(imageName);
+                productImage.setMobileImageName("m_"+imageName);
+                productImage.setOriginImageName("or_"+imageName);
+                productImage.setPcImageName("pc_"+imageName);
                 productImage.setImagePath(imagePath);
                 productImage.setProduct(product);
                 productImages.add(productImage);
@@ -82,6 +82,25 @@ public class ProductController {
 
         return "redirect:/admin/product/add";
     }
+
+    @RequestMapping(value = "/look/{id}", method = RequestMethod.GET)
+    public String look(@PathVariable("id") Long id,Model model) {
+
+        model.addAttribute("product", productService.getProduct(id));
+
+        //查询所有一级文章栏目
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
+        List resultList = new ArrayList();
+        for (Nav nav : navList) {
+            resultList.add(nav);
+            long parentNav = nav.getId();
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
+            resultList.addAll(subNavList);
+        }
+        model.addAttribute("navList", resultList);
+        return "/admin/product/look";
+    }
+
     //获得单个栏目的数据根据栏目id 和搜索条件查询
     @RequestMapping (value = "/productList" ,method = RequestMethod.POST)
     public String listForNavId(@RequestParam(value = "navId") int navId,@RequestParam(value ="parameter") String parameter,@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){

@@ -4,12 +4,14 @@ import com.chen.shixj.entity.Product;
 import com.chen.shixj.entity.ProductImage;
 import com.chen.shixj.service.product.ProductService;
 import com.chen.shixj.service.productImage.ProductImageService;
+import com.chen.shixj.utility.HandlerUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -97,11 +99,6 @@ public class ProductImageController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(@RequestParam(value = "productId") Long productId,@RequestParam(value = "fileNameList") List<String> fileNameList, RedirectAttributes redirectAttributes) {
         Product product = productService.getProduct(productId);
-//        //移除已有的产品已有的图片
-//        List<ProductImage> productImages = productImageService.getAllProductImageWithProductId(productId);
-//        for (ProductImage pi : productImages){
-//            productImageService.deleteProductImage(pi.getId());
-//        }
         //增加新的产品图片
         for (String fileName : fileNameList){
             if (fileName != ""){
@@ -118,9 +115,6 @@ public class ProductImageController {
                 productImageService.saveProductImage(productImage);
             }
         }
-//        redirectAttributes.addAttribute("productId",productId);
-//        List<ProductImage> productImageList = productImageService.getAllProductImageWithProductId(productId);
-//        redirectAttributes.addAttribute("productImageList", productImageList);
         redirectAttributes.addFlashAttribute("message", "更新产品图片成功");
         return "redirect:/admin/productImage/update/"+productId;
     }
@@ -129,6 +123,27 @@ public class ProductImageController {
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         ProductImage productImage = productImageService.getProductImage(id);
         Long productId = productImage.getProduct().getId();
+        //删除物理文件
+        String filePath=productImage.getImagePath();
+        String fileAddress = productImage.getPcImageName();
+        String fileAddress1 = "m_"+productImage.getPcImageName();
+        String fileAddress2 = "or_"+productImage.getMobileImageName();
+        String fileAddress3 = "pc_"+productImage.getOriginImageName();
+
+        File file = new File(fileAddress);
+        File file1 = new File(fileAddress1);
+        File file2 = new File(fileAddress2);
+        File file3 = new File(fileAddress3);
+
+        String aa = file.getAbsolutePath();
+
+        HandlerUpload hu = new HandlerUpload();
+        hu.DeleteFolder(file.getAbsolutePath());
+        hu.DeleteFolder(file1.getAbsolutePath());
+        hu.DeleteFolder(file2.getAbsolutePath());
+        hu.DeleteFolder(file3.getAbsolutePath());
+
+
         productImageService.deleteProductImage(id);
         redirectAttributes.addFlashAttribute("message", "删除产品图片成功");
         return "redirect:/admin/productImage/update/"+productId;

@@ -45,8 +45,8 @@ public class UploadController {
             InputStream iis = file.getInputStream();
             BufferedImage bi= ImageIO.read(iis);
             //  4*4缩略图宽高
-            int middleWidth = bi.getWidth()>200?200:bi.getWidth();
-            int middleHeight = bi.getHeight()>220?220:bi.getHeight();
+            int originWidth = bi.getWidth();
+            int originHeight = bi.getHeight();
             //  画廊缩略图
             int bigThumbWidth = bi.getWidth()>900?900:bi.getWidth();
             int bigThumbHeight = bi.getHeight()>600?600:bi.getHeight();
@@ -58,11 +58,11 @@ public class UploadController {
             String realPath = request.getSession().getServletContext().getRealPath(fileNameAndPathMap.get("filePath"))+"/";
             //  定义文件名
             File inFile = new File(realPath+fileNameAndPathMap.get("fileName"));
-            File middleOutFile = new File(realPath+"m_"+fileNameAndPathMap.get("fileName"));
-            File bigThumbOutFile = new File(realPath+"bt_"+fileNameAndPathMap.get("fileName"));
-            File smallThumOutFile = new File(realPath+"st_"+fileNameAndPathMap.get("fileName"));
+            File originOutFile = new File(realPath+"or_"+fileNameAndPathMap.get("fileName"));
+            File bigThumbOutFile = new File(realPath+"pc_"+fileNameAndPathMap.get("fileName"));
+            File smallThumOutFile = new File(realPath+"m_"+fileNameAndPathMap.get("fileName"));
 
-            ImageTools.convert(inFile, middleOutFile, middleWidth, middleHeight, 90);
+            ImageTools.convert(inFile,originOutFile, originWidth, originHeight, 90);
             ImageTools.convert(inFile,bigThumbOutFile,bigThumbWidth,bigThumbHeight,90);
             ImageTools.convert(inFile,smallThumOutFile,smallThumbWidth,smallThumbHeight,90);
         } catch (IOException e) {

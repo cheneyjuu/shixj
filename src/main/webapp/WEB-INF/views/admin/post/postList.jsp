@@ -7,13 +7,15 @@
 <html>
 <head>
     <title></title>
-    <style type="text/css">
-        @media (min-width: 1200px) {
-            .column-label {
-                padding-top: 5px;
+    <script type="text/javascript">
+        function firm(id)
+        {//利用对话框返回的值 （true 或者 false）
+            if(confirm("请确定是否要删除？"))
+            {
+                location.href="${ctx}/admin/post/delete/"+id;
             }
         }
-    </style>
+    </script>
 </head>
 <body>
 <section class="panel">
@@ -92,9 +94,9 @@
                             ${post.postCreateDate}
                     </td>
                     <td style="vertical-align:middle">
-                        <a class="btn btn-info" href="${ctx}/admin/post/update/${post.id}">查看</a>
+                        <a class="btn btn-info" href="${ctx}/admin/post/look/${post.id}">查看</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/post/update/${post.id}">修改</a>
-                        &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/post/delete/${post.id}">删除</a>
+                        &nbsp;&nbsp;<a class="btn btn-danger" onclick="firm(${post.id})">删除</a>
                     </td>
                 </tr>
             </c:forEach>
