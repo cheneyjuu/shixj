@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +66,9 @@ public class ProductImageController {
                 String[] str = fileName.split("/");
                 String imageName = str[str.length-1];
                 String imagePath = fileName.substring(0,fileName.length()-imageName.length());
-                productImage.setMobileImageName(imageName);
-                productImage.setOriginImageName(imageName);
-                productImage.setPcImageName(imageName);
+                productImage.setMobileImageName("m_"+imageName);
+                productImage.setOriginImageName("or_"+imageName);
+                productImage.setPcImageName("pc_"+imageName);
                 productImage.setImagePath(imagePath);
                 productImage.setProduct(product);
                 productImageService.saveProductImage(productImage);
@@ -107,9 +108,9 @@ public class ProductImageController {
                 String[] str = fileName.split("/");
                 String imageName = str[str.length-1];
                 String imagePath = fileName.substring(0,fileName.length()-imageName.length());
-                productImage.setMobileImageName(imageName);
-                productImage.setOriginImageName(imageName);
-                productImage.setPcImageName(imageName);
+                productImage.setMobileImageName("m_"+imageName);
+                productImage.setOriginImageName("or_"+imageName);
+                productImage.setPcImageName("pc_"+imageName);
                 productImage.setImagePath(imagePath);
                 productImage.setProduct(product);
                 productImageService.saveProductImage(productImage);
@@ -120,28 +121,24 @@ public class ProductImageController {
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         ProductImage productImage = productImageService.getProductImage(id);
         Long productId = productImage.getProduct().getId();
+
         //删除物理文件
         String filePath=productImage.getImagePath();
-        String fileAddress = productImage.getPcImageName();
-        String fileAddress1 = "m_"+productImage.getPcImageName();
-        String fileAddress2 = "or_"+productImage.getMobileImageName();
-        String fileAddress3 = "pc_"+productImage.getOriginImageName();
-
-        File file = new File(fileAddress);
-        File file1 = new File(fileAddress1);
-        File file2 = new File(fileAddress2);
-        File file3 = new File(fileAddress3);
-
-        String aa = file.getAbsolutePath();
+        String realPath = request.getSession().getServletContext().getRealPath(filePath) + "/";
+        String fileName = productImage.getPcImageName();
+        String fileAddress = realPath + fileName.substring(3,fileName.length());
+        String fileAddress1 = realPath + productImage.getPcImageName();
+        String fileAddress2 = realPath + productImage.getMobileImageName();
+        String fileAddress3 = realPath + productImage.getOriginImageName();
 
         HandlerUpload hu = new HandlerUpload();
-        hu.DeleteFolder(file.getAbsolutePath());
-        hu.DeleteFolder(file1.getAbsolutePath());
-        hu.DeleteFolder(file2.getAbsolutePath());
-        hu.DeleteFolder(file3.getAbsolutePath());
+        hu.DeleteFolder(fileAddress);
+        hu.DeleteFolder(fileAddress1);
+        hu.DeleteFolder(fileAddress2);
+        hu.DeleteFolder(fileAddress3);
 
 
         productImageService.deleteProductImage(id);

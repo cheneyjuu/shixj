@@ -88,6 +88,15 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-lg-3 control-label">首页显示:</label>
+        <div class="col-lg-4">
+            <select name="showIndex" class="form-control">
+                <option value="0">不显示</option>
+                <option value="1">显示</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-lg-3 control-label">产品图片:</label>
         <div class="col-lg-6">
             <div id="uploader">
