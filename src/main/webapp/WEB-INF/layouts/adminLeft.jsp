@@ -24,6 +24,12 @@
                 <li><a href="/admin/post/postList">文章列表</a></li>
             </ul>
         </li>
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>品牌故事</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/story/add">新增故事</a></li>
+                <li><a href="/admin/story/storyList">故事列表</a></li>
+            </ul>
+        </li>
     </ul>
 </nav>
 <!-- / nav -->

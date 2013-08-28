@@ -12,11 +12,9 @@
             window.UEDITOR_HOME_URL = "${ctx}/static/ueditor/";
         });
         function validate() {
-            if ($("#productName").val() == "" || $("#tmallLink").val() == ""||$("#productPrice").val() == ""||$("#fileNameList").val() == ""||$("#details").val() == "") {
+            if ($("#productName").val() == ""||$("#productPrice").val() == ""||$("#fileNameList").val() == ""||$("#details").val() == "") {
                 if ($("#productName").val() == "") {
                     alert("产品名称不能为空");
-                }else if ($("#tmallLink").val() == "") {
-                    alert("天猫连接不能为空");
                 }else if ($("#productPrice").val() == "") {
                     alert("产品价格不能为空");
                 }else if ($("#fileNameList").val() == "") {
@@ -28,6 +26,11 @@
             }else{
                 if(isNaN($("#productPrice").val())){
                     alert("产品价格必须为数字！");
+                    return false;
+                }
+                var url = /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;
+                if(!url.test($("#tmallLink").val())){
+                    alert("输入的网址格式不对!");
                     return false;
                 }
             }
@@ -85,6 +88,15 @@
         <div class="col-lg-4">
             <input type="text" id="productPrice" name="productPrice" placeholder="产品价格"
                    data-required="true" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">首页显示:</label>
+        <div class="col-lg-4">
+            <select name="showIndex" class="form-control">
+                <option value="0">不显示</option>
+                <option value="1">显示</option>
+            </select>
         </div>
     </div>
     <div class="form-group">

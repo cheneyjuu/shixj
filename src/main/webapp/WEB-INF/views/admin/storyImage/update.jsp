@@ -10,7 +10,7 @@
         function validate() {
             if ($("#fileNameList").val() == "") {
                 if ($("#fileNameList").val() == "") {
-                    alert("产品图片不能为空");
+                    alert("图片不能为空");
                 }
                 ;
                 return false;
@@ -21,7 +21,7 @@
         {//利用对话框返回的值 （true 或者 false）
             if(confirm("请确定是否要删除？"))
             {
-                location.href="${ctx}/admin/productImage/delete/"+id;
+                location.href="${ctx}/admin/storyImage/delete/"+id;
             }
         }
 
@@ -30,10 +30,10 @@
 </head>
 <body>
 <section class="panel">
-    <header class="panel-heading">修改图片产品</header>
-    <form id="addNav" action="${ctx}/admin/productImage/update" method="post" class="form-horizontal"
+    <header class="panel-heading">修改故事图片</header>
+    <form id="addNav" action="${ctx}/admin/storyImage/update" method="post" class="form-horizontal"
           onsubmit="return validate()">
-        <input type="hidden" name="productId" value="${productId}">
+        <input type="hidden" name="storyId" value="${storyId}">
         <div>
             <table class="table table-striped b-t text-small">
                 <thead>
@@ -44,16 +44,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${productImageList}" var="productImage">
+                <c:forEach items="${storyImageList}" var="storyImage">
                     <tr height="250px">
                         <td style="vertical-align:middle">
-                                ${productImage.imagePath}${productImage.pcImageName}
+                                ${storyImage.imagePath}${storyImage.pcImageName}
                         </td>
                         <td style="vertical-align:middle">
-                            <img src="${productImage.imagePath}${productImage.pcImageName}" width="280" height="240">
+                            <img src="${storyImage.imagePath}${storyImage.pcImageName}" width="280" height="240">
                         </td>
                         <td style="vertical-align:middle">
-                            &nbsp;&nbsp;<a class="btn btn-info"  onclick="firm(${productImage.id})">删除</a>
+                            &nbsp;&nbsp;<a class="btn btn-info"  onclick="firm(${storyImage.id})">删除</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -61,7 +61,7 @@
             </table>
         </div>
         <div class="form-group">
-            <label class="col-lg-3 control-label">产品图片:</label>
+            <label class="col-lg-3 control-label">故事图片:</label>
             <div class="col-lg-6">
                 <div id="uploader">
                     <p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
@@ -72,7 +72,7 @@
         <div class="form-group">
             <label class="col-lg-3 control-label"></label>
             <div class="col-lg-6">
-                <a  class="btn btn-info  pull-left"  href="${ctx}/admin/product/productList">取消</a>
+                <a  class="btn btn-info  pull-left"  href="${ctx}/admin/story/storyList">取消</a>
                 <button type="submit" class="btn btn-info pull-right">添加</button>
             </div>
         </div>
