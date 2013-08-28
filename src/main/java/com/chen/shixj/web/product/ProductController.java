@@ -5,7 +5,6 @@ import com.chen.shixj.entity.Product;
 import com.chen.shixj.entity.ProductImage;
 import com.chen.shixj.service.nav.NavService;
 import com.chen.shixj.service.product.ProductService;
-import com.chen.shixj.service.productImage.ProductImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -33,18 +32,15 @@ public class ProductController {
     @Autowired
     private NavService navService;
 
-    @Autowired
-    private ProductImageService productImageService;
-
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0, 0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0, parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -52,24 +48,25 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Valid Product product,@RequestParam(value = "fileNameList") List<String> fileNameList,@RequestParam(value = "navId") Long navId, RedirectAttributes redirectAttributes) {
+    public String add(@Valid Product product, @RequestParam(value = "fileNameList", required = false) List<String> fileNameList, @RequestParam(value = "navId") Long navId, RedirectAttributes redirectAttributes) {
         Nav nav = navService.getNav(navId);
         product.setNav(nav);
         //处理图片路径
         Set<ProductImage> productImages = new HashSet<ProductImage>();
-
-        for (String fileName : fileNameList){
-            if (fileName != ""){
-                ProductImage productImage = new ProductImage();
-                String[] str = fileName.split("/");
-                String imageName = str[str.length-1];
-                String imagePath = fileName.substring(0,fileName.length()-imageName.length());
-                productImage.setMobileImageName("m_"+imageName);
-                productImage.setOriginImageName("or_"+imageName);
-                productImage.setPcImageName("pc_"+imageName);
-                productImage.setImagePath(imagePath);
-                productImage.setProduct(product);
-                productImages.add(productImage);
+        if (fileNameList != null) {
+            for (String fileName : fileNameList) {
+                if (fileName != "") {
+                    ProductImage productImage = new ProductImage();
+                    String[] str = fileName.split("/");
+                    String imageName = str[str.length - 1];
+                    String imagePath = fileName.substring(0, fileName.length() - imageName.length());
+                    productImage.setMobileImageName("m_" + imageName);
+                    productImage.setOriginImageName("or_" + imageName);
+                    productImage.setPcImageName("pc_" + imageName);
+                    productImage.setImagePath(imagePath);
+                    productImage.setProduct(product);
+                    productImages.add(productImage);
+                }
             }
         }
         product.setProductImages(productImages);
@@ -84,17 +81,17 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/look/{id}", method = RequestMethod.GET)
-    public String look(@PathVariable("id") Long id,Model model) {
+    public String look(@PathVariable("id") Long id, Model model) {
 
         model.addAttribute("product", productService.getProduct(id));
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0, 0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0, parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -102,39 +99,40 @@ public class ProductController {
     }
 
     //获得单个栏目的数据根据栏目id 和搜索条件查询
-    @RequestMapping (value = "/productList" ,method = RequestMethod.POST)
-    public String listForNavId(@RequestParam(value = "navId") int navId,@RequestParam(value ="parameter") String parameter,@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){
-        Page<Product> productPage = productService.pageProduct(pageNumber, PAGE_SIZE, navId,parameter);
+    @RequestMapping(value = "/productList", method = RequestMethod.POST)
+    public String listForNavId(@RequestParam(value = "navId") int navId, @RequestParam(value = "parameter") String parameter, @RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
+        Page<Product> productPage = productService.pageProduct(pageNumber, PAGE_SIZE, navId, parameter);
         model.addAttribute("productPage", productPage);
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0, 0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0, parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
-        model.addAttribute("selectNavId",navId);
-        model.addAttribute("parameter",parameter);
+        model.addAttribute("selectNavId", navId);
+        model.addAttribute("parameter", parameter);
         return "/admin/product/productList";
     }
+
     //获得所有栏目的数据
-    @RequestMapping (value = "/productList" ,method = RequestMethod.GET)
-    public String listAll(@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){
+    @RequestMapping(value = "/productList", method = RequestMethod.GET)
+    public String listAll(@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
         //查找所有文章
         Page<Product> productPage = productService.pageProduct(pageNumber, PAGE_SIZE);
         model.addAttribute("productPage", productPage);
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0, 0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0, parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -146,12 +144,12 @@ public class ProductController {
         model.addAttribute("product", productService.getProduct(id));
 
         //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0,0L);
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(0, 0L);
         List resultList = new ArrayList();
         for (Nav nav : navList) {
             resultList.add(nav);
             long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0,parentNav);
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(0, parentNav);
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
@@ -160,32 +158,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("perloadProduct") Product product,RedirectAttributes redirectAttributes) {
-//        //移除已有的产品已有的图片
-//        List<ProductImage> productImages = productImageService.getAllProductImageWithProductId(product.getId());
-//        for (ProductImage pi : productImages){
-//            productImageService.deleteProductImage(pi.getId());
-//        }
-
-//        //处理图片路径
-//        for (String fileName : fileNameList){
-//            if (fileName != ""){
-//
-//                //增加新的图片
-//                ProductImage productImage = new ProductImage() ;
-//                String[] str = fileName.split("/");
-//                String imageName = str[str.length-1];
-//                String imagePath = fileName.substring(0,fileName.length()-imageName.length());
-//                productImage.setMobileImageName(imageName);
-//                productImage.setOriginImageName(imageName);
-//                productImage.setPcImageName(imageName);
-//                productImage.setImagePath(imagePath);
-//                productImage.setProduct(product);
-////                productImage.setProductId(product.getId());
-//                productImageService.saveProductImage(productImage);
-//            }
-//        }
-
+    public String update(@Valid @ModelAttribute("perloadProduct") Product product, RedirectAttributes redirectAttributes) {
         productService.saveProduct(product);
         redirectAttributes.addFlashAttribute("message", "更新文章成功");
 

@@ -22,6 +22,7 @@ public class Product extends IdEntity {
     private float productPrice;
     private String details;
     private String productCreateDate;
+    private int showIndex;
     private Set<ProductImage> productImages;
 
     @ManyToOne
@@ -80,6 +81,14 @@ public class Product extends IdEntity {
 
     public void setProductCreateDate(String productCreateDate) {
         this.productCreateDate = productCreateDate;
+    }
+
+    public int getShowIndex() {
+        return showIndex;
+    }
+
+    public void setShowIndex(int showIndex) {
+        this.showIndex = showIndex;
     }
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

@@ -82,6 +82,7 @@
             <tr>
                 <th class="th-sortable" data-toggle="class">产品名称</th>
                 <th width="100">产品价格</th>
+                <th width="100">首页显示</th>
                 <th width="100">创建日期</th>
                 <th width="330">操作</th>
             </tr>
@@ -94,6 +95,17 @@
                     </td>
                     <td style="vertical-align:middle">
                             ${product.productPrice}
+                    </td>
+                    <td style="vertical-align:middle">
+                        <c:choose>
+                            <c:when test="${product.showIndex==0}">
+                                不显示
+                            </c:when>
+                            <c:otherwise>
+                                显示
+                            </c:otherwise>
+                        </c:choose>
+
                     </td>
                     <td style="vertical-align:middle">
                             ${product.productCreateDate}

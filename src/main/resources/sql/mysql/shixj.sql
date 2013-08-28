@@ -11,7 +11,7 @@
  Target Server Version : 50610
  File Encoding         : utf-8
 
- Date: 08/23/2013 14:34:35 PM
+ Date: 08/27/2013 23:37:53 PM
 */
 
 SET NAMES utf8;
@@ -31,13 +31,13 @@ CREATE TABLE `tbl_nav` (
   `nav_image_name` varchar(100) DEFAULT NULL COMMENT '栏目图片名称',
   `nav_order` bigint(20) NOT NULL DEFAULT '0' COMMENT '栏目次序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `tbl_nav`
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_nav` VALUES ('1', '食享食分', '0', '0', '1', '', '', '0'), ('2', '团购食惠', '0', '0', '1', '', '', '1'), ('3', '有礼有节', '0', '0', '1', '', '', '2'), ('4', '食享课堂', '1', '0', '1', '', '', '3'), ('5', '品牌故事', '1', '0', '1', '', '', '4'), ('6', '合作伙伴', '1', '0', '1', '', '', '5'), ('7', '虾客行', '0', '1', '1', '', '', '6'), ('8', '关于我们', '1', '0', '1', '', '', '7'), ('9', '红酒的故事', '1', '4', '1', '', '', '8'), ('10', '八月', '0', '3', '1', '', '', '9'), ('11', '十月', '0', '3', '1', '', '', '10'), ('12', '九月', '0', '3', '1', '', '', '11'), ('13', '灵山净素', '0', '1', '1', '', '', '12'), ('14', '顶级栏目测试1', '0', '0', '0', '/upload/files2013/08/22/', '1308221638386751.jpeg', '12');
+INSERT INTO `tbl_nav` VALUES ('1', '食享食分', '0', '0', '1', '', '', '0'), ('2', '团购食惠', '0', '0', '1', '', '', '1'), ('3', '有礼有节', '0', '0', '1', '', '', '2'), ('4', '食享课堂', '1', '0', '1', '', '', '3'), ('6', '合作伙伴', '1', '0', '1', '', '', '5'), ('7', '虾客行', '0', '1', '1', '', '', '6'), ('8', '关于我们', '1', '0', '1', '', '', '7'), ('9', '红酒的故事', '1', '4', '1', '', '', '8'), ('10', '八月', '0', '3', '1', '', '', '9'), ('11', '十月', '0', '3', '1', '', '', '10'), ('12', '九月', '0', '3', '1', '', '', '11'), ('13', '灵山净素', '0', '1', '1', '', '', '12');
 COMMIT;
 
 -- ----------------------------
@@ -51,7 +51,7 @@ CREATE TABLE `tbl_post` (
   `post_title` varchar(200) NOT NULL,
   `post_create_date` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `tbl_post`
@@ -72,14 +72,15 @@ CREATE TABLE `tbl_product` (
   `product_price` decimal(10,0) NOT NULL,
   `details` text NOT NULL,
   `product_create_date` varchar(50) NOT NULL,
+  `show_index` int(10) DEFAULT '1' COMMENT '是否首页显示 0：不显示 1：显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `tbl_product`
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_product` VALUES ('2', '7', '八月新品', 'www.baidu.com', '12314', '<p>{\"bjmk\":{\"green_count\":\"103\",\"red_count\":\"22\",\"yellow_count\":\"33\"},\"dhmk\":{\"ordernum\":\"33312 吨\"},\"htzxmk\":{\"delivery_date_chr\":\"201308\",\"order_wt\":\"33457.98\",\"zaizhi\":\"22349.72\",\"zaitu\":\"4750.06\",\"rk_wt\":\"6358.2\"},\"wlxxmk\":{\"delivery_date_chr\":\"201308\",\"order_wt\":\"33457.98\",\"zf_wt\":\"11108.26\",\"cc_wt\":\"10284.49\",\"rk_wt\":\"6358.2\"}}</p>', '2013-08-21'), ('3', '7', '侠客行', '侠客行', '123', '<p>侠客行</p>', '2013-08-21'), ('4', '13', '灵山竞速', '灵山竞速', '23424', '<p>灵山竞速</p>', '2013-08-21'), ('5', '2', '团购实惠', '团购实惠', '23424', '<p>团购实惠</p>', '2013-08-21'), ('6', '11', '十月测试', '十月测试', '2344', '<p>十月测试</p>', '2013-08-21'), ('7', '12', '九月测试', '九月测试', '23432', '<p>九月测试</p>', '2013-08-21'), ('8', '7', '123', '123', '123', '<p>qwe</p>', '2013-08-22'), ('9', '7', '234', '234', '234', '<p>234<br/></p>', '2013-08-23'), ('10', '7', '八月新品', 'www.baidu.com', '123', '<p>asdf&nbsp;</p>', '2013-08-23');
+INSERT INTO `tbl_product` VALUES ('3', '7', '侠客行', '侠客行', '123', '<p>侠客行</p>', '2013-08-21', '1'), ('4', '13', '灵山竞速', '灵山竞速', '23424', '<p>灵山竞速</p>', '2013-08-21', '1'), ('5', '2', '团购实惠', '团购实惠', '23424', '<p>团购实惠</p>', '2013-08-21', '1'), ('6', '11', '十月测试', '十月测试', '2344', '<p>十月测试</p>', '2013-08-21', '1');
 COMMIT;
 
 -- ----------------------------
@@ -94,13 +95,53 @@ CREATE TABLE `tbl_product_image` (
   `pc_image_name` varchar(100) DEFAULT NULL,
   `mobile_image_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `tbl_product_image`
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_product_image` VALUES ('1', '0', '/upload/files2013/08/22/', '1308222351103758.jpg', '1308222351103758.jpg', '1308222351103758.jpg'), ('2', '8', '/upload/files2013/08/22/', '1308222358242076.jpg', '1308222358242076.jpg', '1308222358242076.jpg'), ('3', '9', '/upload/files2013/08/23/', '1308230023021984.jpg', '1308230023021984.jpg', '1308230023021984.jpg'), ('4', '10', '/upload/files2013/08/23/', '1308231412583800.jpg', '1308231412583800.jpg', '1308231412583800.jpg');
+INSERT INTO `tbl_product_image` VALUES ('1', '0', '/upload/files2013/08/22/', '1308222351103758.jpg', '1308222351103758.jpg', '1308222351103758.jpg');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `tbl_story`
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_story`;
+CREATE TABLE `tbl_story` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `story_content` text,
+  `story_title` varchar(200) NOT NULL,
+  `story_create_date` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `tbl_story`
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_story` VALUES ('6', '<p>bb</p>', 'bbb', '2013-08-27');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `tbl_story_image`
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_story_image`;
+CREATE TABLE `tbl_story_image` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `story_id` bigint(20) NOT NULL,
+  `image_path` varchar(200) DEFAULT NULL,
+  `origin_image_name` varchar(100) DEFAULT NULL,
+  `pc_image_name` varchar(100) DEFAULT NULL,
+  `mobile_image_name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `tbl_story_image`
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_story_image` VALUES ('5', '6', '/upload/files2013/08/27/', 'or_1308272325481121.jpeg', 'pc_1308272325481121.jpeg', 'm_1308272325481121.jpeg');
 COMMIT;
 
 -- ----------------------------
