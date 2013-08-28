@@ -33,22 +33,23 @@ public class StoryController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Valid Story story,@RequestParam(value = "fileNameList") List<String> fileNameList, RedirectAttributes redirectAttributes) {
+    public String add(@Valid Story story, @RequestParam(value = "fileNameList", required = false) List<String> fileNameList, RedirectAttributes redirectAttributes) {
         //处理图片路径
         Set<StoryImage> storyImages = new HashSet<StoryImage>();
-
-        for (String fileName : fileNameList){
-            if (fileName != ""){
-                StoryImage storyImage = new StoryImage();
-                String[] str = fileName.split("/");
-                String imageName = str[str.length-1];
-                String imagePath = fileName.substring(0,fileName.length()-imageName.length());
-                storyImage.setMobileImageName("m_" + imageName);
-                storyImage.setOriginImageName("or_" + imageName);
-                storyImage.setPcImageName("pc_" + imageName);
-                storyImage.setImagePath(imagePath);
-                storyImage.setStory(story);
-                storyImages.add(storyImage);
+        if (fileNameList != null) {
+            for (String fileName : fileNameList) {
+                if (fileName != "") {
+                    StoryImage storyImage = new StoryImage();
+                    String[] str = fileName.split("/");
+                    String imageName = str[str.length - 1];
+                    String imagePath = fileName.substring(0, fileName.length() - imageName.length());
+                    storyImage.setMobileImageName("m_" + imageName);
+                    storyImage.setOriginImageName("or_" + imageName);
+                    storyImage.setPcImageName("pc_" + imageName);
+                    storyImage.setImagePath(imagePath);
+                    storyImage.setStory(story);
+                    storyImages.add(storyImage);
+                }
             }
         }
         story.setStoryImages(storyImages);
@@ -63,24 +64,25 @@ public class StoryController {
     }
 
     @RequestMapping(value = "/look/{id}", method = RequestMethod.GET)
-    public String look(@PathVariable("id") Long id,Model model) {
+    public String look(@PathVariable("id") Long id, Model model) {
 
         model.addAttribute("story", storyService.getStory(id));
         return "/admin/story/look";
     }
 
     //获得搜索条件查询
-    @RequestMapping (value = "/storyList" ,method = RequestMethod.POST)
-    public String listForNavId(@RequestParam(value ="parameter") String parameter,@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){
-        Page<Story> storyPage = storyService.pageStory(pageNumber, PAGE_SIZE,parameter);
+    @RequestMapping(value = "/storyList", method = RequestMethod.POST)
+    public String listForNavId(@RequestParam(value = "parameter") String parameter, @RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
+        Page<Story> storyPage = storyService.pageStory(pageNumber, PAGE_SIZE, parameter);
         model.addAttribute("storyPage", storyPage);
 
-        model.addAttribute("parameter",parameter);
+        model.addAttribute("parameter", parameter);
         return "/admin/story/storyList";
     }
+
     //获得所有栏目的数据
-    @RequestMapping (value = "/storyList" ,method = RequestMethod.GET)
-    public String listAll(@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model){
+    @RequestMapping(value = "/storyList", method = RequestMethod.GET)
+    public String listAll(@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
         //查找所有文章
         Page<Story> storyPage = storyService.pageStory(pageNumber, PAGE_SIZE);
         model.addAttribute("storyPage", storyPage);
@@ -95,7 +97,7 @@ public class StoryController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute("perloadStory") Story story,RedirectAttributes redirectAttributes) {
+    public String update(@Valid @ModelAttribute("perloadStory") Story story, RedirectAttributes redirectAttributes) {
         storyService.saveStory(story);
         redirectAttributes.addFlashAttribute("message", "更新故事成功");
 
