@@ -2,8 +2,9 @@ package com.chen.shixj.web.frontend;
 
 import com.chen.shixj.entity.Nav;
 import com.chen.shixj.entity.NavHelper;
+import com.chen.shixj.entity.Product;
 import com.chen.shixj.service.nav.NavService;
-import com.chen.shixj.service.story.StoryService;
+import com.chen.shixj.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +17,18 @@ import java.util.List;
 /**
  * User: Juchen
  * Date: 13-8-29
- * Time: 下午1:18
+ * Time: 下午10:52
  */
-@Controller (value = "frontEndStoryController")
-@RequestMapping (value = "/story")
-public class StoryController {
+@Controller (value = "frontEndProductController")
+public class ProductController {
 
     @Autowired
     private NavService navService;
     @Autowired
-    private StoryService storyService;
+    private ProductService productService;
 
-    @RequestMapping (value = "/details/{id}")
-    public String details(@PathVariable (value = "id") Long id,Model model){
+    @RequestMapping(value = "/views/{navId}")
+    public String views(@PathVariable(value = "navId") Long navId, Model model){
         List<Nav> parentList = navService.getAllNavForParentNav(new Long(0));
         List<NavHelper> navHelperList = new ArrayList<NavHelper>();
         for (Nav pnav : parentList){
@@ -40,7 +40,14 @@ public class StoryController {
             navHelperList.add(navHelper);
         }
         model.addAttribute("navHelperList", navHelperList);
-        model.addAttribute("storyModel", storyService.getStory(id));
-        return "frontend/storyDetails";
+        Nav nav = navService.getNav(navId);
+        String navType = nav.getNavType();
+        List<Product> productList = productService.getAllProductForNavId(navId.intValue());
+        model.addAttribute("productList", productList);
+        if (navType.equals("0")){
+            return "frontend/postViews";
+        } else {
+            return "frontend/productViews";
+        }
     }
 }

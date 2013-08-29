@@ -11,6 +11,7 @@ import com.chen.shixj.utility.HTMLSpirit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,6 +39,7 @@ public class HomeController {
         List<NavHelper> navHelperList = new ArrayList<NavHelper>();
         for (Nav pnav : parentList){
             NavHelper navHelper = new NavHelper();
+            navHelper.setId(pnav.getId());
             navHelper.setNavName(pnav.getNavName());
             navHelper.setNavType(pnav.getNavType());
             navHelper.setNavList(navService.getAllNavForParentNav(pnav.getId()));
@@ -47,6 +49,10 @@ public class HomeController {
         Story story = storyService.getLastStory();
         story.setStoryIntro(HTMLSpirit.delHTMLTag(story.getStoryIntro()));
         model.addAttribute("storyModel", story);
+        List<Product> tempProductList = productService.getIndexProduct();
+//        for (Product product : tempProductList){
+//            product.setprodc
+//        }
         List<Product> productList = productService.getIndexProduct();
         model.addAttribute("productList", productList);
         return "frontend/home";

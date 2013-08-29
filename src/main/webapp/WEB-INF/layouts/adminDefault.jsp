@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Mobile first web app theme | first</title>
+    <title>食享家后台管理系统</title>
     <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/styles/backend/app.v3.css">
