@@ -133,4 +133,14 @@ public class ProductService {
 
         }, new PageRequest(pageNumber - 1, pagzSize));
     }
+
+    public List<Product> getIndexProduct(){
+        return productDao.findAll(new Specification<Product>() {
+            @Override
+            public Predicate toPredicate(Root<Product> productRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                criteriaQuery.where(criteriaBuilder.equal(productRoot.get("showIndex"),1));
+                return null;
+            }
+        });
+    }
 }

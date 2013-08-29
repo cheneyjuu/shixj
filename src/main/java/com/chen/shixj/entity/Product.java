@@ -19,10 +19,10 @@ public class Product extends IdEntity {
 //    private Long navId;
     private String productName;
     private String tmallLink;
-    private float productPrice;
+    private Float productPrice;
     private String details;
     private String productCreateDate;
-    private int showIndex;
+    private Integer showIndex;
     private Set<ProductImage> productImages;
 
     @ManyToOne
@@ -59,14 +59,6 @@ public class Product extends IdEntity {
         this.tmallLink = tmallLink;
     }
 
-    public float getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(float productPrice) {
-        this.productPrice = productPrice;
-    }
-
     public String getDetails() {
         return details;
     }
@@ -83,14 +75,6 @@ public class Product extends IdEntity {
         this.productCreateDate = productCreateDate;
     }
 
-    public int getShowIndex() {
-        return showIndex;
-    }
-
-    public void setShowIndex(int showIndex) {
-        this.showIndex = showIndex;
-    }
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     public Set<ProductImage> getProductImages() {
         return productImages;
@@ -100,4 +84,19 @@ public class Product extends IdEntity {
         this.productImages = productImages;
     }
 
+    public Integer getShowIndex() {
+        return showIndex;
+    }
+
+    public void setShowIndex(Integer showIndex) {
+        this.showIndex = showIndex;
+    }
+
+    public Float getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Float productPrice) {
+        this.productPrice = productPrice;
+    }
 }

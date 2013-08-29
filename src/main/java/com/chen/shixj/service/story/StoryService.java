@@ -41,6 +41,10 @@ public class StoryService {
         return (List<Story>) storyDao.findAll();
     }
 
+    public Story getLastStory(){
+        return storyDao.findAll(new Sort(Sort.Direction.DESC,"id")).iterator().next();
+    }
+
     /**
      * 创建分页请求.
      */

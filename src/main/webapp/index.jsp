@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="1;url=${ctx}/home"
+    <meta http-equiv="refresh" content="1;url=${ctx}/home">
     <title></title>
 </head>
 <body>
