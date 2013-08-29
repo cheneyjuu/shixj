@@ -37,7 +37,7 @@
     <nav class="navbar navbar-default">
         <ul class="navbar navbar-default side-bar">
             <li>
-                <a href="#">首页</a>
+                <a href="${ctx}/home">首页</a>
             </li>
             <c:forEach items="${navHelperList}" var="nav">
                 <c:choose>

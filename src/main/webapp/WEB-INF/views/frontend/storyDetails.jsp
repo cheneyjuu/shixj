@@ -3,6 +3,11 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <div class="container">
     <h2 class="text-center">${storyModel.storyTitle}</h2>
+    <blockquote>
+        <p>
+            ${storyModel.storyIntro}
+        </p>
+    </blockquote>
     <p>
         ${storyModel.storyContent}
     </p>
