@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <section class="slider-section" id="slider-section">
@@ -54,9 +55,9 @@
                 <c:when test="${storyModel != null}">
                     <h3>${storyModel.storyTitle}</h3>
                     <p>
-                            ${storyModel.storyContent}
+                            ${storyModel.storyIntro}
                     </p>
-                    <button class="btn btn-warning">故事未完，点击继续阅读</button>
+                    <a href="${ctx}/story/details/${storyModel.id}" class="btn btn-warning">故事未完，点击继续阅读</a>
                 </c:when>
                 <c:otherwise>
                     您还没有添加品牌故事。

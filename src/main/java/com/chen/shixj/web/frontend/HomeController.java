@@ -7,6 +7,7 @@ import com.chen.shixj.entity.Story;
 import com.chen.shixj.service.nav.NavService;
 import com.chen.shixj.service.product.ProductService;
 import com.chen.shixj.service.story.StoryService;
+import com.chen.shixj.utility.HTMLSpirit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +45,7 @@ public class HomeController {
         }
         model.addAttribute("navHelperList", navHelperList);
         Story story = storyService.getLastStory();
+        story.setStoryIntro(HTMLSpirit.delHTMLTag(story.getStoryIntro()));
         model.addAttribute("storyModel", story);
         List<Product> productList = productService.getIndexProduct();
         model.addAttribute("productList", productList);

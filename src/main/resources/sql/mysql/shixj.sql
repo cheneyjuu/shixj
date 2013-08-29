@@ -112,6 +112,7 @@ CREATE TABLE `tbl_story` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `story_content` text,
   `story_title` varchar(200) NOT NULL,
+  `story_intro` varchar(200),
   `story_create_date` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;

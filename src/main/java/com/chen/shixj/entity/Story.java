@@ -15,6 +15,7 @@ import java.util.Set;
 public class Story extends IdEntity {
 
     private String storyTitle;
+    private String storyIntro;
     private String storyContent;
     private String storyCreateDate;
     private Set<StoryImage> storyImages;
@@ -49,5 +50,13 @@ public class Story extends IdEntity {
 
     public void setStoryImages(Set<StoryImage> storyImages) {
         this.storyImages = storyImages;
+    }
+
+    public String getStoryIntro() {
+        return storyIntro;
+    }
+
+    public void setStoryIntro(String storyIntro) {
+        this.storyIntro = storyIntro;
     }
 }

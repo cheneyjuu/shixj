@@ -33,8 +33,14 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">故事名称:</label>
         <div class="col-lg-4">
-            <input type="text" id="storyTitle" name="storyTitle" placeholder="产品名称"
+            <input type="text" id="storyTitle" name="storyTitle" placeholder="故事名称"
                    data-required="true" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">故事简介:</label>
+        <div class="col-lg-4">
+            <textarea name="storyIntro" id="" cols="30" rows="10" class="form-control"></textarea>
         </div>
     </div>
     <div class="form-group">
