@@ -100,6 +100,12 @@
             </select>
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">团购结束时间:</label>
+        <div class="col-lg-4">
+            <input type="text" id="endTime" name="endTime" placeholder="团购结束时间" data-required="true" class="form-control" value="${product.endTime}" disabled="disabled">
+        </div>
+    </div>
     <%--<div class="form-group">--%>
         <%--<label class="col-lg-3 control-label">产品图片:</label>--%>
         <%--<div class="col-lg-6">--%>
