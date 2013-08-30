@@ -23,6 +23,7 @@ public class Product extends IdEntity {
     private String details;
     private String productCreateDate;
     private Integer showIndex;
+    private String endTime;
     private Set<ProductImage> productImages;
 
     @ManyToOne
@@ -34,14 +35,6 @@ public class Product extends IdEntity {
     public void setNav(Nav nav) {
         this.nav = nav;
     }
-
-//    public Long getNavId() {
-//        return navId;
-//    }
-//
-//    public void setNavId(Long navId) {
-//        this.navId = navId;
-//    }
 
     public String getProductName() {
         return productName;
@@ -90,6 +83,14 @@ public class Product extends IdEntity {
 
     public void setShowIndex(Integer showIndex) {
         this.showIndex = showIndex;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public Float getProductPrice() {

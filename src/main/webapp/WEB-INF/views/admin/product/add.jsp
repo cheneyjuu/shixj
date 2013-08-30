@@ -7,6 +7,7 @@
     <title></title>
     <script type="text/javascript" src="${ctx}/static/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="${ctx}/static/ueditor/ueditor.all.min.js"></script>
+    <link href="${ctx}/static/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript">
         $(function () {
             window.UEDITOR_HOME_URL = "${ctx}/static/ueditor/";
@@ -100,6 +101,16 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-lg-3 control-label">团购结束时间:</label>
+        <div class="col-lg-4">
+            <div class="controls input-append date form_datetime" data-date="2013-01-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="dtp_input1">
+                <input size="16" name="endTime" type="text" value="" readonly>
+                <span class="add-on"><i class="icon-remove"></i></span>
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-lg-3 control-label">产品图片:</label>
         <div class="col-lg-6">
             <div id="uploader">
@@ -126,7 +137,6 @@
         UE.getEditor('details');
     </script>
 </form>
-<script src="${ctx}/static/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="${ctx}/static/plupload/js/browserplus-min.js"></script>
 <script type="text/javascript" src="${ctx}/static/plupload/js/plupload.full.js"></script>
 <script type="text/javascript" src="${ctx}/static/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
@@ -152,6 +162,22 @@
                 }
             }
         });
+    });
+</script>
+<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        format: "yyyy-mm-dd hh:ii:ss",
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
     });
 </script>
 </body>
