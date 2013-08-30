@@ -32,13 +32,15 @@
                         </c:otherwise>
                         </c:choose>
 
-                            <div class="carousel-title">${p.productName}</div>
+                            <div class="carousel-title">
+                                <a href="${p.tmallLink}">${p.productName}</a>
+                            </div>
                             <c:forEach items="${p.productImages}" var="image" varStatus="st">
                                 <img src="${ctx}${image.imagePath}${image.pcImageName}" alt="">
                             </c:forEach>
 
                             <div class="carousel-caption col-md-5">
-                                ${p.details}
+                                    ${p.details}
                             </div>
 
                         </div>

@@ -50,10 +50,14 @@ public class HomeController {
         story.setStoryIntro(HTMLSpirit.delHTMLTag(story.getStoryIntro()));
         model.addAttribute("storyModel", story);
         List<Product> tempProductList = productService.getIndexProduct();
-//        for (Product product : tempProductList){
-//            product.setprodc
-//        }
-        List<Product> productList = productService.getIndexProduct();
+        List<Product> productList = new ArrayList<Product>();
+        for (Product product : tempProductList){
+            product.setDetails(HTMLSpirit.delHTMLTag(product.getDetails()));
+            if (product.getProductName().length() > 25){
+                product.setProductName(product.getProductName().substring(0,25)+" ...");
+            }
+            productList.add(product);
+        }
         model.addAttribute("productList", productList);
         return "frontend/home";
     }

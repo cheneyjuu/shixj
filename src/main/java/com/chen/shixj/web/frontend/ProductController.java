@@ -45,9 +45,9 @@ public class ProductController {
         List<Product> productList = productService.getAllProductForNavId(navId.intValue());
         model.addAttribute("productList", productList);
         if (navType.equals("0")){
-            return "frontend/postViews";
-        } else {
             return "frontend/productViews";
+        } else {
+            return "frontend/postViews";
         }
     }
 }

@@ -20,9 +20,7 @@
     <link rel="stylesheet" href="${ctx}/static/styles/normalize.css">
     <link rel="stylesheet" href="${ctx}/static/styles/main.css">
     <script src="${ctx}/static/script/vendor/modernizr-2.6.2.min.js"></script>
-    <style type="text/css">
-
-    </style>
+    <sitemesh:head />
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -37,32 +35,44 @@
 </header>
 
 <div class="page-wrap container">
-    <nav class="navbar navbar-default top-nav">
-        <ul class="side-bar">
-            <li>
-                <a href="${ctx}/home">首页</a>
-            </li>
-            <c:forEach items="${navHelperList}" var="nav">
-                <c:choose>
-                    <c:when test="${fn:length(nav.navList) > 0}">
-                        <li class="dropdown">
-                    </c:when>
-                    <c:otherwise>
-                        <li>
-                    </c:otherwise>
-                </c:choose>
-                <a href="${ctx}/views/${nav.id}">${nav.navName}</a>
-                <c:if test="${nav.navList != null}">
-                    <ul class="dropdown-menu">
-                        <c:forEach items="${nav.navList}" var="cnav">
-                            <li><a href="${ctx}/views/${cnav.id}">${cnav.navName}</a></li>
-                        </c:forEach>
-                    </ul>
-                </c:if>
-                </li>
-            </c:forEach>
+    <nav class="navbar navbar-default nav-outside" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
-        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav nav-justified nav-inside">
+                <li>
+                    <a href="${ctx}/home">首页</a>
+                </li>
+                <c:forEach items="${navHelperList}" var="nav">
+                    <c:choose>
+                        <c:when test="${fn:length(nav.navList) > 0}">
+                            <li class="dropdown"><a href="${ctx}/views/${nav.id}" class="dropdown-toggle" data-toggle="dropdown">${nav.navName}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="${ctx}/views/${nav.id}">${nav.navName}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:if test="${nav.navList != null}">
+                        <ul class="dropdown-menu">
+                            <c:forEach items="${nav.navList}" var="cnav">
+                                <li><a href="${ctx}/views/${cnav.id}">${cnav.navName}</a></li>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div><!-- /.navbar-collapse -->
     </nav>
 <sitemesh:body />
 </div>

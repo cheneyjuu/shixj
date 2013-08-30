@@ -62,13 +62,12 @@ public class NavService {
                     criteriaBuilder) {
                 Path<String> type = contentRoot.get("navType");
                 Path<String> column = contentRoot.get("parentNav");
-//                criteriaQuery.where(criteriaBuilder.equal(type, navType));
                 criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(type, navType), criteriaBuilder.equal(column, parentNav)));
                 return null;
             }
 
 
-        });
+        }, new Sort(Sort.Direction.ASC, "navOrder"));
     }
 
     /**
