@@ -11,7 +11,7 @@
  Target Server Version : 50610
  File Encoding         : utf-8
 
- Date: 08/27/2013 23:37:53 PM
+ Date: 08/30/2013 10:33:44 AM
 */
 
 SET NAMES utf8;
@@ -69,18 +69,19 @@ CREATE TABLE `tbl_product` (
   `nav_id` bigint(20) NOT NULL,
   `product_name` varchar(200) NOT NULL,
   `tmall_link` varchar(500) NOT NULL,
-  `product_price` decimal(10,0) NOT NULL,
+  `product_price` decimal(50,0) NOT NULL,
   `details` text NOT NULL,
-  `product_create_date` varchar(50) NOT NULL,
+  `product_create_date` varchar(100) NOT NULL,
   `show_index` int(10) DEFAULT '1' COMMENT '是否首页显示 0：不显示 1：显示',
+  `end_time` varchar(100) DEFAULT NULL COMMENT '团购结束时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `tbl_product`
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_product` VALUES ('3', '7', '侠客行', '侠客行', '123', '<p>侠客行</p>', '2013-08-21', '1'), ('4', '13', '灵山竞速', '灵山竞速', '23424', '<p>灵山竞速</p>', '2013-08-21', '1'), ('5', '2', '团购实惠', '团购实惠', '23424', '<p>团购实惠</p>', '2013-08-21', '1'), ('6', '11', '十月测试', '十月测试', '2344', '<p>十月测试</p>', '2013-08-21', '1');
+INSERT INTO `tbl_product` VALUES ('3', '7', '侠客行', '侠客行', '123', '<p>侠客行</p>', '2013-08-21', '1', null), ('4', '13', '灵山竞速', '灵山竞速', '23424', '<p>灵山竞速</p>', '2013-08-21', '1', null), ('5', '2', '团购实惠', '团购实惠', '23424', '<p>团购实惠</p>', '2013-08-21', '1', null), ('6', '11', '十月测试', '十月测试', '2344', '<p>十月测试</p>', '2013-08-21', '1', null), ('20', '7', 'ccc', 'http://www.baidu.com', '234', '<p>wer</p>', '2013-08-30', '0', null), ('21', '7', 'ccc', 'http://www.baidu.com', '2344', '<p>ww</p>', '2013-08-30', '0', '2013-01-10 05:25:07'), ('22', '7', 'ccc', 'http://www.baidu.com', '2344', '<p>ww</p>', '2013-08-30', '0', '2013-01-10 05:25:07'), ('23', '7', 'vvv', 'http://www.baidu.com', '33', '<p>vvv</p>', '2013-08-30', '0', '2013-01-04 06:30:07');
 COMMIT;
 
 -- ----------------------------
@@ -112,16 +113,16 @@ CREATE TABLE `tbl_story` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `story_content` text,
   `story_title` varchar(200) NOT NULL,
-  `story_intro` varchar(200),
+  `story_intro` varchar(200) DEFAULT NULL,
   `story_create_date` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `tbl_story`
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_story` VALUES ('6', '<p>bb</p>', 'bbb', '2013-08-27');
+INSERT INTO `tbl_story` VALUES ('7', '<p>啊啊</p>', '啊啊啊', '啊啊', '2013-08-29');
 COMMIT;
 
 -- ----------------------------
