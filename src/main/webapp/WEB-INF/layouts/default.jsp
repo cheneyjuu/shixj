@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="${ctx}/static/styles/normalize.css">
     <link rel="stylesheet" href="${ctx}/static/styles/main.css">
     <script src="${ctx}/static/script/vendor/modernizr-2.6.2.min.js"></script>
+    <style type="text/css">
+
+    </style>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -34,8 +37,8 @@
 </header>
 
 <div class="page-wrap container">
-    <nav class="navbar navbar-default">
-        <ul class="navbar navbar-default side-bar">
+    <nav class="navbar navbar-default top-nav">
+        <ul class="side-bar">
             <li>
                 <a href="${ctx}/home">首页</a>
             </li>
@@ -48,11 +51,11 @@
                         <li>
                     </c:otherwise>
                 </c:choose>
-                <a href="#">${nav.navName}</a>
+                <a href="${ctx}/views/${nav.id}">${nav.navName}</a>
                 <c:if test="${nav.navList != null}">
                     <ul class="dropdown-menu">
                         <c:forEach items="${nav.navList}" var="cnav">
-                            <li><a href="#">${cnav.navName}</a></li>
+                            <li><a href="${ctx}/views/${cnav.id}">${cnav.navName}</a></li>
                         </c:forEach>
                     </ul>
                 </c:if>

@@ -46,7 +46,7 @@ public class ProductService {
             @Override
             public Predicate toPredicate(Root<Product> contentRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder
                     criteriaBuilder) {
-                Path<String> id = contentRoot.get("navId");
+                Path<Long> id = contentRoot.get("nav").get("id");
                 criteriaQuery.where(criteriaBuilder.equal(id, navId));
                 return null;
             }

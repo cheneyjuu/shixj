@@ -302,11 +302,14 @@ textarea {
 /*Home Style*/
 html{
     height: 100%;
-    background: url("../images/background.png") repeat;
+    background: url("../images/bg.png") repeat;
 }
 body{
     height: 100%;
-    background: url("../images/background.png") repeat;
+    background: url("../images/bg.png") repeat;
+}
+.container , p{
+    background: #ffffff;
 }
 @media screen {
     .top{
@@ -317,17 +320,17 @@ body{
     .logo{
         position: absolute;
         width: 100%;
-        right: 80%;
+        right: 75%;
         top: 0;
-        background: #e18728;
-        height: 315px;
+        background: #a9263c;
+        height: 270px;
     }
     .logo img{
         position: absolute;
         max-width: 100%;
         width: 200px;
         height: auto;
-        right: 20px;
+        right: 6%;
         top: 30px;
     }
     .page-wrap{
@@ -336,38 +339,55 @@ body{
         background: #d6d5d5;
         height: auto;
     }
-    nav{
+    .top-nav{
         width: 100%;
         border-bottom: 6px solid #444;
         padding: 0 20px;
         overflow: hidden;
-        height: 65px;
+        height: 70px;
     }
-    nav ul{
-        width: 100%;
-        line-height: 2.8em;
-        padding: 0;
-        white-space: nowrap;
-        word-wrap: normal;
-        letter-spacing: -5px;
+    .top-nav.navbar{
+        padding-left: 0;
+        padding-right: 0;
+        background-color: #d6d5d5;
+        border: none;
+        text-align: justify;
     }
-    nav ul li {
+    .top-nav > ul::after{
+        content: '';
         display: inline-block;
-        list-style: none;
-        width: 12.6%;
+        width: 100%;
+    }
+    .top-nav > ul > li{
+        vertical-align: middle;
+    }
+    .top-nav > ul{
+        width: 100%;
+        line-height: 3em;
+        padding: 0;
+        background: #e23351;
+    }
+    .top-nav > ul > li {
+        display: inline-block;
         text-align: center;
-        background: #444444;
-        border: 1px solid #101010;
-        letter-spacing: normal;
-        word-spacing: normal;
-        vertical-align: top;
+        background: #e23351;
+        margin-left: 10px;
+        margin-right: 10px;
     }
-    nav ul li a{
+    .top-nav > ul > li:first-child{
+        margin-left: 20px;
+    }
+    .top-nav > ul > li:last-child{
+        margin-right: 20px;
+    }
+    .top-nav > ul > li a{
         text-decoration: none;
-        /*font-size: 16px;*/
         color: #ffffff;
+        line-height: 3.3em;
+        display: inline-block;
+        width: 100%;
     }
-    nav ul li a:hover{
+    .top-nav > ul > li a:hover{
         text-decoration: none;
     }
     section{
@@ -426,7 +446,6 @@ body{
         color: #f83701;
         left: 52%;
         width: 100%;
-        /*text-shadow: 0 1px 1px #000;*/
         letter-spacing: 0.15em;
     }
     .carousel-caption{
@@ -462,7 +481,7 @@ body{
     .story-section .btn-warning{
         display: inline-block;
         float: right;
-        background-color: #e67e22;
+        background-color: #e23351;
         width: 60%;
         font-size: 1.5em;
         margin-right: 20%;
@@ -471,15 +490,25 @@ body{
     }
 }
 @media screen and (max-width : 768px) {
-    nav{
-        height: 100px;
+    .navbar{
+        height: 100%;
+        width: 100%;
     }
-    nav ul li {
-        display: block;
+    .top-nav ul li {
+        display: inline-block;
         float: left;
+    }
+    .side-bar li{
         width: 25%;
     }
-    nav ul li a {
-        display: inline-block;
+    .top-nav ul li{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .top-nav ul li:first-child{
+        margin-left: 0;
+    }
+    .top-nav ul li:last-child{
+        margin-right: 0;
     }
 }

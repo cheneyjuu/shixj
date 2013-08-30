@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Component
 public class NavHelper {
+    private Long id;
     private String navName;
     private String navType;
     private List<Nav> navList;
@@ -39,4 +40,11 @@ public class NavHelper {
         this.navList = navList;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
