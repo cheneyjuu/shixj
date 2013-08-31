@@ -11,11 +11,57 @@
  Target Server Version : 50610
  File Encoding         : utf-8
 
- Date: 08/30/2013 10:33:44 AM
+ Date: 08/31/2013 19:29:39 PM
 */
 
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+--  Table structure for `tbl_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_info`;
+CREATE TABLE `tbl_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nav_id` bigint(20) NOT NULL COMMENT '所属栏目id',
+  `info_title` varchar(200) DEFAULT NULL COMMENT '标题',
+  `info_external_links` varchar(500) DEFAULT NULL COMMENT '外部链接',
+  `info_price` decimal(50,0) DEFAULT NULL COMMENT '产品价格',
+  `info_details` text COMMENT '信息详细内容',
+  `info_create_date` varchar(100) NOT NULL COMMENT '信息创建时间',
+  `info_show_index` int(10) DEFAULT '1' COMMENT '是否首页显示 0：不显示 1：显示',
+  `info_groupbuying_endtime` varchar(100) DEFAULT NULL COMMENT '团购结束时间',
+  `info_intro` varchar(1000) DEFAULT NULL COMMENT '简介',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='食享食分：id/nav_id/info_title/info_external_links/info_price/info_details/info_create_date/info_show_index/info_intro/图片表\n团购实惠：id/nav_id/info_title/info_external_links/info_price/info_details/info_create_date/info_show_index/info_intro/info_groupbuying_endtime/图片表\n有礼有节：id/nav_id/info_title/info_external_links/info_price/info_details/info_create_date/info_show_index/info_intro/图片表\n食享课堂：id/nav_id/info_title/info_details/info_create_date/info_show_index/info_intro/图片表\n品牌故事：id/nav_id/info_title/info_details/info_create_date/info_show_index/info_intro/图片表\n合作伙伴：id/nav_id/info_details/info_create_date\n关于我们：id/nav_id/info_details/info_create_date\n\n\nnav_id：信息对应栏目id\ninfo_title:信息标题\ninfo_external_links：信息外部链接\ninfo_price：信息价格\ninfo_details：信息详细内容\ninfo_create_date：信息创建时间\ninfo_show_index：信息是否首页显示\ninfo_intro：信息简介\ninfo_groupbuying_endtime：信息团购的结束时间';
+
+-- ----------------------------
+--  Records of `tbl_info`
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_info` VALUES ('3', '7', '侠客行', 'http://www.baidu.com', '123', '<p>侠客行</p>', '2013-08-21', '1', null, 'aaa'), ('4', '13', '灵山竞速', 'http://www.baidu.com', '23424', '<p>灵山竞速</p>', '2013-08-21', '1', '2013-01-16 05:45:07', 'aa'), ('5', '2', '团购实惠', '团购实惠', '23424', '<p>团购实惠</p>', '2013-08-21', '1', null, null), ('6', '11', '十月测试', '十月测试', '2344', '<p>十月测试</p>', '2013-08-21', '1', null, null), ('24', '2', '团购测试', 'http://www.baidu.com', '234', '<p>aaa</p>', '2013-08-30', '1', '2013-01-17 10:50:07', null), ('27', '8', null, null, null, '<p>关于我们</p>', '2013-08-31', null, null, null), ('28', '9', 'aa', null, null, '<p>aa</p>', '2013-08-31', '0', null, null), ('29', '10', 'a', 'http://www.baidu.com', '123', '<p>a</p>', '2013-08-31', '0', null, null), ('33', '14', 'aa', null, null, '<p>aa</p>', '2013-08-31', null, null, null), ('34', '9', '团购实惠', null, null, '<p>团购实惠</p>', '2013-08-31', '1', null, '团购实惠');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `tbl_info_image`
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_info_image`;
+CREATE TABLE `tbl_info_image` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `info_id` bigint(20) NOT NULL,
+  `image_path` varchar(200) DEFAULT NULL,
+  `origin_image_name` varchar(100) DEFAULT NULL,
+  `pc_image_name` varchar(100) DEFAULT NULL,
+  `mobile_image_name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COMMENT='此表暂时没有';
+
+-- ----------------------------
+--  Records of `tbl_info_image`
+-- ----------------------------
+BEGIN;
+INSERT INTO `tbl_info_image` VALUES ('1', '0', '/upload/files2013/08/22/', '1308222351103758.jpg', '1308222351103758.jpg', '1308222351103758.jpg'), ('49', '24', '/upload/files2013/08/30/', 'or_1308302228389054.jpeg', 'pc_1308302228389054.jpeg', 'm_1308302228389054.jpeg'), ('50', '33', '/upload/files2013/08/31/', 'or_1308311543155924.jpeg', 'pc_1308311543155924.jpeg', 'm_1308311543155924.jpeg'), ('51', '3', '/upload/files2013/08/31/', 'or_1308311744012546.jpeg', 'pc_1308311744012546.jpeg', 'm_1308311744012546.jpeg'), ('52', '3', '/upload/files2013/08/31/', 'or_1308311744442571.jpeg', 'pc_1308311744442571.jpeg', 'm_1308311744442571.jpeg');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `tbl_nav`
@@ -24,127 +70,30 @@ DROP TABLE IF EXISTS `tbl_nav`;
 CREATE TABLE `tbl_nav` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nav_name` varchar(20) NOT NULL COMMENT '栏目名称',
-  `nav_type` varchar(255) NOT NULL COMMENT '栏目类型 =0产品；=1文章',
+  `nav_type` varchar(255) NOT NULL COMMENT '栏目类型 =1食享食分；=2团购实惠；=3有礼有节；=4食享课堂；=5品牌故事；=6合作伙伴；=7关于我们；',
   `parent_nav` bigint(4) NOT NULL COMMENT '栏目的父栏目节点id  0代表没有父目录',
   `show_nav` tinyint(4) NOT NULL COMMENT '是否显示栏目 1是0非',
   `nav_image_path` varchar(100) DEFAULT NULL COMMENT '栏目图片路径',
   `nav_image_name` varchar(100) DEFAULT NULL COMMENT '栏目图片名称',
   `nav_order` bigint(20) NOT NULL DEFAULT '0' COMMENT '栏目次序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `tbl_nav`
 -- ----------------------------
 BEGIN;
-INSERT INTO `tbl_nav` VALUES ('1', '食享食分', '0', '0', '1', '', '', '0'), ('2', '团购食惠', '0', '0', '1', '', '', '1'), ('3', '有礼有节', '0', '0', '1', '', '', '2'), ('4', '食享课堂', '1', '0', '1', '', '', '3'), ('6', '合作伙伴', '1', '0', '1', '', '', '5'), ('7', '虾客行', '0', '1', '1', '', '', '6'), ('8', '关于我们', '1', '0', '1', '', '', '7'), ('9', '红酒的故事', '1', '4', '1', '', '', '8'), ('10', '八月', '0', '3', '1', '', '', '9'), ('11', '十月', '0', '3', '1', '', '', '10'), ('12', '九月', '0', '3', '1', '', '', '11'), ('13', '灵山净素', '0', '1', '1', '', '', '12');
+INSERT INTO `tbl_nav` VALUES ('1', '食享食分', '0', '0', '1', '', '', '0'), ('2', '团购食惠', '1', '0', '1', '', '', '1'), ('3', '有礼有节', '2', '0', '1', '', '', '2'), ('4', '食享课堂', '3', '0', '1', '', '', '3'), ('6', '合作伙伴', '5', '0', '1', '', '', '5'), ('7', '虾客行', '0', '1', '1', '', '', '6'), ('8', '关于我们', '6', '0', '1', '', '', '7'), ('9', '红酒的故事', '3', '4', '1', '', '', '8'), ('10', '八月', '2', '3', '1', '', '', '9'), ('11', '十月', '2', '3', '1', '', '', '10'), ('12', '九月', '2', '3', '1', '', '', '11'), ('13', '灵山净素', '0', '1', '1', '', '', '12'), ('14', '品牌故事', '4', '0', '1', null, null, '4');
 COMMIT;
 
 -- ----------------------------
---  Table structure for `tbl_post`
+--  Table structure for `tbl_nav_type`
 -- ----------------------------
-DROP TABLE IF EXISTS `tbl_post`;
-CREATE TABLE `tbl_post` (
+DROP TABLE IF EXISTS `tbl_nav_type`;
+CREATE TABLE `tbl_nav_type` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nav_id` bigint(20) NOT NULL,
-  `post_content` text,
-  `post_title` varchar(200) NOT NULL,
-  `post_create_date` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Records of `tbl_post`
--- ----------------------------
-BEGIN;
-INSERT INTO `tbl_post` VALUES ('2', '7', ' 栏目1文章标题', ' 栏目1文章标题', '2013-08-20');
-COMMIT;
-
--- ----------------------------
---  Table structure for `tbl_product`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_product`;
-CREATE TABLE `tbl_product` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nav_id` bigint(20) NOT NULL,
-  `product_name` varchar(200) NOT NULL,
-  `tmall_link` varchar(500) NOT NULL,
-  `product_price` decimal(50,0) NOT NULL,
-  `details` text NOT NULL,
-  `product_create_date` varchar(100) NOT NULL,
-  `show_index` int(10) DEFAULT '1' COMMENT '是否首页显示 0：不显示 1：显示',
-  `end_time` varchar(100) DEFAULT NULL COMMENT '团购结束时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Records of `tbl_product`
--- ----------------------------
-BEGIN;
-INSERT INTO `tbl_product` VALUES ('3', '7', '侠客行', '侠客行', '123', '<p>侠客行</p>', '2013-08-21', '1', null), ('4', '13', '灵山竞速', '灵山竞速', '23424', '<p>灵山竞速</p>', '2013-08-21', '1', null), ('5', '2', '团购实惠', '团购实惠', '23424', '<p>团购实惠</p>', '2013-08-21', '1', null), ('6', '11', '十月测试', '十月测试', '2344', '<p>十月测试</p>', '2013-08-21', '1', null), ('20', '7', 'ccc', 'http://www.baidu.com', '234', '<p>wer</p>', '2013-08-30', '0', null), ('21', '7', 'ccc', 'http://www.baidu.com', '2344', '<p>ww</p>', '2013-08-30', '0', '2013-01-10 05:25:07'), ('22', '7', 'ccc', 'http://www.baidu.com', '2344', '<p>ww</p>', '2013-08-30', '0', '2013-01-10 05:25:07'), ('23', '7', 'vvv', 'http://www.baidu.com', '33', '<p>vvv</p>', '2013-08-30', '0', '2013-01-04 06:30:07');
-COMMIT;
-
--- ----------------------------
---  Table structure for `tbl_product_image`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_product_image`;
-CREATE TABLE `tbl_product_image` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `product_id` bigint(20) NOT NULL,
-  `image_path` varchar(200) DEFAULT NULL,
-  `origin_image_name` varchar(100) DEFAULT NULL,
-  `pc_image_name` varchar(100) DEFAULT NULL,
-  `mobile_image_name` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Records of `tbl_product_image`
--- ----------------------------
-BEGIN;
-INSERT INTO `tbl_product_image` VALUES ('1', '0', '/upload/files2013/08/22/', '1308222351103758.jpg', '1308222351103758.jpg', '1308222351103758.jpg');
-COMMIT;
-
--- ----------------------------
---  Table structure for `tbl_story`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_story`;
-CREATE TABLE `tbl_story` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `story_content` text,
-  `story_title` varchar(200) NOT NULL,
-  `story_intro` varchar(200) DEFAULT NULL,
-  `story_create_date` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Records of `tbl_story`
--- ----------------------------
-BEGIN;
-INSERT INTO `tbl_story` VALUES ('7', '<p>啊啊</p>', '啊啊啊', '啊啊', '2013-08-29');
-COMMIT;
-
--- ----------------------------
---  Table structure for `tbl_story_image`
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_story_image`;
-CREATE TABLE `tbl_story_image` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `story_id` bigint(20) NOT NULL,
-  `image_path` varchar(200) DEFAULT NULL,
-  `origin_image_name` varchar(100) DEFAULT NULL,
-  `pc_image_name` varchar(100) DEFAULT NULL,
-  `mobile_image_name` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Records of `tbl_story_image`
--- ----------------------------
-BEGIN;
-INSERT INTO `tbl_story_image` VALUES ('5', '6', '/upload/files2013/08/27/', 'or_1308272325481121.jpeg', 'pc_1308272325481121.jpeg', 'm_1308272325481121.jpeg');
-COMMIT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='本表暂时没有用到';
 
 -- ----------------------------
 --  Table structure for `tbl_task`
