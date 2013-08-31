@@ -52,7 +52,7 @@
         <label class="col-lg-3 control-label"></label>
 
         <div class="col-lg-6">
-            <a class="btn btn-info  pull-left" href="${ctx}/admin/story/storyList">返回列表</a>
+            <a class="btn btn-info  pull-left" href="${ctx}/admin/story/list">返回列表</a>
             <a class="btn btn-danger pull-right" onclick="firm(${story.id})">删除</a>
         </div>
     </div>
