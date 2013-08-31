@@ -60,7 +60,7 @@ public class NavController {
         return "/admin/nav/look";
     }
 
-    @RequestMapping(value = "/navList", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         //查询所有一级栏目
         List<Nav> navList = navService.getAllNavForParentNav(0L);
@@ -72,7 +72,7 @@ public class NavController {
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
-        return "/admin/nav/navList";
+        return "admin/nav/list";
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -98,7 +98,7 @@ public class NavController {
         nav.setShowNav(isShowNav);
         navService.saveNav(nav);
         redirectAttributes.addFlashAttribute("message", "更新栏目成功");
-        return "redirect:/admin/nav/navList";
+        return "redirect:/admin/nav/list";
     }
     @RequestMapping(value = "/updateShowNav", method = RequestMethod.POST)
     public String updateShowNav(@Valid @ModelAttribute("perloadNav") Nav nav,@RequestParam(value = "isShowNav") Boolean isShowNav,
@@ -106,12 +106,12 @@ public class NavController {
         nav.setShowNav(isShowNav);
         navService.saveNav(nav);
         redirectAttributes.addFlashAttribute("message", "更新栏目成功");
-        return "redirect:/admin/nav/navList";
+        return "redirect:/admin/nav/list";
     }
 
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-        //新删除此栏目下所有的子栏目
+        //删除此栏目下所有的子栏目
         List<Nav> navs = navService.getAllNavForParentNav(id);
         for (Nav nav : navs){
             navService.deleteNav(nav.getId());
@@ -119,7 +119,7 @@ public class NavController {
 
         navService.deleteNav(id);
         redirectAttributes.addFlashAttribute("message", "删除栏目成功");
-        return "redirect:/admin/nav/navList";
+        return "redirect:/admin/nav/list";
     }
 
     @ModelAttribute(value = "perloadNav")
