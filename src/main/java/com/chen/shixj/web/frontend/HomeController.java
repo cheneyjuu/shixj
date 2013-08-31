@@ -40,7 +40,7 @@ public class HomeController {
             navHelperList.add(navHelper);
         }
         model.addAttribute("navHelperList", navHelperList);
-        List<Nav> navList = this.getAllNavForNavType(4);
+        List<Nav> navList = this.getAllNavForNavType(5);
         Page<Info> storyPage = infoService.pageInfoWithNavsParam(1, 1, navList, "");
         List<Info> storyList = storyPage.getContent();
         Info storyModel = null;
