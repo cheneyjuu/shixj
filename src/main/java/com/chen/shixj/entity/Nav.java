@@ -19,11 +19,11 @@ public class Nav extends IdEntity{
     private String navImagePath;
     private String navImageName;
     private int navOrder;
-//    private Set<Nav> navs;
-//    private Nav nav;
 
-    private Set<Post> posts;
-    private Set<Product>  products;
+//    private Set<Post> posts;
+//    private Set<Product>  products;
+
+    private Set<Info> infos;
 
     public String getNavName() {
         return navName;
@@ -81,37 +81,29 @@ public class Nav extends IdEntity{
         this.navOrder = navOrder;
     }
 
-    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
-    public Set<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Set<Post> posts) {
-        this.posts = posts;
-    }
-    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
 //    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
-//    public Set<Nav> getNavs() {
-//        return navs;
+//    public Set<Post> getPosts() {
+//        return posts;
 //    }
 //
-//    public void setNavs(Set<Nav> navs) {
-//        this.navs = navs;
+//    public void setPosts(Set<Post> posts) {
+//        this.posts = posts;
 //    }
-//    @ManyToOne
-//    @JoinColumn(name = "nav_id")
-//    public Nav getNav() {
-//        return nav;
+//    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
+//    public Set<Product> getProducts() {
+//        return products;
 //    }
 //
-//    public void setNav(Nav nav) {
-//        this.nav = nav;
+//    public void setProducts(Set<Product> products) {
+//        this.products = products;
 //    }
+
+    @OneToMany(mappedBy = "nav", cascade = CascadeType.ALL)
+    public Set<Info> getInfos() {
+        return infos;
+    }
+
+    public void setInfos(Set<Info> infos) {
+        this.infos = infos;
+    }
 }

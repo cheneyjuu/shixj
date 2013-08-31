@@ -7,27 +7,64 @@
         <li class="dropdown-submenu"><a href="#"><i class="icon-th icon-xlarge"></i><span>栏目管理</span></a>
             <ul class="dropdown-menu">
                 <li><a href="/admin/nav/add">新增栏目</a></li>
-                <li><a href="/admin/nav/navList">栏目列表</a></li>
+                <li><a href="/admin/nav/list">栏目列表</a></li>
             </ul>
         </li>
-        <li class="dropdown-submenu"><a href="#"><i class="icon-shopping-cart icon-xlarge"></i><span>产品管理</span></a>
+        <%--<li class="dropdown-submenu"><a href="#"><i class="icon-shopping-cart icon-xlarge"></i><span>产品管理</span></a>--%>
+            <%--<ul class="dropdown-menu">--%>
+                <%--<li><a href="/admin/product/add">新增产品</a>--%>
+                <%--</li>--%>
+                <%--<li><a href="/admin/product/productList">产品列表</a>--%>
+                <%--</li>--%>
+            <%--</ul>--%>
+        <%--</li>--%>
+        <%--<li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>文章管理</span></a>--%>
+            <%--<ul class="dropdown-menu">--%>
+                <%--<li><a href="/admin/post/add">新增文章</a></li>--%>
+                <%--<li><a href="/admin/post/postList">文章列表</a></li>--%>
+            <%--</ul>--%>
+        <%--</li>--%>
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>食享食分</span></a>
             <ul class="dropdown-menu">
-                <li><a href="/admin/product/add">新增产品</a>
-                </li>
-                <li><a href="/admin/product/productList">产品列表</a>
-                </li>
+                <li><a href="/admin/info/add/0">新增食享食分</a></li>
+                <li><a href="/admin/info/list/0">食享食分列表</a></li>
             </ul>
         </li>
-        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>文章管理</span></a>
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>团购实惠</span></a>
             <ul class="dropdown-menu">
-                <li><a href="/admin/post/add">新增文章</a></li>
-                <li><a href="/admin/post/postList">文章列表</a></li>
+                <li><a href="/admin/info/add/1">新增团购</a></li>
+                <li><a href="/admin/info/list/1">团购列表</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>有礼有节</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/info/add/2">新增产品</a></li>
+                <li><a href="/admin/info/list/2">产品列表</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>食享课堂</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/info/add/3">新增课堂</a></li>
+                <li><a href="/admin/info/list/3">课堂列表</a></li>
             </ul>
         </li>
         <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>品牌故事</span></a>
             <ul class="dropdown-menu">
-                <li><a href="/admin/story/add">新增故事</a></li>
-                <li><a href="/admin/story/storyList">故事列表</a></li>
+                <li><a href="/admin/info/add/4">新增故事</a></li>
+                <li><a href="/admin/info/list/4">故事列表</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>合作伙伴</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/info/add/5">新增伙伴</a></li>
+                <li><a href="/admin/info/list/5">伙伴列表</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>关于我们</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/info/add/6">新增关于</a></li>
+                <li><a href="/admin/info/list/6">关于列表</a></li>
             </ul>
         </li>
     </ul>
