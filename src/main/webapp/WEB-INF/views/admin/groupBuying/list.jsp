@@ -18,13 +18,13 @@
     </script>
 </head>
 <body>
-<section class="panel">
+<section class="panel"  style="margin-left: 5px">
     <header class="panel-heading">产品列表</header>
     <form id="productList" action="${ctx}/admin/info/list/${navType}" method="post" class="form-horizontal">
         <div class="panel-body">
-            <div class="row text-small">
+            <%--<div class="row text-small">--%>
                 <div class="col-sm-4 m-b-mini">
-                    <label class="col-lg-3 control-label column-label">选择栏目：</label>
+                    <label class=" control-label column-label">选择栏目：</label>
                     <select name="navId" class="input-sm inline form-control" style="width:130px">
                         <option value="0">全部</option>
                         <c:forEach items="${navList}" var="nav">
@@ -73,7 +73,7 @@
                         </span>
                     </div>
                 </div>
-            </div>
+            <%--</div>--%>
         </div>
     </form>
     <div>
