@@ -53,7 +53,7 @@ public class InfoService {
             }
 
 
-        });
+        } , new Sort(Sort.Direction.DESC,"id"));
     }
 
     /**
@@ -115,7 +115,7 @@ public class InfoService {
                 return null;
             }
 
-        }, new PageRequest(pageNumber - 1, pagzSize));
+        }, new PageRequest(pageNumber - 1, pagzSize, new Sort(Sort.Direction.DESC,"id")));
     }
 
     /**
@@ -166,7 +166,7 @@ public class InfoService {
         return infoDao.findAll(new Specification<Info>() {
             @Override
             public Predicate toPredicate(Root<Info> infoRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                criteriaQuery.where(criteriaBuilder.equal(infoRoot.get("showIndex"),1));
+                criteriaQuery.where(criteriaBuilder.equal(infoRoot.get("infoShowIndex"),1));
                 return null;
             }
         });

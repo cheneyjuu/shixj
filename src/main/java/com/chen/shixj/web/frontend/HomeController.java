@@ -1,17 +1,13 @@
 package com.chen.shixj.web.frontend;
 
-import com.chen.shixj.entity.Nav;
-import com.chen.shixj.entity.NavHelper;
-import com.chen.shixj.entity.Product;
-import com.chen.shixj.entity.Story;
+import com.chen.shixj.entity.*;
+import com.chen.shixj.service.info.InfoService;
 import com.chen.shixj.service.nav.NavService;
-import com.chen.shixj.service.product.ProductService;
-import com.chen.shixj.service.story.StoryService;
 import com.chen.shixj.utility.HTMLSpirit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,9 +25,7 @@ public class HomeController {
     @Autowired
     private NavService navService;
     @Autowired
-    private StoryService storyService;
-    @Autowired
-    private ProductService productService;
+    private InfoService infoService;
 
     @RequestMapping(value = "/home" ,method = RequestMethod.GET)
     public String home(Model model){
@@ -46,22 +40,30 @@ public class HomeController {
             navHelperList.add(navHelper);
         }
         model.addAttribute("navHelperList", navHelperList);
-        Story story = storyService.getLastStory();
-        if (story != null){
-            story.setStoryIntro(HTMLSpirit.delHTMLTag(story.getStoryIntro()));
+        List<Nav> navList = this.getAllNavForNavType(4);
+        Page<Info> storyPage = infoService.pageInfoWithNavsParam(1, 1, navList, "");
+        List<Info> storyList = storyPage.getContent();
+        Info storyModel = null;
+        if (storyList != null && storyList.size() > 0){
+            storyModel = storyList.get(0);
         }
-        model.addAttribute("storyModel", story);
-        List<Product> tempProductList = productService.getIndexProduct();
-        List<Product> productList = new ArrayList<Product>();
-        for (Product product : tempProductList){
-            product.setDetails(HTMLSpirit.delHTMLTag(product.getDetails()));
-            if (product.getProductName().length() > 25){
-                product.setProductName(product.getProductName().substring(0,25)+" ...");
-            }
-            productList.add(product);
-        }
-        model.addAttribute("productList", productList);
+        model.addAttribute("storyModel", storyModel);
+        List<Info> infoList = infoService.getIndexInfo();
+        model.addAttribute("infoList", infoList);
         return "frontend/home";
+    }
+
+    private  List<Nav> getAllNavForNavType(int navType){
+        //查询所有一级文章栏目
+        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(navType, 0L);
+        List<Nav> resultList = new ArrayList();
+        for (Nav nav : navList) {
+            resultList.add(nav);
+            long parentNav = nav.getId();
+            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(navType, parentNav);
+            resultList.addAll(subNavList);
+        }
+        return resultList;
     }
 
     @RequestMapping (value = "/left", method = RequestMethod.GET)

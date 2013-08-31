@@ -17,69 +17,35 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ctx}/static/styles/normalize.css">
+    <%--<link rel="stylesheet" href="${ctx}/static/styles/normalize.css">--%>
     <link rel="stylesheet" href="${ctx}/static/styles/main.css">
     <script src="${ctx}/static/script/vendor/modernizr-2.6.2.min.js"></script>
     <style type="text/css">
-        .dropdown-menu{
-            -webkit-left:0;
-        }
+
     </style>
     <sitemesh:head />
 </head>
-<body>
+<body class="home">
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<header class="top" id="top">
-    <div class="logo">
-        <img src="${ctx}/static/images/logo.png" alt=""/>
-    </div>
-</header>
+<%@include file="header.jsp"%>
 
-<div class="page-wrap container">
-    <nav class="navbar navbar-default nav-outside" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav nav-justified nav-inside">
-                <li>
-                    <a href="${ctx}/home">首页</a>
-                </li>
-                <c:forEach items="${navHelperList}" var="nav">
-                    <c:choose>
-                        <c:when test="${fn:length(nav.navList) > 0}">
-                            <li class="dropdown"><a href="${ctx}/views/${nav.id}" class="dropdown-toggle" data-toggle="dropdown">${nav.navName}</a>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="${ctx}/views/${nav.id}">${nav.navName}</a></li>
-                        </c:otherwise>
-                    </c:choose>
-
-                    <c:if test="${nav.navList != null}">
-                        <ul class="dropdown-menu">
-                            <c:forEach items="${nav.navList}" var="cnav">
-                                <li><a href="${ctx}/views/${cnav.id}">${cnav.navName}</a></li>
-                            </c:forEach>
-                        </ul>
-                    </c:if>
-                    </li>
-                </c:forEach>
-            </ul>
-        </div><!-- /.navbar-collapse -->
+<div class="page-wrap">
+    <nav class="main-nav" id="main-nav">
+        <a class="home" href="#">首页</a>
+        <c:forEach items="${navHelperList}" var="nav" varStatus="st">
+            <a href="#">${nav.navName}</a>
+        </c:forEach>
+        <a href="#main-nav" class="show-hide-navigation" id="show-hide-navigation">
+            导航
+        </a>
     </nav>
-<sitemesh:body />
+    <div class="grid group">
+        <sitemesh:body />
+    </div>
 </div>
 
 <script src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>

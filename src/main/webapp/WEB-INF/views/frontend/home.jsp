@@ -8,7 +8,7 @@
         <div id="carousel-example-generic" class="carousel slide">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                <c:forEach items="${productList}" var="p" varStatus="st">
+                <c:forEach items="${infoList}" var="p" varStatus="st">
                     <c:choose>
                         <c:when test="${st.index == 0}">
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -22,7 +22,7 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" style="height: 500px;">
-                <c:forEach items="${productList}" var="p" varStatus="st">
+                <c:forEach items="${infoList}" var="p" varStatus="st">
                         <c:choose>
                         <c:when test="${st.index == 0}">
                         <div class="item active">
@@ -33,14 +33,14 @@
                         </c:choose>
 
                             <div class="carousel-title">
-                                <a href="${p.tmallLink}">${p.productName}</a>
+                                <a href="#">${p.infoTitle}</a>
                             </div>
-                            <c:forEach items="${p.productImages}" var="image" varStatus="st">
+                            <c:forEach items="${p.infoImages}" var="image" varStatus="st">
                                 <img src="${ctx}${image.imagePath}${image.pcImageName}" alt="">
                             </c:forEach>
 
                             <div class="carousel-caption col-md-5">
-                                    ${p.details}
+                                    ${p.infoDetails}
                             </div>
 
                         </div>
@@ -65,10 +65,10 @@
         <div class="col-md-7">
             <c:choose>
                 <c:when test="${storyModel != null}">
-                    <h3>${storyModel.storyTitle}</h3>
+                    <h3>${storyModel.infoTitle}</h3>
 
                     <p>
-                            ${storyModel.storyIntro}
+                            ${storyModel.infoIntro}
                     </p>
                     <a href="${ctx}/story/details/${storyModel.id}" class="btn btn-warning">故事未完，点击继续阅读</a>
                 </c:when>

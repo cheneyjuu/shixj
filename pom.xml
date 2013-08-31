@@ -544,7 +544,7 @@
 					<systemProperties>
 						<systemProperty>
 							<name>spring.profiles.active</name>
-							<value>production</value>
+							<value>development</value>
 						</systemProperty>
 					</systemProperties>
 					<useTestClasspath>true</useTestClasspath>

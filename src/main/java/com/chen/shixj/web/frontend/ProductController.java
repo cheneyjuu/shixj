@@ -2,9 +2,7 @@ package com.chen.shixj.web.frontend;
 
 import com.chen.shixj.entity.Nav;
 import com.chen.shixj.entity.NavHelper;
-import com.chen.shixj.entity.Product;
 import com.chen.shixj.service.nav.NavService;
-import com.chen.shixj.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +22,6 @@ public class ProductController {
 
     @Autowired
     private NavService navService;
-    @Autowired
-    private ProductService productService;
 
     @RequestMapping(value = "/views/{navId}")
     public String views(@PathVariable(value = "navId") Long navId, Model model){
@@ -42,8 +38,8 @@ public class ProductController {
         model.addAttribute("navHelperList", navHelperList);
         Nav nav = navService.getNav(navId);
         String navType = nav.getNavType();
-        List<Product> productList = productService.getAllProductForNavId(navId.intValue());
-        model.addAttribute("productList", productList);
+//        List<Product> productList = productService.getAllProductForNavId(navId.intValue());
+//        model.addAttribute("productList", productList);
         if (navType.equals("0")){
             return "frontend/productViews";
         } else {
@@ -64,8 +60,8 @@ public class ProductController {
             navHelperList.add(navHelper);
         }
         model.addAttribute("navHelperList", navHelperList);
-        Product product = productService.getProduct(id);
-        model.addAttribute("productModel", product);
+//        Product product = productService.getProduct(id);
+//        model.addAttribute("productModel", product);
         return "frontend/productDetails";
     }
 }
