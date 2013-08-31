@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="${ctx}/static/styles/normalize.css">
     <link rel="stylesheet" href="${ctx}/static/styles/main.css">
     <script src="${ctx}/static/script/vendor/modernizr-2.6.2.min.js"></script>
+    <style type="text/css">
+        .dropdown-menu{
+            -webkit-left:0;
+        }
+    </style>
     <sitemesh:head />
 </head>
 <body>

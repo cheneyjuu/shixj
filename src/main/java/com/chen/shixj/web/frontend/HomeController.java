@@ -47,7 +47,9 @@ public class HomeController {
         }
         model.addAttribute("navHelperList", navHelperList);
         Story story = storyService.getLastStory();
-        story.setStoryIntro(HTMLSpirit.delHTMLTag(story.getStoryIntro()));
+        if (story != null){
+            story.setStoryIntro(HTMLSpirit.delHTMLTag(story.getStoryIntro()));
+        }
         model.addAttribute("storyModel", story);
         List<Product> tempProductList = productService.getIndexProduct();
         List<Product> productList = new ArrayList<Product>();

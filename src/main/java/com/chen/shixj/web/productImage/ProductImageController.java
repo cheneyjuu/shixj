@@ -69,7 +69,7 @@ public class ProductImageController {
                     String imageName = str[str.length - 1];
                     String imagePath = fileName.substring(0, fileName.length() - imageName.length());
                     productImage.setMobileImageName("m_" + imageName);
-                    productImage.setOriginImageName("or_" + imageName);
+                    productImage.setOriginImageName(imageName);
                     productImage.setPcImageName("pc_" + imageName);
                     productImage.setImagePath(imagePath);
                     productImage.setProduct(product);
@@ -113,7 +113,7 @@ public class ProductImageController {
                     String imageName = str[str.length - 1];
                     String imagePath = fileName.substring(0, fileName.length() - imageName.length());
                     productImage.setMobileImageName("m_" + imageName);
-                    productImage.setOriginImageName("or_" + imageName);
+                    productImage.setOriginImageName(imageName);
                     productImage.setPcImageName("pc_" + imageName);
                     productImage.setImagePath(imagePath);
                     productImage.setProduct(product);

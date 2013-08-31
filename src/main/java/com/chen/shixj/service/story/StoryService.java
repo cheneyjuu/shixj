@@ -42,7 +42,12 @@ public class StoryService {
     }
 
     public Story getLastStory(){
-        return storyDao.findAll(new Sort(Sort.Direction.DESC,"id")).iterator().next();
+        List<Story> storyList = (List<Story>) storyDao.findAll(new Sort(Sort.Direction.DESC,"id"));
+        if (storyList.size() > 0){
+            return storyList.get(0);
+        } else {
+            return null;
+        }
     }
 
     /**

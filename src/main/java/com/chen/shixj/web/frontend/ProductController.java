@@ -50,4 +50,22 @@ public class ProductController {
             return "frontend/postViews";
         }
     }
+
+    @RequestMapping (value = "/details/{id}")
+    public String details(@PathVariable (value = "id") Long id, Model model){
+        List<Nav> parentList = navService.getAllNavForParentNav(new Long(0));
+        List<NavHelper> navHelperList = new ArrayList<NavHelper>();
+        for (Nav pnav : parentList){
+            NavHelper navHelper = new NavHelper();
+            navHelper.setId(pnav.getId());
+            navHelper.setNavName(pnav.getNavName());
+            navHelper.setNavType(pnav.getNavType());
+            navHelper.setNavList(navService.getAllNavForParentNav(pnav.getId()));
+            navHelperList.add(navHelper);
+        }
+        model.addAttribute("navHelperList", navHelperList);
+        Product product = productService.getProduct(id);
+        model.addAttribute("productModel", product);
+        return "frontend/productDetails";
+    }
 }

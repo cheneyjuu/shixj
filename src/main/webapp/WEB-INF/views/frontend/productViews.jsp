@@ -68,15 +68,15 @@
 
             <c:forEach items="${p.productImages}" var="pimg" varStatus="pst">
                 <c:if test="${pst.index == 0}">
-                    <a href="${p.tmallLink}" target="_blank">
+                    <a href="${ctx}/details/${p.id}" target="_blank">
                         <img class="img-rounded" src="${ctx}${pimg.imagePath}${pimg.pcImageName}" alt=""/>
                     </a>
                 </c:if>
             </c:forEach>
 
-            <h4><a href="${p.tmallLink}" target="_blank">${p.productName}</a></h4>
+            <h4><a href="${ctx}/details/${p.id}" target="_blank">${p.productName}</a></h4>
             <span>${p.productPrice}</span>
-            <a href="#" class="btn btn-product">查看详情</a>
+            <a href="${ctx}/details/${p.id}" class="btn btn-product">查看详情</a>
         </div>
     </c:forEach>
 </div>
