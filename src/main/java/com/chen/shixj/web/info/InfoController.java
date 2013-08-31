@@ -54,8 +54,8 @@ public class InfoController {
 
     }
 
-    @RequestMapping(value = "/look/{id}", method = RequestMethod.GET)
-    public String look(@PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = "/look/{id}/{navType}", method = RequestMethod.GET)
+    public String look(@PathVariable("id") Long id,@PathVariable("navType") int navType, Model model) {
 
         model.addAttribute("info", infoService.getInfo(id));
 
@@ -69,7 +69,8 @@ public class InfoController {
             resultList.addAll(subNavList);
         }
         model.addAttribute("navList", resultList);
-        return "/admin/info/look";
+        model.addAttribute("navType", navType);
+        return "/admin/" + this.urlStr(navType) + "/look";
     }
 
     //获得单个栏目的数据根据栏目id 和搜索条件查询

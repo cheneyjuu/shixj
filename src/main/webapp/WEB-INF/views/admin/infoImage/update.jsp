@@ -29,7 +29,7 @@
 </head>
 <body>
 <section class="panel">
-    <header class="panel-heading">修改图片产品</header>
+    <header class="panel-heading">修改图片</header>
     <form id="addNav" action="${ctx}/admin/infoImage/update/${navType}" method="post" class="form-horizontal"
           onsubmit="return validate()">
         <input type="hidden" name="infoId" value="${infoId}">
