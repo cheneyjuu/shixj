@@ -37,7 +37,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${product.nav.id==nav.id}">
+                                        <c:when test="${info.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>
@@ -56,7 +56,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${product.nav.id==nav.id}">
+                                        <c:when test="${info.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>
@@ -78,7 +78,7 @@
         <label class="col-lg-3 control-label"></label>
         <div class="col-lg-6">
             <a class="btn btn-info  pull-left" href="${ctx}/admin/info/list/${navType}">取消</a>
-            <button type="submit" class="btn btn-info pull-right">添加</button>
+            <button type="submit" class="btn btn-info pull-right">修改</button>
         </div>
     </div>
     <script type="text/javascript">

@@ -44,7 +44,7 @@
     <style type="text/css">@import url(${ctx}/static/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
 </head>
 <body>
-<header class="panel-heading">新增产品</header>
+<header class="panel-heading">更新产品</header>
 <form id="addNav" action="${ctx}/admin/info/update/${navType}" method="post" class="form-horizontal" onsubmit="return validate()">
     <input type="hidden" value="${info.id}" name="id"/>
     <div class="form-group">
@@ -57,7 +57,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${product.nav.id==nav.id}">
+                                        <c:when test="${info.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>
@@ -76,7 +76,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${product.nav.id==nav.id}">
+                                        <c:when test="${info.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>

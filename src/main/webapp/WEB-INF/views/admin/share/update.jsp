@@ -57,7 +57,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${product.nav.id==nav.id}">
+                                        <c:when test="${info.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>
@@ -76,7 +76,7 @@
                             <option value="${nav.id}"
                                 <%--------------------------默认选中---------------------------%>
                                     <c:choose>
-                                        <c:when test="${product.nav.id==nav.id}">
+                                        <c:when test="${info.nav.id==nav.id}">
                                             selected="selected"
                                         </c:when>
                                     </c:choose>

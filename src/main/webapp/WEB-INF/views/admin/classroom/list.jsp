@@ -18,7 +18,7 @@
     </script>
 </head>
 <body>
-<section class="panel">
+<section class="panel" style="margin-left: 5px">
     <header class="panel-heading">产品列表</header>
     <form id="productList" action="${ctx}/admin/info/list/${navType}" method="post" class="form-horizontal">
         <div class="panel-body">

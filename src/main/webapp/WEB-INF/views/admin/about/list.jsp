@@ -18,70 +18,14 @@
     </script>
 </head>
 <body>
-<section class="panel">
-    <header class="panel-heading">产品列表</header>
-    <form id="productList" action="${ctx}/admin/info/list/${navType}" method="post" class="form-horizontal">
-        <div class="panel-body">
-            <div class="row text-small">
-                <div class="col-sm-4 m-b-mini">
-                    <label class="col-lg-3 control-label column-label">选择栏目：</label>
-                    <select name="navId" class="input-sm inline form-control" style="width:130px">
-                        <option value="0">全部</option>
-                        <c:forEach items="${navList}" var="nav">
-                            <c:choose>
-                                <c:when test="${nav.parentNav==0}">
-                                    <option value="${nav.id}"
-                                        <%--------------------------默认选中---------------------------%>
-                                            <c:choose>
-                                                <c:when test="${selectNavId==nav.id}">
-                                                    selected="selected"
-                                                </c:when>
-                                            </c:choose>
-                                        <%--------------------------默认选中---------------------------%>
-                                        <%--------------------------不可选中---------------------------%>
-                                            <c:forEach items="${navList}" var="nav2">
-                                                <c:choose>
-                                                    <c:when test="${nav.id==nav2.parentNav}">
-                                                        disabled="disabled"
-                                                    </c:when>
-                                                </c:choose>
-                                            </c:forEach>
-                                        <%-----------------------------------------------------%>
-                                            >${nav.navName}</option>
-                                </c:when>
-                                <c:otherwise>
-                                    <option value="${nav.id}"
-                                        <%--------------------------默认选中---------------------------%>
-                                            <c:choose>
-                                                <c:when test="${selectNavId==nav.id}">
-                                                    selected="selected"
-                                                </c:when>
-                                            </c:choose>
-                                        <%--------------------------默认选中---------------------------%>
-                                            >&nbsp;&nbsp;&nbsp;&nbsp;${nav.navName}</option>
-                                </c:otherwise>
-                            </c:choose>
-
-                        </c:forEach>
-                    </select>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <input type="text" class="input-sm form-control" placeholder="搜索" name="parameter" value="${parameter}">
-                        <span class="input-group-btn">
-                             <button class="btn btn-sm btn-white" type="submit">搜索</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+<section class="panel" style="margin-left: 5px">
+    <header class="panel-heading">关于我们列表</header>
     <div>
         <table class="table table-striped b-t text-small">
             <thead>
             <tr>
                 <th class="th-sortable" data-toggle="class">创建日期</th>
-                <th width="330">操作</th>
+                <th width="250">操作</th>
             </tr>
             </thead>
             <tbody>

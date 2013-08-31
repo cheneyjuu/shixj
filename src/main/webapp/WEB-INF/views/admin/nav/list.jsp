@@ -17,7 +17,7 @@
     </script>
 </head>
 <body>
-<section class="panel">
+<section class="panel"  style="margin-left: 5px">
     <header class="panel-heading">栏目列表</header>
     <div>
         <table class="table table-striped b-t text-small">
@@ -56,11 +56,26 @@
                     </td>
                     <td style="vertical-align:middle">
                         <c:choose>
-                            <c:when test="${nav.navType==0}">
-                                产品
+                            <c:when test="${nav.navType==1}">
+                                食享食分
+                            </c:when>
+                            <c:when test="${nav.navType==2}">
+                                团购实惠
+                            </c:when>
+                            <c:when test="${nav.navType==3}">
+                                有礼有节
+                            </c:when>
+                            <c:when test="${nav.navType==4}">
+                                食享课堂
+                            </c:when>
+                            <c:when test="${nav.navType==5}">
+                                品牌故事
+                            </c:when>
+                            <c:when test="${nav.navType==6}">
+                                合作伙伴
                             </c:when>
                             <c:otherwise>
-                                信息
+                                关于我们
                             </c:otherwise>
                         </c:choose>
                     </td>
