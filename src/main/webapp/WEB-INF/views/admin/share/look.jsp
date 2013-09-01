@@ -26,20 +26,17 @@
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品简介:</label>
-
         <div class="col-lg-4 border">
             ${info.infoIntro}
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">天猫链接:</label>
-
         <div class="col-lg-4 border">${info.infoExternalLinks}</div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品价格:</label>
-
-        <div class="col-lg-4 border">${info.infoPrice}</div>
+        <div class="col-lg-4 border">${info.infoOriginalPrice}</div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">首页显示:</label>

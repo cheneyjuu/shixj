@@ -28,7 +28,7 @@
     <div class="form-group"><label class="col-lg-3 control-label">选择上级目录:</label>
         <div class="col-lg-4">
             <select name="parentNav" class="form-control">
-                <option value="0">顶级目录</option>
+                <%--<option value="0">顶级目录</option>--%>
                 <c:forEach items="${navList}" var="tempNav">
                     <%--判断不让显示自己栏目--%>
                     <c:choose>

@@ -12,14 +12,16 @@ import java.util.Set;
 @Table(name = "tbl_info")
 public class Info  extends IdEntity {
     private Nav nav;
-    private String infoTitle;
-    private String infoExternalLinks;
-    private Float infoPrice;
-    private String infoDetails;
-    private String infoCreateDate;
-    private Integer infoShowIndex;
-    private String infoGroupbuyingEndtime;
-    private String infoIntro;
+    private String infoTitle;//标题
+    private String infoExternalLinks;//外部链接
+    private Float infoOriginalPrice;//原价
+    private Float infoCurrentPrice;//现价
+    private String infoDetails;//详细内容
+    private String infoCreateDate;//创建日期
+    private Integer infoShowIndex;//是否在首页显示
+    private String infoGroupbuyingEndtime;//团购结束时间
+    private String infoIntro;//简介
+    private Long infoClicks;//点击次数
     private Set<InfoImage> infoImages;
 
     @ManyToOne
@@ -48,12 +50,20 @@ public class Info  extends IdEntity {
         this.infoExternalLinks = infoExternalLinks;
     }
 
-    public Float getInfoPrice() {
-        return infoPrice;
+    public Float getInfoOriginalPrice() {
+        return infoOriginalPrice;
     }
 
-    public void setInfoPrice(Float infoPrice) {
-        this.infoPrice = infoPrice;
+    public void setInfoOriginalPrice(Float infoOriginalPrice) {
+        this.infoOriginalPrice = infoOriginalPrice;
+    }
+
+    public Float getInfoCurrentPrice() {
+        return infoCurrentPrice;
+    }
+
+    public void setInfoCurrentPrice(Float infoCurrentPrice) {
+        this.infoCurrentPrice = infoCurrentPrice;
     }
 
     public String getInfoDetails() {
@@ -94,6 +104,14 @@ public class Info  extends IdEntity {
 
     public void setInfoIntro(String infoIntro) {
         this.infoIntro = infoIntro;
+    }
+
+    public Long getInfoClicks() {
+        return infoClicks;
+    }
+
+    public void setInfoClicks(Long infoClicks) {
+        this.infoClicks = infoClicks;
     }
 
     @OneToMany(mappedBy = "info", cascade = CascadeType.ALL)

@@ -27,8 +27,8 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">选择上级目录:</label>
         <div class="col-lg-4">
-            <select name="parentNav" class="form-control">
-                <option value="0">顶级目录</option>
+            <select name="parentNav" id="parentNav" class="form-control">
+                <%--<option value="0">顶级目录</option>--%>
                 <c:forEach items="${navList}" var="nav">
                     <option value="${nav.id}">${nav.navName}</option>
                 </c:forEach>
@@ -45,8 +45,13 @@
         <label class="col-lg-3 control-label">栏目类型:</label>
         <div class="col-lg-4">
             <select name="navType" class="form-control">
-                <option value="0">产品</option>
-                <option value="1">信息</option>
+                <option value="1">食享食分</option>
+                <option value="2">团购实惠</option>
+                <option value="3">有礼有节</option>
+                <option value="4">食享课堂</option>
+                <option value="5">品牌故事</option>
+                <option value="6">合作伙伴</option>
+                <option value="7">关于我们</option>
             </select>
         </div>
     </div>

@@ -13,30 +13,56 @@
             window.UEDITOR_HOME_URL = "${ctx}/static/ueditor/";
         });
         function validate() {
-            if ($("#infoTitle").val() == ""||$("#infoIntro").val() == ""||$("#infoExternalLinks").val() == ""||$("#infoPrice").val() == ""||$("#fileNameList").val() == ""||$("#infoGroupbuyingEndtime").val() == ""||$("#infoDetails").val() == "") {
+            if ($("#infoTitle").val() == "" || $("#infoIntro").val() == ""
+                    || $("#infoExternalLinks").val() == "" || $("#infoOriginalPrice").val() == ""
+                    || $("#infoCurrentPrice").val() == "" || $("#fileNameList").val() == ""
+                    || $("#infoGroupbuyingEndtime").val() == "" || $("#infoClicks").val() == "" || $("#infoDetails").val() == "") {
                 if ($("#infoTitle").val() == "") {
                     alert("产品名称不能为空");
-                }else if ($("#infoIntro").val() == "") {
+                } else if ($("#infoIntro").val() == "") {
                     alert("产品简介不能为空");
-                }else if ($("#infoExternalLinks").val() == "") {
+                } else if ($("#infoExternalLinks").val() == "") {
                     alert("链接不能为空");
-                }else if ($("#infoPrice").val() == "") {
-                    alert("产品价格不能为空");
-                }else if ($("#fileNameList").val() == "") {
+                } else if ($("#infoOriginalPrice").val() == "") {
+                    alert("产品原价不能为空");
+                } else if ($("#infoCurrentPrice").val() == "") {
+                    alert("产品现价不能为空");
+                } else if ($("#infoClicks").val() == "") {
+                    alert("点击次数不能为空");
+                } else if ($("#fileNameList").val() == "") {
                     alert("产品图片不能为空");
-                }else if ($("#infoGroupbuyingEndtime").val() == "") {
+                } else if ($("#infoGroupbuyingEndtime").val() == "") {
                     alert("团购结束时间不能为空");
-                }else if ($("#infoDetails").val() == "") {
+                } else if ($("#infoDetails").val() == "") {
                     alert("产品描述不能为空");
-                };
+                }
+                ;
                 return false;
-            }else{
-                if(isNaN($("#infoPrice").val())){
-                    alert("产品价格必须为数字！");
+            } else {
+                if (isNaN($("#infoOriginalPrice").val())) {
+                    alert("产品原价必须为数字！");
                     return false;
                 }
-                var url = /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;
-                if(!url.test($("#infoExternalLinks").val())){
+                if (isNaN($("#infoCurrentPrice").val())) {
+                    alert("产品现价必须为数字！");
+                    return false;
+                }
+                if (isNaN($("#infoClicks").val())) {
+                    alert("点击次数必须为数字！");
+                    return false;
+                }
+                var strRegex = "^((https|http|ftp|rtsp|mms)?://)"
+                        + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
+                        + "(([0-9]{1,3}\\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
+                        + "|" // 允许IP和DOMAIN（域名）
+                        + "([0-9a-z_!~*'()-]+\\.)*" // 域名- www.
+                        + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\\." // 二级域名
+                        + "[a-z]{2,6})" // first level domain- .com or .museum
+                        + "(:[0-9]{1,4})?" // 端口- :80
+                        + "((/?)|" // a slash isn't required if there is no file name
+                        + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+                var re = new RegExp(strRegex);
+                if (!re.test($("#infoExternalLinks").val())) {
                     alert("输入的网址格式不对!");
                     return false;
                 }
@@ -44,11 +70,12 @@
             return true;
         }
     </script>
-    <style type="text/css">@import url(${ctx}/static/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
+    <style type="text/css">@import url(${ctx} /static/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
 </head>
 <body>
 <header class="panel-heading">新增团购产品</header>
-<form id="addNav" action="${ctx}/admin/info/add/${navType}" method="post" class="form-horizontal" onsubmit="return validate()">
+<form id="addNav" action="${ctx}/admin/info/add/${navType}" method="post" class="form-horizontal"
+      onsubmit="return validate()">
     <div class="form-group">
         <label class="col-lg-3 control-label">选择目录:</label>
         <div class="col-lg-4">
@@ -86,8 +113,10 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">团购结束时间:</label>
         <div class="col-lg-4">
-            <div class="controls input-append date form_datetime" data-date="2013-01-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="dtp_input1">
-                <input size="16" name="infoGroupbuyingEndtime" id="infoGroupbuyingEndtime" type="text" value="" readonly>
+            <div class="controls input-append date form_datetime" data-date="2013-01-16T05:25:07Z"
+                 data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="dtp_input1">
+                <input size="16" name="infoGroupbuyingEndtime" id="infoGroupbuyingEndtime" type="text" value=""
+                       readonly>
                 <span class="add-on"><i class="icon-remove" style="display: inline"></i></span>
                 <span class="add-on"><i class="icon-th" style="display: inline"></i></span>
             </div>
@@ -95,22 +124,32 @@
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品简介:</label>
+
         <div class="col-lg-4">
             <textarea name="infoIntro" id="infoIntro" cols="30" rows="8" class="form-control"></textarea>
         </div>
     </div>
-
     <div class="form-group">
         <label class="col-lg-3 control-label">天猫链接:</label>
+
         <div class="col-lg-4">
             <input type="text" id="infoExternalLinks" name="infoExternalLinks" placeholder="天猫链接"
                    data-required="true" class="form-control">
         </div>
     </div>
     <div class="form-group">
-        <label class="col-lg-3 control-label">产品价格:</label>
+        <label class="col-lg-3 control-label">产品原价:</label>
+
         <div class="col-lg-4">
-            <input type="text" id="infoPrice" name="infoPrice" placeholder="产品价格"
+            <input type="text" id="infoOriginalPrice" name="infoOriginalPrice" placeholder="产品原价"
+                   data-required="true" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">产品现价:</label>
+
+        <div class="col-lg-4">
+            <input type="text" id="infoCurrentPrice" name="infoCurrentPrice" placeholder="产品现价"
                    data-required="true" class="form-control">
         </div>
     </div>
@@ -123,9 +162,16 @@
             </select>
         </div>
     </div>
-
+    <div class="form-group">
+        <label class="col-lg-3 control-label">当前购买次数:</label>
+        <div class="col-lg-4">
+            <input type="text" id="infoClicks" name="infoClicks" placeholder="购买次数"
+                   data-required="true" class="form-control">
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品图片:</label>
+
         <div class="col-lg-6">
             <div id="uploader">
                 <p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
@@ -135,7 +181,6 @@
     <div id="files"></div>
     <div class="form-group">
         <label class="col-lg-3 control-label">产品描述:</label>
-
         <div class="col-lg-6">
             <textarea id="infoDetails" name="infoDetails"></textarea>
         </div>
@@ -155,37 +200,40 @@
 <script type="text/javascript" src="${ctx}/static/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
 <script type="text/javascript" src="${ctx}/static/plupload/js/i18n/zh.js"></script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $("#uploader").pluploadQueue({
-            runtimes : 'flash,html5',
-            url : '${ctx}/admin/image/multiUpload',
-            max_file_size : '10mb',
-            headers : 'contentType="image/jpeg;charset=UTF-8"',
-            urlstream_upload:true,
-            unique_names:false,
-            filters : [
-                {title : "图片文件", extensions : "jpg,gif,png,jpeg,bmp"}
+            runtimes: 'flash,html5',
+            url: '${ctx}/admin/image/multiUpload',
+            max_file_size: '10mb',
+            headers: 'contentType="image/jpeg;charset=UTF-8"',
+            urlstream_upload: true,
+            unique_names: false,
+            filters: [
+                {title: "图片文件", extensions: "jpg,gif,png,jpeg,bmp"}
             ],
-            flash_swf_url : '${ctx}/static/plupload/js/plupload.flash.swf',
-            init : {
-                FileUploaded:function(up,b,res){
+            flash_swf_url: '${ctx}/static/plupload/js/plupload.flash.swf',
+            init: {
+                FileUploaded: function (up, b, res) {
                     var fileName = res["response"];
                     console.info(fileName);
-                    $('#files').append('<input type="hidden" name="fileNameList" value="'+fileName+'">');
+                    $('#files').append('<input type="hidden" name="fileNameList" value="' + fileName + '">');
                 }
             }
         });
     });
 </script>
-<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"
+        charset="UTF-8"></script>
+<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"
+        charset="UTF-8"></script>
+<script type="text/javascript" src="${ctx}/static/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"
+        charset="UTF-8"></script>
 <script type="text/javascript">
     $('.form_datetime').datetimepicker({
         format: "yyyy-mm-dd hh:ii:ss",
-        language:  'zh-CN',
+        language: 'zh-CN',
         weekStart: 1,
-        todayBtn:  1,
+        todayBtn: 1,
         autoclose: 1,
         todayHighlight: 1,
         startView: 2,
