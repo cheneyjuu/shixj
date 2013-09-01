@@ -76,13 +76,19 @@ public class InfoController {
     //获得单个栏目的数据根据栏目id 和搜索条件查询
     @RequestMapping(value = "/list/{navType}", method = RequestMethod.POST)
     public String listForNavId(@RequestParam(value = "navId") int navId,@PathVariable("navType") int navType, @RequestParam(value = "parameter") String parameter, @RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
-        Page<Info> infoPage = infoService.pageInfo(pageNumber, PAGE_SIZE, navId, parameter);
+        Page<Info> infoPage;
+        if (navId == 0){
+            infoPage = infoService.pageInfoWithNavsParam(pageNumber, PAGE_SIZE, this.getAllNavForNavType(navType), parameter);
+        }else{
+            infoPage = infoService.pageInfo(pageNumber, PAGE_SIZE, navId, parameter);
+        }
+
         model.addAttribute("infoPage", infoPage);
 
         model.addAttribute("navList", this.getAllNavForNavType(navType));
         model.addAttribute("selectNavId", navId);
         model.addAttribute("parameter", parameter);
-        return "/admin/info/list";
+        return "/admin/" + this.urlStr(navType) + "/list";
     }
 
     //获得所有栏目的数据
