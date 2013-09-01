@@ -20,17 +20,20 @@
             padding-left: 0;
         }
         .product-title > .col-md-7 > .title-wrap{
-            border-left: 2px solid #f00;
+            border-right: 2px solid #f00;
             height: 100%;
             padding: 10px;
+        }
+        .product-title > .col-md-5{
+            /*border: 1px solid #cccccc;*/
         }
         .product-title > .col-md-5 img{
             max-width: 100%;
             margin: 15px 0 15px 15px;
-            height: 250px;
-            max-height: 300px;
+            height: 350px;
+            max-height: 350px;
             overflow: hidden;
-            float: right;
+            float: left;
         }
         .product-title h3{
             border-bottom: 1px dashed #cccccc;
@@ -61,10 +64,34 @@
         p{
             margin-left: 15px;
         }
+        .col-md-5 .image-wrap{
+            border: 1px solid #d1d4d7;
+            padding: 15px;
+            margin: 15px 0 15px 15px;
+            max-width: 100%;
+            width: 26em;
+        }
+        .col-md-5 .image-wrap:after{
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
 <div class="row product-title">
+    <c:if test="${productModel.nav.navType != 5}">
+    <div class="col-md-5">
+        <div class="image-wrap">
+            <c:forEach items="${productModel.infoImages}" var="pimg" varStatus="pst">
+                <c:choose>
+                    <c:when test="${pst.index == 0}">
+                        <img class="img-rounded" src="${ctx}${pimg.imagePath}${pimg.pcImageName}" alt=""/>
+                    </c:when>
+                </c:choose>
+            </c:forEach>
+        </div>
+    </div>
     <div class="col-md-7">
         <div class="title-wrap">
             <h3>${productModel.infoTitle}</h3>
@@ -72,20 +99,12 @@
                 ${productModel.infoIntro}
             </blockquote>
             <p>
-                <span>价格：${productModel.infoPrice}</span>
+                <span>价格：${productModel.infoOriginalPrice}</span>
                 <a href="${productModel.infoExternalLinks}" target="_blank" class="btn btn-product">购买</a>
             </p>
         </div>
     </div>
-    <div class="col-md-5">
-        <c:forEach items="${productModel.infoImages}" var="pimg" varStatus="pst">
-            <c:choose>
-                <c:when test="${pst.index == 0}">
-                    <img class="img-rounded" src="${ctx}${pimg.imagePath}${pimg.pcImageName}" alt=""/>
-                </c:when>
-            </c:choose>
-        </c:forEach>
-    </div>
+    </c:if>
     <div>
         <p>
             ${productModel.infoDetails}

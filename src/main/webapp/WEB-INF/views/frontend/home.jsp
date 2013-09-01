@@ -72,7 +72,7 @@
                     <p>
                             ${storyModel.infoIntro}
                     </p>
-                    <a href="${ctx}/story/details/${storyModel.id}" class="btn btn-warning">故事未完，点击继续阅读</a>
+                    <a href="${ctx}/post/details/${storyModel.id}" class="btn btn-warning">故事未完，点击继续阅读</a>
                 </c:when>
                 <c:otherwise>
                     您还没有添加品牌故事。

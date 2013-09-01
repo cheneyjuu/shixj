@@ -32,7 +32,7 @@
 
 <!-- Add your site or application content here -->
 <%@include file="header.jsp"%>
-
+<input type="hidden" value="${navType}" id="_nav_type_id"/>
 <div class="page-wrap">
     <nav class="main-nav" id="main-nav">
         <a class="home" href="${ctx}/home">首页</a>
@@ -52,7 +52,33 @@
 <script src="${ctx}/static/bootstrap/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/script/plugins.js"></script>
 <script src="${ctx}/static/script/main.js"></script>
-
+<script type="text/javascript">
+    $(function(){
+        $("nav a").siblings().removeClass("home");
+        var nav_type = $("#_nav_type_id").val();
+        if (nav_type){
+            if (nav_type == 1){
+                $("nav a:eq(1)").addClass("home");
+            } else if (nav_type == 2){
+                $("nav a:eq(2)").addClass("home");
+            } else if (nav_type == 3){
+                $("nav a:eq(3)").addClass("home");
+            } else if (nav_type == 4){
+                $("nav a:eq(4)").addClass("home");
+            } else if (nav_type == 6){
+                $("nav a:eq(5)").addClass("home");
+            } else if (nav_type == 7){
+                $("nav a:eq(6)").addClass("home");
+            } else if (nav_type == 5){
+                $("nav a:eq(7)").addClass("home");
+            } else if (nav_type == 8){
+                $("nav a:eq(8)").addClass("home");
+            }
+        } else {
+            $("nav a:eq(0)").addClass("home");
+        }
+    });
+</script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

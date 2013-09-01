@@ -83,12 +83,12 @@ public class InfoService {
         return infoDao.findAll(new Specification<Info>() {
             @Override
             public Predicate toPredicate(Root<Info> contentRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                Path<String> id = contentRoot.get("navId");
+                Path<String> id = contentRoot.get("nav").get("id");
                 criteriaQuery.where(criteriaBuilder.equal(id, navId));
                 return null;
             }
 
-        }, new PageRequest(pageNumber - 1, pagzSize));
+        }, new PageRequest(pageNumber - 1, pagzSize, new Sort(Sort.Direction.DESC,"id")));
     }
     /**
      * 创建分页请求.根据栏目类型和搜索字段模糊查找产品
@@ -146,7 +146,7 @@ public class InfoService {
                 return null;
             }
 
-        }, new PageRequest(pageNumber - 1, pagzSize));
+        }, new PageRequest(pageNumber - 1, pagzSize, new Sort(Sort.Direction.DESC,"id")));
     }
 
     /**

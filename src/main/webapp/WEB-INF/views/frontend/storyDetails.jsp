@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <div class="container">
-    <h2 class="text-center">${storyModel.storyTitle}</h2>
+    <h2 class="text-center">${infoModel.infoTitle}</h2>
     <blockquote>
         <p>
-            ${storyModel.storyIntro}
+            ${infoModel.infoIntro}
         </p>
     </blockquote>
     <p>
-        ${storyModel.storyContent}
+        ${infoModel.infoDetails}
     </p>
 </div>

@@ -45,18 +45,50 @@ public class ProductController {
             navHelperList.add(navHelper);
         }
         model.addAttribute("navHelperList", navHelperList);
+
         Nav nav = navService.getNav(navId);
         String navType = nav.getNavType();
         List<Nav> navList = this.getAllNavForNavType(new Integer(navType).intValue());
-        Page<Info> productPage = infoService.pageInfoWithNavsParam(pageNumber, PAGE_SIZE, navList, "");
-        model.addAttribute("productPage", productPage);
-        if (navType.equals("1") || navType.equals("3") || navType.equals("4") || navType.equals("5")){
-            return "frontend/productViews";
-        } else if (navType.equals("6") || navType.equals("7")) {
-            return "frontend/postViews";
+        Page<Info> productPage;
+
+        List<Nav> subNav;
+        if (nav.getParentNav() == 0){
+            productPage = infoService.pageInfoWithNavsParam(pageNumber, PAGE_SIZE, navList, "");
+            subNav = navService.getAllNavForParentNav(navId);
         } else {
-            return "frontend/groupBuying";
+            productPage = infoService.pageInfo(pageNumber, PAGE_SIZE, navId.intValue());
+            subNav = navService.getAllNavForParentNav(nav.getParentNav());
         }
+        model.addAttribute("productPage", productPage);
+        model.addAttribute("subNav", subNav);
+        model.addAttribute("navType", navType);
+
+        if (navType.equals("1") || navType.equals("2") || navType.equals("3") || navType.equals("4") || navType.equals("5")){
+            return "frontend/productViews";
+        } else {
+            return "frontend/postViews";
+        }
+    }
+
+    @RequestMapping (value = "/groupBuying/{id}")
+    public String groupBuying(@PathVariable (value = "id") Long id, Model model){
+        List<Nav> parentList = navService.getAllNavForParentNav(new Long(0));
+        List<NavHelper> navHelperList = new ArrayList<NavHelper>();
+        for (Nav pnav : parentList){
+            NavHelper navHelper = new NavHelper();
+            navHelper.setId(pnav.getId());
+            navHelper.setNavName(pnav.getNavName());
+            navHelper.setNavType(pnav.getNavType());
+            navHelper.setNavList(navService.getAllNavForParentNav(pnav.getId()));
+            navHelperList.add(navHelper);
+        }
+        model.addAttribute("navHelperList", navHelperList);
+        model.addAttribute("navType", 2);
+
+        Info product = infoService.getInfoById(id);
+        model.addAttribute("productModel", product);
+
+        return "frontend/groupBuying";
     }
 
     private  List<Nav> getAllNavForNavType(int navType){
@@ -86,7 +118,7 @@ public class ProductController {
         }
         model.addAttribute("navHelperList", navHelperList);
         Info product = infoService.getInfoById(id);
-//        Product product = productService.getProduct(id);
+        model.addAttribute("navType",product.getNav().getNavType());
         model.addAttribute("productModel", product);
         return "frontend/productDetails";
     }

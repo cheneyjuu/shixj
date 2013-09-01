@@ -603,6 +603,9 @@ body {
 }
 
 /** Slider Show**/
+.slider-section{
+    margin-right: 15px;
+}
 .carousel-indicators li{
     border: 2px solid #c12e2a;
 }
