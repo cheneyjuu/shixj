@@ -12,78 +12,62 @@
             }
         }
     </script>
+    <style>
+        .border {
+            background-color: #f5f5f5;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            padding: 5px;
+            min-height: 30px;
+        }
+    </style>
 </head>
 <body>
 <header class="panel-heading">查看栏目信息</header>
 <input type="hidden" value="${nav.id}" name="id"/>
-
 <div class="form-horizontal media">
     <div class="form-group">
-        <label class="col-lg-3 control-label">上级栏目:</label>
+        <label class="col-lg-3 control-label">所属栏目:</label>
+        <div class="col-lg-4 border">
+            <c:choose>
+                <c:when test="${nav.parentNav == 0}">
+                    顶级栏目
+                </c:when>
+                <c:otherwise>
+                    ${nav.navName}
+                </c:otherwise>
+            </c:choose>
 
-        <div class="col-lg-4">
-            <select name="parentNav" class="form-control" disabled="disabled">
-                <option value="0">顶级目录</option>
-                <c:forEach items="${navList}" var="tempNav">
-                    <%--判断不让显示自己栏目--%>
-                    <c:choose>
-                        <c:when test="${nav.id!=tempNav.id}">
-                            <option value="${tempNav.id}"
-                                <%--判断默然选中当前栏目--%>
-                                    <c:choose>
-                                        <c:when test="${nav.parentNav==tempNav.id}">
-                                            selected="selected"
-                                        </c:when>
-                                    </c:choose>
-                                    >${tempNav.navName}</option>
-                        </c:when>
-                    </c:choose>
-                </c:forEach>
-            </select>
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">栏目名称:</label>
-
-        <div class="col-lg-4">
-            <input type="text" id="navName" name="navName" placeholder="栏目名称" data-required="true" class="form-control"
-                   value="${nav.navName}" disabled="disabled">
+        <div class="col-lg-4 border">
+            ${nav.navName}
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">是否显示:</label>
-
-        <div class="col-lg-4">
-            <select name="isShowNav" class="form-control" disabled="disabled">
-                <option value="0" <c:choose>
-                    <c:when test="${nav.showNav=='false'}">
-                        selected="selected"
-                    </c:when>
-                </c:choose>>不显示
-                </option>
-                <option value="1" <c:choose>
-                    <c:when test="${nav.showNav!='false'}">
-                        selected="selected"
-                    </c:when>
-                </c:choose>>显示
-                </option>
-            </select>
+        <div class="col-lg-4 border">
+            <c:choose>
+                <c:when test="${nav.showNav=='false'}">
+                    不显示
+                </c:when>
+                <c:otherwise>
+                    显示
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">显示次序:</label>
-
-        <div class="col-lg-4">
-            <input type="text" id="navOrder" name="navOrder" placeholder="栏目前台显示次序" data-required="true"
-                   class="form-control" value="${nav.navOrder}" disabled="disabled">
+        <div class="col-lg-4 border">
+            ${nav.navOrder}
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label"></label>
-
         <div class="col-lg-4">
             <a class="btn btn-info  pull-left" href="${ctx}/admin/nav/list">返回列表</a>
-            <%--<a class="btn btn-danger pull-right" onclick="firm(${nav.id})">删除</a>--%>
         </div>
     </div>
 </div>

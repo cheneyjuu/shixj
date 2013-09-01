@@ -4,12 +4,12 @@
     <ul class="nav" data-spy="affix" data-offset-top="50">
         <li class="active"><a href="/admin/index"><i class="icon-dashboard icon-xlarge"></i><span>控制面板</span></a>
         </li>
-        <%--<li class="dropdown-submenu"><a href="#"><i class="icon-th icon-xlarge"></i><span>栏目管理</span></a>--%>
-            <%--<ul class="dropdown-menu">--%>
-                <%--<li><a href="/admin/nav/add">新增栏目</a></li>--%>
-                <%--<li><a href="/admin/nav/list">栏目列表</a></li>--%>
-            <%--</ul>--%>
-        <%--</li>--%>
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th icon-xlarge"></i><span>栏目管理</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/nav/add">新增栏目</a></li>
+                <li><a href="/admin/nav/list">栏目列表</a></li>
+            </ul>
+        </li>
         <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>食享食分</span></a>
             <ul class="dropdown-menu">
                 <li><a href="/admin/info/add/1">新增食享食分</a></li>

@@ -12,14 +12,14 @@
             window.UEDITOR_HOME_URL = "${ctx}/static/ueditor/";
         });
         function validate() {
-            if ($("#infoTitle").val() == ""||$("#infoIntro").val() == ""||$("#infoExternalLinks").val() == ""||$("#infoPrice").val() == ""||$("#fileNameList").val() == ""||$("#infoDetails").val() == "") {
+            if ($("#infoTitle").val() == ""||$("#infoIntro").val() == ""||$("#infoExternalLinks").val() == ""||$("#infoOriginalPrice").val() == ""||$("#fileNameList").val() == ""||$("#infoDetails").val() == "") {
                 if ($("#infoTitle").val() == "") {
                     alert("产品名称不能为空");
                 }else if ($("#infoIntro").val() == "") {
                     alert("产品简介不能为空");
                 }else if ($("#infoExternalLinks").val() == "") {
                     alert("链接不能为空");
-                }else if ($("#infoPrice").val() == "") {
+                }else if ($("#infoOriginalPrice").val() == "") {
                     alert("产品价格不能为空");
                 }else if ($("#fileNameList").val() == "") {
                     alert("产品图片不能为空");
@@ -32,8 +32,18 @@
                     alert("产品价格必须为数字！");
                     return false;
                 }
-                var url = /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;
-                if(!url.test($("#infoExternalLinks").val())){
+                var strRegex = "^((https|http|ftp|rtsp|mms)?://)"
+                        + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
+                        + "(([0-9]{1,3}\\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
+                        + "|" // 允许IP和DOMAIN（域名）
+                        + "([0-9a-z_!~*'()-]+\\.)*" // 域名- www.
+                        + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\\." // 二级域名
+                        + "[a-z]{2,6})" // first level domain- .com or .museum
+                        + "(:[0-9]{1,4})?" // 端口- :80
+                        + "((/?)|" // a slash isn't required if there is no file name
+                        + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+                var re = new RegExp(strRegex);
+                if (!re.test($("#infoExternalLinks").val())) {
                     alert("输入的网址格式不对!");
                     return false;
                 }
@@ -44,7 +54,7 @@
     <style type="text/css">@import url(${ctx}/static/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
 </head>
 <body>
-<header class="panel-heading">新增产品</header>
+<header class="panel-heading">更新产品</header>
 <form id="addNav" action="${ctx}/admin/info/update/${navType}" method="post" class="form-horizontal" onsubmit="return validate()">
     <input type="hidden" value="${info.id}" name="id"/>
     <div class="form-group">
@@ -112,7 +122,7 @@
         <label class="col-lg-3 control-label">产品价格:</label>
         <div class="col-lg-4">
             <input type="text" id="infoPrice" name="infoPrice" placeholder="产品价格"
-                   data-required="true" class="form-control" value="${info.infoPrice}">
+                   data-required="true" class="form-control" value="${info.infoOriginalPrice}">
         </div>
     </div>
     <div class="form-group">

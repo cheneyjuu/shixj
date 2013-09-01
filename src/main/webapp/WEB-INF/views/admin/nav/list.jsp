@@ -95,7 +95,12 @@
                     <td style="vertical-align:middle">
                         <a class="btn btn-info" href="${ctx}/admin/nav/look/${nav.id}">查看</a>
                         &nbsp;&nbsp;<a class="btn btn-info" href="${ctx}/admin/nav/update/${nav.id}">修改</a>
-                        &nbsp;&nbsp;<a class="btn btn-danger " onclick="firm(${nav.id})">删除</a>
+                        <c:choose>
+                            <c:when test="${nav.parentNav!=0}">
+                                &nbsp;&nbsp;<a class="btn btn-danger " onclick="firm(${nav.id})">删除</a>
+                            </c:when>
+                        </c:choose>
+
                     </td>
                 </tr>
             </c:forEach>
