@@ -36,11 +36,13 @@
                                 <a href="#">${p.infoTitle}</a>
                             </div>
                             <c:forEach items="${p.infoImages}" var="image" varStatus="st">
-                                <img src="${ctx}${image.imagePath}${image.pcImageName}" alt="">
+                                <c:if test="${st.index == 0}">
+                                    <img src="${ctx}${image.imagePath}${image.pcImageName}" alt="">
+                                </c:if>
                             </c:forEach>
 
                             <div class="carousel-caption col-md-5">
-                                    ${p.infoDetails}
+                                    ${p.infoIntro}
                             </div>
 
                         </div>

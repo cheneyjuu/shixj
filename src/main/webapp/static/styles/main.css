@@ -601,3 +601,58 @@ body {
         padding-bottom: 6px;
     }
 }
+
+/** Slider Show**/
+.carousel-indicators li{
+    border: 2px solid #c12e2a;
+}
+.carousel-control .icon-prev, .carousel-control .icon-next {
+    width: 100px;
+    height: 100px;
+    margin-top: -15px;
+    margin-left: -15px;
+    font-size: 100px;
+    color: #2c3e50;
+}
+.carousel-control .icon-next {
+    width: 100px;
+    height: 100px;
+    margin-top: -15px;
+    margin-left: -15px;
+    font-size: 100px;
+    color: #2c3e50;
+}
+.carousel.slide{
+    max-width: 100%;
+}
+.carousel-inner .item img{
+    max-width: 100%;
+    max-height: 400px;
+    width: 50%;
+    top: 100px;
+    margin: 40px;
+}
+.carousel-title a{
+    font-family: "Microsoft YaHei";
+    position: absolute;
+    top: 10px;
+    font-size: 150%;
+    color: #f83701;
+    left: 56%;
+    width: 40%;
+    letter-spacing: 0.15em;
+    word-break: break-all;
+}
+.carousel-caption{
+    left: 55%;
+    width: 40%;
+    top: 100px;
+    text-align: left;
+    line-height: 2em;
+    color: #333;
+    text-shadow: none;
+}
+.col-md-12.slider-wrap{
+    padding-left: 0;
+    padding-right: 0;
+}

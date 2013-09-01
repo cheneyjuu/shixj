@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>${productModel.productName}</title>
+    <title>${productModel.infoTitle}</title>
     <style type="text/css">
         .product-title{
             background: #ffffff;
@@ -33,8 +33,9 @@
             float: right;
         }
         .product-title h3{
-            border-bottom: 1px solid #cccccc;
+            border-bottom: 1px dashed #cccccc;
             line-height: 2em;
+            text-align: center;
         }
         .product-title p span{
             color: #e23351;
@@ -51,21 +52,33 @@
             background: #e23351;
             color: #ffffff;
         }
+        .product-title{
+            border-bottom-width: 0px;
+        }
+        blockquote{
+            color: #2A2C2E;
+        }
+        p{
+            margin-left: 15px;
+        }
     </style>
 </head>
 <body>
 <div class="row product-title">
     <div class="col-md-7">
         <div class="title-wrap">
-            <h3>${productModel.productName}</h3>
+            <h3>${productModel.infoTitle}</h3>
+            <blockquote>
+                ${productModel.infoIntro}
+            </blockquote>
             <p>
-                <span>价格：${productModel.productPrice}</span>
+                <span>价格：${productModel.infoPrice}</span>
+                <a href="${productModel.infoExternalLinks}" target="_blank" class="btn btn-product">购买</a>
             </p>
         </div>
-        <a href="${productModel.tmallLink}" target="_blank" class="btn btn-product">查看详情</a>
     </div>
     <div class="col-md-5">
-        <c:forEach items="${productModel.productImages}" var="pimg" varStatus="pst">
+        <c:forEach items="${productModel.infoImages}" var="pimg" varStatus="pst">
             <c:choose>
                 <c:when test="${pst.index == 0}">
                     <img class="img-rounded" src="${ctx}${pimg.imagePath}${pimg.pcImageName}" alt=""/>
@@ -73,10 +86,12 @@
             </c:choose>
         </c:forEach>
     </div>
+    <div>
+        <p>
+            ${productModel.infoDetails}
+        </p>
+    </div>
 </div>
 
-<div class="col-md-12">
-    ${productModel.details}
-</div>
 </body>
 </html>

@@ -63,10 +63,10 @@
 </head>
 <body>
 <div class="container">
-    <c:forEach items="${productList}" var="p" varStatus="st">
+    <c:forEach items="${productPage.content}" var="p" varStatus="st">
         <div class="product-row">
 
-            <c:forEach items="${p.productImages}" var="pimg" varStatus="pst">
+            <c:forEach items="${p.infoImages}" var="pimg" varStatus="pst">
                 <c:if test="${pst.index == 0}">
                     <a href="${ctx}/details/${p.id}" target="_blank">
                         <img class="img-rounded" src="${ctx}${pimg.imagePath}${pimg.pcImageName}" alt=""/>
@@ -74,8 +74,8 @@
                 </c:if>
             </c:forEach>
 
-            <h4><a href="${ctx}/details/${p.id}" target="_blank">${p.productName}</a></h4>
-            <span>${p.productPrice}</span>
+            <h4><a href="${ctx}/details/${p.id}" target="_blank">${p.infoTitle}</a></h4>
+            <span>${p.infoPrice}</span>
             <a href="${ctx}/details/${p.id}" class="btn btn-product">查看详情</a>
         </div>
     </c:forEach>

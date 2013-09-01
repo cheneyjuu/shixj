@@ -35,9 +35,9 @@
 
 <div class="page-wrap">
     <nav class="main-nav" id="main-nav">
-        <a class="home" href="#">首页</a>
+        <a class="home" href="${ctx}/home">首页</a>
         <c:forEach items="${navHelperList}" var="nav" varStatus="st">
-            <a href="#">${nav.navName}</a>
+            <a href="${ctx}/views/${nav.id}">${nav.navName}</a>
         </c:forEach>
         <a href="#main-nav" class="show-hide-navigation" id="show-hide-navigation">
             导航

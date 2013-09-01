@@ -162,6 +162,10 @@ public class InfoService {
         }, new PageRequest(pageNumber - 1, pagzSize));
     }
 
+    public Info getInfoById(Long infoId){
+        return infoDao.findOne(infoId);
+    }
+
     public List<Info> getIndexInfo(){
         return infoDao.findAll(new Specification<Info>() {
             @Override
