@@ -42,9 +42,14 @@
         <div class="col-lg-4 border">${info.infoExternalLinks}</div>
     </div>
     <div class="form-group">
-        <label class="col-lg-3 control-label">产品价格:</label>
+        <label class="col-lg-3 control-label">产品原价:</label>
 
-        <div class="col-lg-4 border">${info.infoPrice}</div>
+        <div class="col-lg-4 border">${info.infoOriginalPrice}</div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">产品现价:</label>
+
+        <div class="col-lg-4 border">${info.infoCurrentPrice}</div>
     </div>
     <div class="form-group">
         <label class="col-lg-3 control-label">首页显示:</label>
@@ -57,6 +62,12 @@
                     显示
                 </c:otherwise>
             </c:choose>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">当前购买次数:</label>
+        <div class="col-lg-4 border">
+            ${info.infoClicks}次
         </div>
     </div>
     <div class="form-group">
