@@ -24,7 +24,7 @@
         <div class="panel-body">
             <%--<div class="row text-small">--%>
                 <div class="col-sm-4 m-b-mini">
-                    <label class=" control-label column-label">选择栏目：</label>
+                    <label class="control-label column-label">选择栏目：</label>
                     <select name="navId" class="input-sm inline form-control" style="width:130px">
                         <option value="0">全部</option>
                         <c:forEach items="${navList}" var="nav">
