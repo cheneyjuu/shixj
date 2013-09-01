@@ -125,7 +125,7 @@ public class InfoService {
         return infoDao.findAll(new Specification<Info>() {
             @Override
             public Predicate toPredicate(Root<Info> contentRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                Path<String> id = contentRoot.get("navId");
+                Path<String> id = contentRoot.get("nav").get("id");
                 Path<String> infoName = contentRoot.get("infoTitle");
                 //栏目id=0时查找全部
                 if (navId == 0){
