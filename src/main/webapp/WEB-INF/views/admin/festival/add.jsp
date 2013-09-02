@@ -29,7 +29,7 @@
                 };
                 return false;
             }else{
-                if(isNaN($("#infoPrice").val())){
+                if(isNaN($("#infoOriginalPrice").val())){
                     alert("产品价格必须为数字！");
                     return false;
                 }

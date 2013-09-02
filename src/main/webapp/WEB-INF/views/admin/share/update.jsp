@@ -28,7 +28,7 @@
                 };
                 return false;
             }else{
-                if(isNaN($("#infoPrice").val())){
+                if(isNaN($("#infoOriginalPrice").val())){
                     alert("产品价格必须为数字！");
                     return false;
                 }
@@ -121,7 +121,7 @@
     <div class="form-group">
         <label class="col-lg-3 control-label">产品价格:</label>
         <div class="col-lg-4">
-            <input type="text" id="infoPrice" name="infoPrice" placeholder="产品价格"
+            <input type="text" id="infoOriginalPrice" name="infoOriginalPrice" placeholder="产品价格"
                    data-required="true" class="form-control" value="${info.infoOriginalPrice}">
         </div>
     </div>
