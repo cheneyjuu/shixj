@@ -46,10 +46,10 @@
                 <c:forEach items="${infoImageList}" var="infoImage">
                     <tr height="250px">
                         <td style="vertical-align:middle">
-                                ${infoImage.imagePath}${infoImage.pcImageName}
+                                ${ctx}${infoImage.imagePath}${infoImage.pcImageName}
                         </td>
                         <td style="vertical-align:middle">
-                            <img src="${infoImage.imagePath}${infoImage.pcImageName}" width="280" height="240">
+                            <img src="${ctx}${infoImage.imagePath}${infoImage.pcImageName}" width="280" height="240">
                         </td>
                         <td style="vertical-align:middle">
                             &nbsp;&nbsp;<a class="btn btn-info"  onclick="firm(${infoImage.id})">删除</a>
