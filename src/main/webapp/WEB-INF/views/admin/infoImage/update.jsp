@@ -20,7 +20,7 @@
         {//利用对话框返回的值 （true 或者 false）
             if(confirm("请确定是否要删除？"))
             {
-                location.href="${ctx}/admin/infoImage/delete/"+id;
+                location.href="${ctx}/admin/infoImage/delete/"+id+"/"+${navType};
             }
         }
 

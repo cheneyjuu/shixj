@@ -106,8 +106,8 @@ public class InfoImageController {
         return "redirect:/admin/infoImage/update/" + infoId+"/"+navType;
     }
 
-    @RequestMapping(value = "/delete/{id}")
-    public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    @RequestMapping(value = "/delete/{id}/{navType}")
+    public String delete(@PathVariable("id") Long id,@PathVariable("navType") int navType, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         InfoImage infoImage = infoImageService.getInfoImage(id);
         Long infoId = infoImage.getInfo().getId();
 
@@ -129,7 +129,7 @@ public class InfoImageController {
 
         infoImageService.deleteInfoImage(id);
         redirectAttributes.addFlashAttribute("message", "删除产品图片成功");
-        return "redirect:/admin/infoImage/update/" + infoId;
+        return "redirect:/admin/infoImage/update/" + infoId+"/"+navType;
     }
 
     @ModelAttribute(value = "perloadInfoImage")
