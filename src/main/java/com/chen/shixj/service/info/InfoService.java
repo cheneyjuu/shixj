@@ -175,4 +175,31 @@ public class InfoService {
             }
         });
     }
+
+    public List<Info> getIndexInfoWithType(final String navType){
+        return infoDao.findAll(new Specification<Info>() {
+            @Override
+            public Predicate toPredicate(Root<Info> infoRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path<String> type = infoRoot.get("nav").get("navType");
+                criteriaQuery.where(criteriaBuilder.equal(infoRoot.get("infoShowIndex"), 1))
+                        .where(criteriaBuilder.equal(type, navType));
+                return null;
+            }
+        });
+    }
+
+    public Info getLastedInfoWithType(final Integer navType){
+        List<Info> infoList = infoDao.findAll(new Specification<Info>() {
+            @Override
+            public Predicate toPredicate(Root<Info> infoRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path<String> type = infoRoot.get("nav").get("navType");
+                criteriaQuery.where(criteriaBuilder.equal(type, navType));
+                return null;
+            }
+        }, new Sort(Sort.Direction.DESC, "id"));
+        if (infoList != null && infoList.size() > 0){
+            return infoList.get(0);
+        }
+        return null;
+    }
 }

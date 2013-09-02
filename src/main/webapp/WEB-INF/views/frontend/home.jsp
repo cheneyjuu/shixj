@@ -2,83 +2,50 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<section class="slider-section" id="slider-section">
-    <div class="col-md-12 slider-wrap">
-        <!-- Start Slider Show-->
-        <div id="carousel-example-generic" class="carousel slide">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <c:forEach items="${infoList}" var="p" varStatus="st">
-                    <c:choose>
-                        <c:when test="${st.index == 0}">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li data-target="#carousel-example-generic" data-slide-to="${st.index}"></li>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" style="height: 500px;">
-                <c:forEach items="${infoList}" var="p" varStatus="st">
-                        <c:choose>
-                        <c:when test="${st.index == 0}">
-                        <div class="item active">
-                        </c:when>
-                        <c:otherwise>
-                        <div class="item">
-                        </c:otherwise>
-                        </c:choose>
-
-                            <div class="carousel-title">
-                                <a href="#">${p.infoTitle}</a>
-                            </div>
-                            <c:forEach items="${p.infoImages}" var="image" varStatus="st">
-                                <c:if test="${st.index == 0}">
-                                    <img src="${ctx}${image.imagePath}${image.pcImageName}" alt="">
-                                </c:if>
-                            </c:forEach>
-
-                            <div class="carousel-caption col-md-5">
-                                    ${p.infoIntro}
-                            </div>
-
-                        </div>
-                    </c:forEach>
-
+<c:if test="${fn:length(infoList) > 0}">
+    <section class="col-xs-12 col-md-6">
+        <c:if test="${infoList != null}">
+            <c:forEach items="${infoList}" var="info" varStatus="st">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4>${info.infoTitle}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>${info.infoIntro}</p>
+                        <p><a href="${ctx}/details/${info.id}">查看详情</a></p>
+                    </div>
                 </div>
-
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                    <span class="icon-prev"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                    <span class="icon-next"></span>
-                </a>
-            </div>
-            <!-- End Slider Show -->
-        </div>
-</section>
-
-<section class="story-section" id="story-section">
-    <div class="row col-md-12">
-        <div class="col-md-7">
-            <c:choose>
-                <c:when test="${storyModel != null}">
-                    <h3>${storyModel.infoTitle}</h3>
-
-                    <p>
-                            ${storyModel.infoIntro}
-                    </p>
-                    <a href="${ctx}/post/details/${storyModel.id}" class="btn btn-warning">故事未完，点击继续阅读</a>
-                </c:when>
-                <c:otherwise>
-                    您还没有添加品牌故事。
-                </c:otherwise>
-            </c:choose>
-        </div>
-        <img class="story-logo col-md-5" src="${ctx}/static/images/timewriting.jpg" alt=""/>
-    </div>
-</section>
+            </c:forEach>
+        </c:if>
+    </section>
+    <aside class="col-md-3">
+        <c:if test="${groupBuyingList != null}">
+            <c:forEach items="${groupBuyingList}" var="groupBuying" varStatus="st">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h4>${groupBuying.infoTitle}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>${groupBuying.infoIntro}</p>
+                        <p><a href="${ctx}/groupBuying/${groupBuying.id}">查看详情</a></p>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:if>
+    </aside>
+    <aside class="col-md-3">
+        <c:if test="${ylyjList != null}">
+            <c:forEach items="${ylyjList}" var="ylyj" varStatus="st">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>${ylyj.infoTitle}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>${ylyj.infoIntro}</p>
+                        <p><a href="#">查看详情</a></p>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:if>
+    </aside>
+</c:if>

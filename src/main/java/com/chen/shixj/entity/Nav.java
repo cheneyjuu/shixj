@@ -12,6 +12,16 @@ import java.util.Set;
 @Entity
 @Table(name = "tbl_nav")
 public class Nav extends IdEntity{
+
+    public static String SXSF="1";
+    public static String TGSH="2";
+    public static String YLYJ="3";
+    public static String SXKT="4";
+    public static String PPGS="5";
+    public static String HZHB="6";
+    public static String GYWM="7";
+
+
     private String navName;
     private String navType;
     private Long parentNav;
