@@ -52,7 +52,7 @@ public class NavService {
             }
 
 
-        });
+        }, new Sort(Sort.Direction.ASC, "navOrder"));
     }
     //根据栏目类型查找所有栏目
     public List<Nav> getAllNavWithNavTypeParentNav(final int navType,final Long parentNav) {

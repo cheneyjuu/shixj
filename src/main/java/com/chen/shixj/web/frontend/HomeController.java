@@ -40,30 +40,19 @@ public class HomeController {
             navHelperList.add(navHelper);
         }
         model.addAttribute("navHelperList", navHelperList);
-        List<Nav> navList = this.getAllNavForNavType(5);
-        Page<Info> storyPage = infoService.pageInfoWithNavsParam(1, 1, navList, "");
-        List<Info> storyList = storyPage.getContent();
-        Info storyModel = null;
-        if (storyList != null && storyList.size() > 0){
-            storyModel = storyList.get(0);
-        }
-        model.addAttribute("storyModel", storyModel);
-        List<Info> infoList = infoService.getIndexInfo();
-        model.addAttribute("infoList", infoList);
-        return "frontend/home";
-    }
 
-    private  List<Nav> getAllNavForNavType(int navType){
-        //查询所有一级文章栏目
-        List<Nav> navList = navService.getAllNavWithNavTypeParentNav(navType, 0L);
-        List<Nav> resultList = new ArrayList();
-        for (Nav nav : navList) {
-            resultList.add(nav);
-            long parentNav = nav.getId();
-            List<Nav> subNavList = navService.getAllNavWithNavTypeParentNav(navType, parentNav);
-            resultList.addAll(subNavList);
-        }
-        return resultList;
+        Info storyModel = infoService.getLastedInfoWithType(new Integer(Nav.PPGS));
+        model.addAttribute("storyModel", storyModel);
+
+        List<Info> infoList = infoService.getIndexInfoWithType(Nav.SXSF);
+        model.addAttribute("infoList", infoList);
+
+        List<Info> groupBuyingList = infoService.getIndexInfoWithType(Nav.TGSH);
+        model.addAttribute("groupBuyingList", groupBuyingList);
+
+        List<Info> ylyjList = infoService.getIndexInfoWithType(Nav.YLYJ);
+        model.addAttribute("ylyjList", ylyjList);
+        return "frontend/home";
     }
 
     @RequestMapping (value = "/left", method = RequestMethod.GET)
