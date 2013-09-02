@@ -20,7 +20,7 @@
         {//利用对话框返回的值 （true 或者 false）
             if(confirm("请确定是否要删除？"))
             {
-                location.href="${ctx}/admin/infoImage/delete/"+id;
+                location.href="${ctx}/admin/infoImage/delete/"+id+"/"+${navType};
             }
         }
 
@@ -46,10 +46,10 @@
                 <c:forEach items="${infoImageList}" var="infoImage">
                     <tr height="250px">
                         <td style="vertical-align:middle">
-                                ${infoImage.imagePath}${infoImage.pcImageName}
+                                ${ctx}${infoImage.imagePath}${infoImage.pcImageName}
                         </td>
                         <td style="vertical-align:middle">
-                            <img src="${infoImage.imagePath}${infoImage.pcImageName}" width="280" height="240">
+                            <img src="${ctx}${infoImage.imagePath}${infoImage.pcImageName}" width="280" height="240">
                         </td>
                         <td style="vertical-align:middle">
                             &nbsp;&nbsp;<a class="btn btn-info"  onclick="firm(${infoImage.id})">删除</a>
