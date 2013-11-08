@@ -52,6 +52,7 @@
                 <option value="5">品牌故事</option>
                 <option value="6">合作伙伴</option>
                 <option value="7">关于我们</option>
+                <option value="8">商品批发</option>
             </select>
         </div>
     </div>

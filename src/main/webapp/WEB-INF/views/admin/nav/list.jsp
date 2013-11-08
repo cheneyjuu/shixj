@@ -74,6 +74,12 @@
                             <c:when test="${nav.navType==6}">
                                 合作伙伴
                             </c:when>
+                            <c:when test="${nav.navType==7}">
+                                关于我们
+                            </c:when>
+                            <c:when test="${nav.navType==8}">
+                                商品批发
+                            </c:when>
                             <c:otherwise>
                                 关于我们
                             </c:otherwise>
