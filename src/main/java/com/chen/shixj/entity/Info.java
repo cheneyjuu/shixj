@@ -22,6 +22,15 @@ public class Info  extends IdEntity {
     private String infoGroupbuyingEndtime;//团购结束时间
     private String infoIntro;//简介
     private Long infoClicks;//点击次数
+    private String infoChinaName;//中文名称
+    private String infoStandard;//规格
+    private String infoPackUnit;//包装单位
+    private String infoProduction;//产地
+    private String infoDateInProduced;//生产日期
+    private String infoShelfLife;//保质期
+    private String infoInventoryLevel;//库存量
+    private String infoRetailPrice;//零售价
+    private String infoWholesalePrice;//批发价格
     private Set<InfoImage> infoImages;
 
     @ManyToOne
@@ -112,6 +121,78 @@ public class Info  extends IdEntity {
 
     public void setInfoClicks(Long infoClicks) {
         this.infoClicks = infoClicks;
+    }
+
+    public String getInfoChinaName() {
+        return infoChinaName;
+    }
+
+    public void setInfoChinaName(String infoChinaName) {
+        this.infoChinaName = infoChinaName;
+    }
+
+    public String getInfoPackUnit() {
+        return infoPackUnit;
+    }
+
+    public void setInfoPackUnit(String infoPackUnit) {
+        this.infoPackUnit = infoPackUnit;
+    }
+
+    public String getInfoProduction() {
+        return infoProduction;
+    }
+
+    public void setInfoProduction(String infoProduction) {
+        this.infoProduction = infoProduction;
+    }
+
+    public String getInfoDateInProduced() {
+        return infoDateInProduced;
+    }
+
+    public void setInfoDateInProduced(String infoDateInProduced) {
+        this.infoDateInProduced = infoDateInProduced;
+    }
+
+    public String getInfoShelfLife() {
+        return infoShelfLife;
+    }
+
+    public void setInfoShelfLife(String infoShelfLife) {
+        this.infoShelfLife = infoShelfLife;
+    }
+
+    public String getInfoInventoryLevel() {
+        return infoInventoryLevel;
+    }
+
+    public void setInfoInventoryLevel(String infoInventoryLevel) {
+        this.infoInventoryLevel = infoInventoryLevel;
+    }
+
+    public String getInfoStandard() {
+        return infoStandard;
+    }
+
+    public void setInfoStandard(String infoStandard) {
+        this.infoStandard = infoStandard;
+    }
+
+    public String getInfoRetailPrice() {
+        return infoRetailPrice;
+    }
+
+    public void setInfoRetailPrice(String infoRetailPrice) {
+        this.infoRetailPrice = infoRetailPrice;
+    }
+
+    public String getInfoWholesalePrice() {
+        return infoWholesalePrice;
+    }
+
+    public void setInfoWholesalePrice(String infoWholesalePrice) {
+        this.infoWholesalePrice = infoWholesalePrice;
     }
 
     @OneToMany(mappedBy = "info", cascade = CascadeType.ALL)

@@ -152,10 +152,12 @@ public class InfoController {
             return "partner";
         }else if(navType == 7){
             return "about";
-        }else {
+        }else if(navType == 8){
+            return "wholesale";
+        }else{
             return "share";
         }
-//        栏目类型 =1食享食分；=2团购实惠；=3有礼有节；=4食享课堂；=5品牌故事；=6合作伙伴；=7关于我们；
+//        栏目类型 =1食享食分；=2团购实惠；=3有礼有节；=4食享课堂；=5品牌故事；=6合作伙伴；=7关于我们；=8批发；
     }
     public static Set<InfoImage> createInfoImages(List<String> fileNameList,Info info){
         //处理图片路径

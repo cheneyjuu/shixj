@@ -40,7 +40,12 @@
                 <li><a href="/admin/info/list/5">故事列表</a></li>
             </ul>
         </li>
-
+        <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>批发产品</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/info/add/8">新增批发产品</a></li>
+                <li><a href="/admin/info/list/8">批发产品列表</a></li>
+            </ul>
+        </li>
         <li class="dropdown-submenu"><a href="#"><i class="icon-th-list icon-xlarge"></i><span>合作伙伴</span></a>
             <ul class="dropdown-menu">
                 <li><a href="/admin/info/add/6">新增伙伴</a></li>
